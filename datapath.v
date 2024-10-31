@@ -1,95 +1,54 @@
-module datapath_top #(parameter WIDTH=16, REGBITS=4) (
-    input             clk,         // System clock
-    input             reset,       // Synchronous reset
-    input             pc_write_en, // Program Counter write enable
-    input             pc_src_sel,  // PC Source select for jump/branch
-    input             alu_src,     // ALU MUX control (0 = reg data, 1 = immediate)
-    input             reg_dst,     // Register destination MUX control
-    input             reg_write,   // Register file write enable
-    input             ir_load,     // Instruction register load enable
-    input  [3:0]      alu_op,      // ALU operation select
-    input  [WIDTH-1:0] mem_in,     // Input data from memory
-    output [WIDTH-1:0] mem_out,    // Output data to memory
-    output [WIDTH-1:0] addr,       // Memory address
-    output [WIDTH-1:0] ir_out      // Output of instruction register
+module datapath #(parameter WIDTH = 16, REGBITS = 4)
+(
+   input  [7:0] instructionOp,
+	input  [WIDTH-1:0] immediate,
+	input  [3:0] addressOfRegSoruce,
+	input  [3:0] addressOfRegDst,
+	input  [3:0] shiftAmount,
+	input  [4:0] ALUOp,
+	input  [1:0] shiftOp,
+	input  [1:0] busOp,
+	input  immMUX,
+	input  regWrite,
+	input  memWrite,
+	input  [WIDTH-1:0] Data,
+	input  clk,
+   output [Width - 1:0] RegisterAddress
 );
 
-    // Internal signals
-    wire [WIDTH-1:0] pc_in, pc_out, alu_result, alu_src_b, reg_data1, reg_data2, wd, imm_ext, next_pc;
-    wire [REGBITS-1:0] wa, ra1, ra2;
+wire [1:0] shiftOp;
+wire [3:0] shamt;
+wire [7:0] instructionOP;
 
-    // Program Counter (PC)
-    // PC register with enable and reset
-    flopenr #(WIDTH) PC_reg (
-        .clk(clk),
-        .reset(reset),
-        .en(pc_write_en),
-        .d(pc_in),       // New PC value from next_pc
-        .q(pc_out)       // Current PC value
-    );
-    
-    // Next PC logic: MUX to select either PC+4 or ALU result for jump/branch
-    assign next_pc = (pc_src_sel) ? alu_result : pc_out + 16'd2; // Example: PC incremented by 2 for word-addressing
-    
-    // PC input for writing to PC register
-    assign pc_in = next_pc;  // Feed selected next PC value
+wire [7:0] extendedImmediate;
+wire [15:0] writeData; //Flipflop from PC, Shifter, or memory
+wire [3:0] regSource;
+wire [3:0] regDest;
+wire [15:0] ALUMuxRes; //Needs to be signextended
+wire [15:0] ShiftMuxRes;
+wire [15:0] ALUresult;
+wire [15:0] flagreg;
+wire [15:0] data_out;
+wire [15:0] busOutput;
+wire [15:0] dataFFResult;
 
-    // Instruction Register (IR)
-    // Instruction register to load from memory
-    flopenr #(WIDTH) IR_reg (
-        .clk(clk),
-        .reset(reset),
-        .en(ir_load),
-        .d(mem_in),      // Instruction from memory
-        .q(ir_out)       // Output instruction for decoding
-    );
+SignedExtenstion ImmediateExtension (.instruction(immediate), .result(extendedImmediate));
 
-    // Sign Extension Unit
-    assign imm_ext = {{8{ir_out[7]}}, ir_out[7:0]};  // Sign extend 8-bit immediate to 16 bits
+// Setup with always statement with instruction as input.
 
-    // Register File (RF)
-    assign ra1 = ir_out[11:8];  // Register address 1
-    assign ra2 = ir_out[7:4];   // Register address 2
-    assign wa  = (reg_dst) ? ir_out[3:0] : ir_out[7:4]; // Write address based on reg_dst
+Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(addressOfRegSoruce), .ra2(addressOfRegDst), .wd(writeData), 
+.rd1(regSource), .rd2(regDest));
 
-    Registers rf (
-        .clk(clk),
-        .regwrite(reg_write),
-        .ra1(ra1),
-        .ra2(ra2),
-        .wd(wd),
-        .rd1(reg_data1),   // Output from RF, connected to ALU input
-        .rd2(reg_data2)    // Output from RF, connected to ALU input
-    );
+Multiplexer ALUmux(.do1(extendedImmediate), .d02(regSource), .s(immMux), .y(ALUMuxRes)); //Result needs to be 
 
-    // ALU Source MUX: Select between reg_data2 and immediate (imm_ext)
-    assign alu_src_b = (alu_src) ? imm_ext : reg_data2;
+Multiplexer ShiftMux(.doi1(extendedImmediate),.do2(regDest),.s(ShifterMultiplexer),.y(ShiftMuxres)); // results needs to be signed 
 
-    // ALU
-    ALU alu (
-        .reg1(reg_data1),     // First input from register file
-        .reg2(alu_src_b),     // Second input from register file or immediate
-        .inst(alu_op),        // ALU operation from control unit
-        .result(alu_result),  // ALU result
-        .flagreg()            // Ignored for now
-    );
+ALU ALu(.reg1(AluMuxres), .reg2(regDest),.inst(ALUOp),.result(ALUresult),.flagreg(flagreg));
 
-    // Data Output Flip-Flop (for memory writes)
-    flopenr #(WIDTH) DOUT_reg (
-        .clk(clk),
-        .reset(reset),
-        .en(reg_write),
-        .d(reg_data2),  // Data from register to be written to memory
-        .q(mem_out)     // Data output to memory
-    );
+Shifter shifter(.data_in(ShiftMuxres),.shamt(shiftAmount),.shift_op(shift_op),.data_out(data_out));
 
-    // Address Flip-Flop (for memory accesses)
-    flopenr #(WIDTH) ADDR_reg (
-        .clk(clk),
-        .reset(reset),
-        .en(pc_write_en),
-        .d(alu_result),  // Address calculated by the ALU
-        .q(addr)         // Output address for memory access
-    );
+mux4 multiplexor(.register(regSource),.dataMem(Data),.ALUResult(ALUresult),.shifterResult(data_out),.selector(busOp),.dataOut(busOutput));
+
+FlipFlop DatasFF(.clk(clk), .reset(reset), .enable(memwrite), .d(BusOutput), .q(dataFFResult));  
 
 endmodule

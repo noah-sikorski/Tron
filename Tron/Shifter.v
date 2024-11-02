@@ -1,6 +1,6 @@
 module Shifter #(parameter WIDTH = 16) (
     input  [WIDTH-1:0] data_in,     // Data input to be shifted
-    input  [3:0]       shamt,       // Shift amount 
+    input  [15:0]      shamt,       // Shift amount 
     input  [1:0]       shift_op,    // Shift operation selector
                                     // 00 = Logical Shift Left (LSL)
                                     // 01 = Logical Shift Right (LSR)

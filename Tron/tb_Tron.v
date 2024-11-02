@@ -5,7 +5,7 @@ reg [15:0] instruction;
 wire [15:0] addressOut;
 wire [15:0] busOutput;
 
-controller_dataPath UUT(
+Tron UUT(
 	.clk(clk),
 	.reset(reset),
 	.instruction(instruction),
@@ -19,7 +19,7 @@ forever #5 clk = ~clk;
 end
 
 initial begin
-	additionInstruction;
+	ADDInstruction;
 	ADDIInstruction;
 	SubInstruction;
 	SubIInstruction;
@@ -42,84 +42,84 @@ end
 
 task ResetInstruction;
 begin
-    reset = 1;
-    instruction = 16'b1101000100000001;
-    repeat(3) @(posedge clk);
+	reset = 1;
+   instruction = 16'b1101000100000001;
+   repeat(3) @(posedge clk);
 end
 endtask
 
 
-task additionInstruction;
+task ADDInstruction;
 begin
-    reset = 1;
-    instruction = 16'b0000000101010010;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0001) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'h0003)) begin
+   reset = 1;
+   instruction = 16'b0000000101010010;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h0001) 
+		if((UUT.fsmController.regWrite) && (busOutput == 16'h0003)) begin
 	   $display("Correct result: Addition Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
 task MOVInstruction;
 begin
-    reset = 1;
-    instruction = 16'b0000000111010101;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0011) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'h0005)) begin
+	reset = 1;
+   instruction = 16'b0000000111010101;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h0011) 
+		if((UUT.fsmController.regWrite) && (busOutput == 16'h0005)) begin
 	   $display("Correct result: MOV Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
 task ANDInstruction;
 begin
-    instruction = 16'b0000000100010011;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h000d) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'h0001)) begin
+   instruction = 16'b0000000100010011;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h000d) 
+      if((UUT.fsmController.regWrite) && (busOutput == 16'h0001)) begin
 	   $display("Correct result: AND Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
 task ADDIInstruction;
 begin
-    instruction = 16'b0101000110010011;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0003) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'hff94)) begin
+   instruction = 16'b0101000110010011;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h0003) 
+		if((UUT.fsmController.regWrite) && (busOutput == 16'hff94)) begin
 	   $display("Correct result: Addition Immediate Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
 task SubInstruction;
 begin
-    instruction = 16'b0000000110010010;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0005) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'hffff)) begin
+   instruction = 16'b0000000110010010;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h0005) 
+		if((UUT.fsmController.regWrite) && (busOutput == 16'hffff)) begin
 	   $display("Correct result: Subtraction Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
 task SubIInstruction;
 begin
-    instruction = 16'b1001000100000001;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0007) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'h0000)) begin
+   instruction = 16'b1001000100000001;
+   repeat(3) @(posedge clk);
+   if(addressOut == 16'h0007) 
+      if((UUT.fsmController.regWrite) && (busOutput == 16'h0000)) begin
 	   $display("Correct result: Subtraction Immediate Instruction Successful");
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 
@@ -245,13 +245,16 @@ endtask
 
 task LUIInstruction;
 begin
-    instruction = 16'b1111000100000001;
-    repeat(3) @(posedge clk);
-    if(addressOut == 16'h0021) 
-       if((UUT.fsmController.regWrite) && (busOutput == 16'h0100)) begin
-	   $display("Correct result: LUI Instruction Successful");
+   instruction = 16'b1111000100000001;
+   repeat(4) @(posedge clk);
+   if(addressOut == 16'h0021) begin
+		if((UUT.fsmController.regWrite) && (busOutput == 16'h0100)) begin
+			$display("Correct result: LUI Instruction Successful");
+		end else begin
+			$display("Failed LUI Instruction");
+		end
 	end
-    ResetInstruction;
+   ResetInstruction;
 end
 endtask
 

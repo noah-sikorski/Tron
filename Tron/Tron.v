@@ -8,7 +8,7 @@ module Tron(
 
 wire [7:0] instructionOp;
 wire [15:0] immediate;
-wire[3:0] regAddA;
+wire [3:0] regAddA;
 wire [3:0] regAddB;
 wire [3:0] flagOp;
 wire [3:0] ALUOp;
@@ -20,6 +20,7 @@ wire memWrite;
 wire pcAdd;
 wire pcJump;
 wire pcBranch;
+wire flagWrite;
 wire [15:0] tempAddressOut;
 wire [15:0] tempbusOutput;
 
@@ -40,7 +41,8 @@ Controller fsmController (
    .memWrite(memWrite),
    .pcAdd(pcAdd),
    .pcJump(pcJump),
-   .pcBranch(pcBranch)
+   .pcBranch(pcBranch),
+	.flagWrite(flagWrite)
 );
 
 Datapath UUTdatapath(
@@ -59,6 +61,7 @@ Datapath UUTdatapath(
 	.pcAdd(pcAdd),
 	.pcJump(pcJump),
 	.pcBranch(pcBranch),
+	.flagWrite(flagWrite),
    .clk(clk),
    .addressOut(tempAddressOut),
 	.busOutput(tempbusOutput)

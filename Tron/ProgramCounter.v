@@ -9,7 +9,7 @@ module ProgramCounter #(parameter WIDTH = 16) (
 	 input pcJump,
 	 input pcBranch,
 	 
-    output wire[WIDTH-1:0] addressOut = 0
+    output wire [WIDTH-1:0] addressOut
 );
 
 reg [15:0] pcAddress = 0;
@@ -32,8 +32,8 @@ localparam LT = 4'b1100;
 localparam GE = 4'b1101;
 localparam UC = 4'b1110;
 
-always @(*) begin
-	if (reset) begin
+always @(pcAdd, pcJump, pcBranch, reset) begin
+	if (!reset) begin
 		pcAddress <= 16'b0;
 	end else if (pcAdd) begin
 		pcAddress <= pcAddress + 16'b1;

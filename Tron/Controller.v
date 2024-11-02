@@ -76,7 +76,7 @@ always @(posedge clk) begin
 end
 
 // Next state logic (determines what the next state will be)
-always @(*) begin
+always @(currentstate) begin
 	case(currentstate)
 		FETCH: nextstate <= DECODE;
 		

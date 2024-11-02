@@ -1,21 +1,22 @@
 module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 (
-   input  [7:0] instructionOp,
-	input  [WIDTH-1:0] immediate,
-	input  [3:0] regAddA,
-	input  [3:0] regAddB,
-	input  [3:0] ALUOp,
-	input  [1:0] shiftOp,
-	input  [2:0] busOp,
-	input  immMUX,
-	input  regWrite,
-	input  memWrite,
+   input [7:0] instructionOp,
+	input [WIDTH-1:0] immediate,
+	input [3:0] regAddA,
+	input [3:0] regAddB,
+	input [3:0] ALUOp,
+	input [1:0] shiftOp,
+	input [2:0] busOp,
+	input immMUX,
+	input regWrite,
+	input memWrite,
 	input reset,
 	input [3:0] flagOp,
 	input pcAdd,
 	input pcJump,
 	input pcBranch,
-	input  clk,
+	input clk,
+	input flagWrite,
    output wire [WIDTH - 1:0] addressOut,
 	output wire [WIDTH -1: 0] busOutput
 );
@@ -38,7 +39,8 @@ Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 
 Multiplexer IMMmux(.d0(regA), .d1(immediate), .s(immMUX), .y(IMMMuxRes));  
 
-ALU ALu(.reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .result(ALUresult), .flagreg(flagreg));
+ALU ALu(.reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagWrite), .result(ALUresult), 
+		  .flagreg(flagreg));
 
 Shifter shift(.data_in(regB), .shamt(IMMMuxRes), .shift_op(shiftOp), .data_out(shifterOutput));
 

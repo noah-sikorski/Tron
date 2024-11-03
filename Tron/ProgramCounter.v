@@ -4,6 +4,7 @@ module ProgramCounter #(parameter WIDTH = 16) (
     input [3:0] flagOp,
 	 input [15:0] flagRegister,
 	 input [15:0] immediate,
+	 input [15:0] rTarget,
 	 
 	 input pcAdd,
 	 input pcJump,
@@ -31,6 +32,7 @@ localparam HS = 4'b1011;
 localparam LT = 4'b1100;
 localparam GE = 4'b1101;
 localparam UC = 4'b1110;
+localparam JAL = 4'b1111;
 
 always @(pcAdd, pcJump, pcBranch, reset) begin
 	if (!reset) begin
@@ -190,6 +192,9 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			end
 			UC: begin
 				pcAddress <= immediate;
+			end
+			JAL: begin
+				pcAddress <= rTarget;
 			end
 			default: begin
 				pcAddress <= pcAddress + 16'b1;

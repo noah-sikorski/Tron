@@ -58,7 +58,7 @@ localparam LSHI1 	= 8'b10000001;
 localparam LUI		= 8'b11110000;
 localparam LOAD	= 8'b01000000;
 localparam STOR	= 8'b01000100;
-localparam JAL		= 8'b01001110;
+localparam JAL		= 8'b01001000;
 
 localparam BCOND 	= 8'b11000000;
 localparam JCOND 	= 8'b01001100;
@@ -168,7 +168,7 @@ always @(currentstate) begin
 				// JAL Type Instruction
 				end else begin
 					instructionOp <= {instruction[15:12], instruction[7:4]};
-					flagOp <= 4'b1110;
+					flagOp <= 4'b1111;
 					regAddA <= instruction[3:0];
 					regAddB <= instruction[11:8];
 				end
@@ -311,6 +311,7 @@ always @(currentstate) begin
 		// Phase to jump and save pc to memory.
 		JAL: begin
 			regWrite <= 1;
+			pcAdd	   <= 1'b1;
 			busOp    <= 3'b100;
 		end
 		

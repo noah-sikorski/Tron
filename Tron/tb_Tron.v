@@ -36,6 +36,7 @@ initial begin
 	LSHI0Instruction;
 	LSHI1Instruction;
 	LUIInstruction;
+	JALInstruction;
 	instruction = 16'b0000000000000000;
 	//$stop;
 end
@@ -257,5 +258,27 @@ begin
    ResetInstruction;
 end
 endtask
+
+task JALInstruction;
+begin
+	instruction = 16'b0100000110000010;
+   repeat(3) @(posedge clk);
+	if((UUT.fsmController.regWrite) && (busOutput == 16'h0023)) begin
+		$display("Correct result: JAL Part1 Instruction Successful");
+	end else begin
+		$display("Failed JAL Part1 Instruction");
+	end
+	
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0002) begin
+		$display("Correct result: JAL Part2 Instruction Successful");
+	end else begin
+		$display("Failed JAL Part2 Instruction");
+	end
+   ResetInstruction;
+end
+endtask
+
+
 
 endmodule

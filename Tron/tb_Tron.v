@@ -37,6 +37,8 @@ initial begin
 	LSHI1Instruction;
 	LUIInstruction;
 	JALInstruction;
+	StoreInstruction;
+	LoadInstruction;
 	instruction = 16'b0000000000000000;
 	//$stop;
 end
@@ -279,6 +281,29 @@ begin
 end
 endtask
 
+task StoreInstruction;
+begin
+	instruction = 16'b0100010101000001;
+	repeat(3) @(posedge clk);
+	if((UUT.memWrite) && (busOutput == 16'h0005) && (UUT.regA)) begin
+		$display("Correct result: Store Successful");
+	end else begin
+		$display("Failed Store Instruction");
+		end
+end
+endtask
 
+task LoadInstruction;
+begin
+	instruction = 16'b0100000100000001;
+	repeat(4) @(posedge clk);
+	if((UUT.regWrite) && (busOutput == 16'h0005) && (UUT.regA)) begin
+		$display("Correct result: Load Successful");
+	end else begin
+		$display("Failed Load Instruction");
+	end
+	ResetInstruction;
+end
+endtask
 
 endmodule

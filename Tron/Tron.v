@@ -6,6 +6,7 @@ module Tron(
 	output wire [15:0] busOutput
 );
 
+wire [15:0] regA;
 wire [7:0] instructionOp;
 wire [15:0] immediate;
 wire [3:0] regAddA;
@@ -23,6 +24,13 @@ wire pcBranch;
 wire flagWrite;
 wire [15:0] tempAddressOut;
 wire [15:0] tempbusOutput;
+wire [15:0] memData;
+
+//temp wires for VGA
+wire [15:0]dataIn2;
+wire [15:0]dataOut2;
+wire [15:0]addr2;
+wire we2;
 
 Controller fsmController (
 	.clk(clk),
@@ -46,6 +54,7 @@ Controller fsmController (
 );
 
 Datapath UUTdatapath(
+	.memData(memData),
 	.instructionOp(instructionOp),
 	.immediate(immediate),
 	.regAddA(regAddA),
@@ -64,8 +73,26 @@ Datapath UUTdatapath(
 	.flagWrite(flagWrite),
    .clk(clk),
    .addressOut(tempAddressOut),
-	.busOutput(tempbusOutput)
+	.busOutput(tempbusOutput),
+	.regA(regA)
 );
+
+exemem mem(
+.dataIn1(tempbusOutput),
+.addr1(regA),
+.dataIn2(dataIn2),
+.addr2(addr2),
+.ProgramCounter(tempAddressOut),
+.we1(memWrite),
+.we2(we2),
+.clk(clk),
+.dataOut1(memData),
+.dataOut2(dataOut2)
+);
+
+
+
+
 
 assign addressOut = tempAddressOut;
 assign busOutput = tempbusOutput;

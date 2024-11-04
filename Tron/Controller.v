@@ -287,12 +287,12 @@ always @(currentstate) begin
 		end
 		
 		// Stall to retrieve value form memory
-		LOAD: begin
+		LOADS: begin
 			
 		end
 		
 		// Phase to Load to register.
-		LOADS: begin
+		LOAD: begin
 			busOp    <= 3'b011;
 			regWrite <= 1'b1;
 		end

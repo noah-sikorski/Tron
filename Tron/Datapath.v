@@ -1,5 +1,6 @@
 module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 (
+	input [15:0] memData,
    input [7:0] instructionOp,
 	input [WIDTH-1:0] immediate,
 	input [3:0] regAddA,
@@ -17,12 +18,12 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 	input pcBranch,
 	input clk,
 	input flagWrite,
-   output wire [WIDTH - 1:0] addressOut,
-	output wire [WIDTH -1: 0] busOutput
+   output wire [WIDTH - 1: 0] addressOut,
+	output wire [WIDTH - 1: 0] busOutput,
+	output wire [WIDTH - 1: 0]regA
 );
 
-wire [15:0] memData;
-wire [15:0] regA;
+
 wire [15:0] regB;
 wire [15:0] IMMMuxRes; 
 wire [15:0] ALUresult;

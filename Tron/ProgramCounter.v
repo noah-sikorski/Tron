@@ -123,26 +123,36 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			EQ: begin
 				if(flagRegister[3]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			NE: begin
 				if(!flagRegister[3]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			CS: begin
 				if(flagRegister[0]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			CC: begin
 				if(!flagRegister[0]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			HI: begin
 				if(flagRegister[1]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			LS: begin
@@ -153,6 +163,8 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			GT: begin
 				if(flagRegister[4]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			LE: begin
@@ -163,31 +175,43 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			FS: begin
 				if(flagRegister[2]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			FC: begin
 				if(!flagRegister[2]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1; 
 				end
 			end
 			LO: begin
 				if(!flagRegister[1] && !flagRegister[3]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			HS: begin
 				if(flagRegister[1] || flagRegister[3]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			LT: begin
 				if(!flagRegister[3] && !flagRegister[4]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			GE: begin
 				if(flagRegister[3] || flagRegister[4]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			UC: begin

@@ -1,7 +1,6 @@
 module Tron(
 	input clk,
 	input reset,
-	input [15:0] instruction,
 	output wire [15:0] addressOut,
 	output wire [15:0] busOutput
 );
@@ -31,6 +30,8 @@ wire [15:0]dataIn2;
 wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
+
+wire [15:0] instruction;
 
 Controller fsmController (
 	.clk(clk),
@@ -87,7 +88,8 @@ exemem mem(
 .we2(we2),
 .clk(clk),
 .dataOut1(memData),
-.dataOut2(dataOut2)
+.dataOut2(dataOut2),
+.Instruction(instruction)
 );
 
 

@@ -48,7 +48,7 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			end
 			NE: begin
 				if (!flagRegister[3]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			CS: begin

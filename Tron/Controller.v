@@ -295,6 +295,7 @@ always @(currentstate) begin
 		LOAD: begin
 			busOp    <= 3'b011;
 			regWrite <= 1'b1;
+			pcAdd <= 1'b1;
 		end
 		
 		// Phase to store value to memory.
@@ -305,7 +306,8 @@ always @(currentstate) begin
 		
 		// Stall to allow store into memory.
 		STORS: begin
-		
+			pcAdd <= 1'b1;
+			
 		end
 		
 		// Phase to jump and save pc to memory.

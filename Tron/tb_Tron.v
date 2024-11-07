@@ -284,7 +284,7 @@ endtask
 task StoreInstruction;
 begin
 	instruction = 16'b0100010101000001;
-	repeat(3) @(posedge clk);
+	repeat(4) @(posedge clk);
 	if((UUT.memWrite) && (busOutput == 16'h0005) && (UUT.regA)) begin
 		$display("Correct result: Store Successful");
 	end else begin

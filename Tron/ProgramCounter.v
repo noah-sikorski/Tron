@@ -1,5 +1,6 @@
 module ProgramCounter #(parameter WIDTH = 16) (
 	 input reset,
+	 input clk,
 
     input [3:0] flagOp,
 	 input [15:0] flagRegister,
@@ -34,7 +35,7 @@ localparam GE = 4'b1101;
 localparam UC = 4'b1110;
 localparam JAL = 4'b1111;
 
-always @(pcAdd, pcJump, pcBranch, reset) begin
+always @(posedge clk) begin
 	if (!reset) begin
 		pcAddress <= 16'b0;
 	end else if (pcAdd) begin

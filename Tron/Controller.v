@@ -15,6 +15,8 @@ module Controller #(parameter WIDTH=16, REGBITS=4) (
 	output reg[3:0] ALUOp,
    output reg[1:0] shiftOp,
 	output reg[2:0] busOp,
+	
+	output reg fetchPhase,
 
 	output reg immMUX,
 	output reg regWrite,
@@ -129,6 +131,8 @@ always @(currentstate) begin
 	pcJump	<= 1'b0;
 	pcBranch	<= 1'b0;
 	
+	fetchPhase <= 1'b0;
+	
 	case (currentstate)
 		// Phase to decode instruction.
 		FETCH: begin
@@ -138,6 +142,8 @@ always @(currentstate) begin
 			immediate     <= 16'b0;
 			instructionOp <= 8'b0;
 			flagOp		  <= 4'b0;
+			
+			fetchPhase 	  <= 1'b1;
 			
 			// Register Type Instruction
 			if (instruction[15:12] == 4'b0000) begin

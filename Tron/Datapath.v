@@ -34,7 +34,7 @@ wire [15:0] shifterOutput;
 
 ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(immediate),
 						.pcAdd(pcAdd), .pcJump(pcJump), .pcBranch(pcBranch), .addressOut(addressOut),
-						.rTarget(regA));
+						.rTarget(regA), .clk(clk));
 
 Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 						.wd(busOutput), .rd1(regA), .rd2(regB));

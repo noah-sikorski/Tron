@@ -1,6 +1,7 @@
 module Tron(
 	input clk,
 	input reset,
+	input wire [15:0] instruction,
 	output wire [15:0] addressOut,
 	output wire [15:0] busOutput
 );
@@ -21,6 +22,7 @@ wire pcAdd;
 wire pcJump;
 wire pcBranch;
 wire flagWrite;
+wire fetchPhase;
 wire [15:0] tempAddressOut;
 wire [15:0] tempbusOutput;
 wire [15:0] memData;
@@ -31,7 +33,7 @@ wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-wire [15:0] instruction;
+//wire [15:0] instruction;
 
 Controller fsmController (
 	.clk(clk),
@@ -51,7 +53,8 @@ Controller fsmController (
    .pcAdd(pcAdd),
    .pcJump(pcJump),
    .pcBranch(pcBranch),
-	.flagWrite(flagWrite)
+	.flagWrite(flagWrite),
+	.fetchPhase(fetchPhase)
 );
 
 Datapath UUTdatapath(
@@ -89,11 +92,9 @@ exemem mem(
 .clk(clk),
 .dataOut1(memData),
 .dataOut2(dataOut2),
-.Instruction(instruction)
+//.instruction(instruction),
+.fetchPhase(fetchPhase)
 );
-
-
-
 
 
 assign addressOut = tempAddressOut;

@@ -10,7 +10,7 @@ module ALU #(parameter WIDTH=16) (
 	input flagWrite,
 	
 	output reg [WIDTH-1:0] result, 
-	output reg [WIDTH-1:0] flagreg = 16'b0
+	output reg [4:0] flagreg = 5'b0
 );
 
 wire [WIDTH:0] ressum, resand, resor, resxor;

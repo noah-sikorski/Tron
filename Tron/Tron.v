@@ -81,7 +81,7 @@ Datapath UUTdatapath(
 	.regA(regA)
 );
 
-exemem mem(
+exmem mem(
 .dataIn1(tempbusOutput),
 .addr1(regA),
 .dataIn2(dataIn2),

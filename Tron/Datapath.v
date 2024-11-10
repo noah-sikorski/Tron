@@ -27,7 +27,7 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 wire [15:0] regB;
 wire [15:0] IMMMuxRes; 
 wire [15:0] ALUresult;
-wire [15:0] flagreg;
+wire [4:0] flagreg;
 wire [15:0] shifterOutput;
 
 // Setup with always statement with instruction as input.

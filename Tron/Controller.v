@@ -15,6 +15,8 @@ module Controller #(parameter WIDTH=16, REGBITS=4) (
 	output reg[3:0] ALUOp,
    output reg[1:0] shiftOp,
 	output reg[2:0] busOp,
+	
+	output reg fetchPhase,
 
 	output reg immMUX,
 	output reg regWrite,
@@ -107,8 +109,8 @@ always @(currentstate) begin
 		
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
-		LOAD: nextstate <= LOADS;
-		STOR: nextstate <= STORS;
+		LOADS: nextstate <= LOAD;
+		STOR:  nextstate <= STORS;
 		
 		default:	nextstate <= FETCH;
 	endcase
@@ -129,6 +131,8 @@ always @(currentstate) begin
 	pcJump	<= 1'b0;
 	pcBranch	<= 1'b0;
 	
+	fetchPhase <= 1'b0;
+	
 	case (currentstate)
 		// Phase to decode instruction.
 		FETCH: begin
@@ -138,6 +142,8 @@ always @(currentstate) begin
 			immediate     <= 16'b0;
 			instructionOp <= 8'b0;
 			flagOp		  <= 4'b0;
+			
+			fetchPhase 	  <= 1'b1;
 			
 			// Register Type Instruction
 			if (instruction[15:12] == 4'b0000) begin
@@ -249,7 +255,7 @@ always @(currentstate) begin
 				ANDI: begin ALUOp <= 4'b0001; flagWrite <= 1'b1; end
 				ORI:  begin ALUOp <= 4'b0010; flagWrite <= 1'b1; end
 				XORI: begin ALUOp <= 4'b0011; flagWrite <= 1'b1; end
-				CMPI: begin ALUOp <= 4'b1000; regWrite <= 1'b0; flagWrite <= 1'b1; end
+				CMPI: begin ALUOp <= 4'b1000; flagWrite <= 1'b1; regWrite <= 1'b0; end
 				MOVI: begin ALUOp <= 4'b0000; busOp    <= 3'b010; end
 				default: begin end
 			endcase
@@ -307,7 +313,6 @@ always @(currentstate) begin
 		// Stall to allow store into memory.
 		STORS: begin
 			pcAdd <= 1'b1;
-			
 		end
 		
 		// Phase to jump and save pc to memory.

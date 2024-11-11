@@ -1,8 +1,9 @@
 module ProgramCounter #(parameter WIDTH = 16) (
 	 input reset,
+	 input clk,
 
     input [3:0] flagOp,
-	 input [15:0] flagRegister,
+	 input [4:0] flagRegister,
 	 input [15:0] immediate,
 	 input [15:0] rTarget,
 	 
@@ -34,7 +35,7 @@ localparam GE = 4'b1101;
 localparam UC = 4'b1110;
 localparam JAL = 4'b1111;
 
-always @(pcAdd, pcJump, pcBranch, reset) begin
+always @(posedge clk) begin
 	if (!reset) begin
 		pcAddress <= 16'b0;
 	end else if (pcAdd) begin
@@ -43,7 +44,7 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 	  case (flagOp)
 			EQ: begin
 				if (flagRegister[3]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			NE: begin
@@ -53,69 +54,69 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			end
 			CS: begin
 				if (flagRegister[0]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			CC: begin
 				if (!flagRegister[0]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			HI: begin
 				if (flagRegister[1]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			LS: begin
 				if (!flagRegister[1]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			GT: begin
 				if (flagRegister[4]) begin
-				   pcAddress <= pcAddress + 16'b1 + immediate;
+				   pcAddress <= pcAddress + immediate;
 				end
 			end
 			LE: begin
 				if (!flagRegister[4]) begin
-				   pcAddress <= pcAddress + 16'b1 + immediate;
+				   pcAddress <= pcAddress + immediate;
 				end
 			end
 			FS: begin
 				if (flagRegister[2]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			FC: begin
 				if (!flagRegister[2]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			LO: begin
 				if (!flagRegister[1] && !flagRegister[3]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			HS: begin
 				if (flagRegister[1] || flagRegister[3]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			LT: begin
 				if (!flagRegister[3] && !flagRegister[4]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			GE: begin
 				if (flagRegister[3] || flagRegister[4]) begin
-					pcAddress <= pcAddress + 16'b1 + immediate;
+					pcAddress <= pcAddress + immediate;
 				end
 			end
 			UC: begin
-				pcAddress <= pcAddress + 16'b1 + immediate;
+				pcAddress <= pcAddress + immediate;
 			end
 			default: begin
-				pcAddress <= pcAddress + 16'b1;
+				pcAddress <= pcAddress;
 			end
 		endcase
 	end else if (pcJump) begin
@@ -158,6 +159,8 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			LS: begin
 				if(!flagRegister[1]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			GT: begin
@@ -170,6 +173,8 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 			LE: begin
 				if(!flagRegister[4]) begin
 					pcAddress <= immediate;
+				end else begin
+					pcAddress <= pcAddress + 16'b1;
 				end
 			end
 			FS: begin
@@ -224,7 +229,7 @@ always @(pcAdd, pcJump, pcBranch, reset) begin
 				pcAddress <= pcAddress + 16'b1;
 			end
 		endcase
-	 end
+	end
 end
 
 endmodule

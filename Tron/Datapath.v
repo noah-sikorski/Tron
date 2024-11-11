@@ -27,14 +27,14 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 wire [15:0] regB;
 wire [15:0] IMMMuxRes; 
 wire [15:0] ALUresult;
-wire [15:0] flagreg;
+wire [4:0] flagreg;
 wire [15:0] shifterOutput;
 
 // Setup with always statement with instruction as input.
 
 ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(immediate),
 						.pcAdd(pcAdd), .pcJump(pcJump), .pcBranch(pcBranch), .addressOut(addressOut),
-						.rTarget(regA));
+						.rTarget(regA), .clk(clk));
 
 Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 						.wd(busOutput), .rd1(regA), .rd2(regB));

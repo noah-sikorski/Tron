@@ -81,12 +81,13 @@ Datapath UUTdatapath(
 	.regA(regA)
 );
 
+
 exmem mem(
 .dataIn1(tempbusOutput),
 .addr1(regA),
 .dataIn2(dataIn2),
 .addr2(addr2),
-.ProgramCounter(tempAddressOut),
+//.ProgramCounter(tempAddressOut),
 .we1(memWrite),
 .we2(we2),
 .clk(clk),

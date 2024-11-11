@@ -109,8 +109,8 @@ always @(currentstate) begin
 		
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
-		LOAD: nextstate <= LOADS;
-		STOR: nextstate <= STORS;
+		LOADS: nextstate <= LOAD;
+		STOR:  nextstate <= STORS;
 		
 		default:	nextstate <= FETCH;
 	endcase
@@ -255,7 +255,7 @@ always @(currentstate) begin
 				ANDI: begin ALUOp <= 4'b0001; flagWrite <= 1'b1; end
 				ORI:  begin ALUOp <= 4'b0010; flagWrite <= 1'b1; end
 				XORI: begin ALUOp <= 4'b0011; flagWrite <= 1'b1; end
-				CMPI: begin ALUOp <= 4'b1000; regWrite <= 1'b0; flagWrite <= 1'b1; end
+				CMPI: begin ALUOp <= 4'b1000; flagWrite <= 1'b1; regWrite <= 1'b0; end
 				MOVI: begin ALUOp <= 4'b0000; busOp    <= 3'b010; end
 				default: begin end
 			endcase
@@ -313,7 +313,6 @@ always @(currentstate) begin
 		// Stall to allow store into memory.
 		STORS: begin
 			pcAdd <= 1'b1;
-			
 		end
 		
 		// Phase to jump and save pc to memory.

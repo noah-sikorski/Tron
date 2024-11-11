@@ -229,7 +229,7 @@ always @(posedge clk) begin
 				pcAddress <= pcAddress + 16'b1;
 			end
 		endcase
-	 end
+	end
 end
 
 endmodule

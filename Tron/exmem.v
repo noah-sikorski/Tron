@@ -10,13 +10,13 @@ module exmem #(parameter DATA_WIDTH=16, parameter ADDR_WIDTH=16) (
 	input [(DATA_WIDTH-1):0] ProgramCounter,
 	input we1, we2, clk,
 	input fetchPhase,
-	input switches,
 	
 	output reg  [(DATA_WIDTH-1):0] LED,
 	output wire [(DATA_WIDTH-1):0] dataOut1,
 	output wire [(DATA_WIDTH-1):0] dataOut2,
 	output wire [(DATA_WIDTH-1):0] instruction
 );
+
 
 // Declare the RAM variable
 reg [DATA_WIDTH-1:0] ram[2**ADDR_WIDTH-1:0];
@@ -28,11 +28,11 @@ reg [15:0] temp_instruction;
 
 //enable IO
 wire IO;
-assign IO = (addr1[15:14] == 2'b11);
+assign IO = (addr1[15] == 1'b1);
 
 initial begin
 	$display("Loading memory");
-	$readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Tron\\Checkpoint3.dat", ram);
+	$readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Tron\\Empty.dat", ram);
 	$display("done loading");
 end
 
@@ -58,8 +58,9 @@ always @(posedge clk) begin
 		temp_instruction <= ram[ProgramCounter];
 end
 
-assign dataOut1 = IO ? switches : ram[addr1_reg];
+assign dataOut1 = ram[addr1_reg];
 assign dataOut2 = ram[addr2_reg];
 assign instruction = temp_instruction;
+
 
 endmodule

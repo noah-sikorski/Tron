@@ -57,7 +57,7 @@ begin
    instruction = 16'b0000000101010010;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0001) 
+   if(addressOut == 16'h0000) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0003))
 			$display("Correct result: ADD Instruction Successful");
 		else
@@ -72,7 +72,7 @@ begin
    instruction = 16'b0000000111010101;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0011) 
+   if(addressOut == 16'h0010) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0005))
 			$display("Correct result: MOV Instruction Successful");
 		else
@@ -86,7 +86,7 @@ begin
    instruction = 16'b0000000100010011;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h000d) 
+   if(addressOut == 16'h000c) 
       if((UUT.fsmController.regWrite) && (busOutput == 16'h0001))
 			$display("Correct result: AND Instruction Successful");
 		else
@@ -100,7 +100,7 @@ begin
    instruction = 16'b0101000110010011;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0003) 
+   if(addressOut == 16'h0002) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'hff94))
 			$display("Correct result: ADDI Instruction Successful");
 		else
@@ -114,7 +114,7 @@ begin
    instruction = 16'b0000000110010010;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0005) 
+   if(addressOut == 16'h0004) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'hffff))
 			$display("Correct result: SUB Instruction Successful");
 		else
@@ -128,7 +128,7 @@ begin
    instruction = 16'b1001000100000001;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0007) 
+   if(addressOut == 16'h0006) 
       if((UUT.fsmController.regWrite) && (busOutput == 16'h0000))
 			$display("Correct result: SUBI Instruction Successful");
 		else
@@ -142,7 +142,7 @@ begin
    instruction = 16'b0000000110110001;
    repeat(3) @(posedge clk);
 	 
-	if(addressOut == 16'h0009) 
+	if(addressOut == 16'h0008) 
 		if((!UUT.fsmController.regWrite) && (UUT.UUTdatapath.flagreg == 16'h0008))
 			$display("Correct result: CMP Instruction Successful");
 		else
@@ -156,7 +156,7 @@ begin
    instruction = 16'b1011000100000010;
    repeat(3) @(posedge clk);
 	 
-   if(addressOut == 16'h000b) 
+   if(addressOut == 16'h000a) 
 		if((!UUT.fsmController.regWrite) && (UUT.UUTdatapath.flagreg == 16'h0011))
 			$display("Correct result: CMPI Instruction Successful");
 		else
@@ -169,8 +169,8 @@ task ANDIInstruction;
 begin
    instruction = 16'b0001000111110010;
    repeat(3) @(posedge clk);
-	 
-   if(addressOut == 16'h000f) 
+	
+   if(addressOut == 16'h000e) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0000))
 			$display("Correct result: ANDI Instruction Successful");
 		else
@@ -184,7 +184,7 @@ begin
    instruction = 16'b0000000100100010;
    repeat(3) @(posedge clk);
 	 
-	if(addressOut == 16'h0013) 
+	if(addressOut == 16'h0012) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0003))
 			$display("Correct result: OR Instruction Successful");
 		else
@@ -198,7 +198,7 @@ begin
 	instruction = 16'b0010000100001110;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h0015) 
+   if(addressOut == 16'h0014) 
       if((UUT.fsmController.regWrite) && (busOutput == 16'h000f))
 			$display("Correct result: ORI Instruction Successful");
 		else
@@ -212,7 +212,7 @@ begin
 	instruction = 16'b0000000100111110;
    repeat(3) @(posedge clk);
 	 
-   if(addressOut == 16'h0017) 
+   if(addressOut == 16'h0016) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h000f))
 			$display("Correct result: XOR Instruction Successful");
 		else
@@ -226,8 +226,8 @@ task XORIInstruction;
 begin
    instruction = 16'b0011000100001110;
    repeat(3) @(posedge clk);
-	 
-   if(addressOut == 16'h0019) 
+	
+   if(addressOut == 16'h0018) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h000f))
 			$display("Correct result: XORI Instruction Successful");
 		else
@@ -241,11 +241,11 @@ begin
    instruction = 16'b1000000101000011;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h001b) 
+   if(addressOut == 16'h001a) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0008))
-			$display("Correct result: LSHI Instruction Successful");
+			$display("Correct result: LSH Instruction Successful");
 		else
-			$display("Incorrect result: LSHI Instruction Not Successful");
+			$display("Incorrect result: LSH Instruction Not Successful");
    ResetInstruction;
 end
 endtask
@@ -255,7 +255,7 @@ begin
    instruction = 16'b1000000100000001;
    repeat(3) @(posedge clk);
 	 
-   if(addressOut == 16'h001d) 
+   if(addressOut == 16'h001c) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0002))
 			$display("Correct result: LSHI0 Instruction Successful");
 		else
@@ -269,7 +269,7 @@ begin
    instruction = 16'b1000000100010001;
    repeat(3) @(posedge clk);
 	
-   if(addressOut == 16'h001f) 
+   if(addressOut == 16'h001e) 
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0002))
 			$display("Correct result: LSHI1 Instruction Successful");
 		else
@@ -283,7 +283,7 @@ begin
    instruction = 16'b1111000100000001;
    repeat(4) @(posedge clk);
 	
-   if(addressOut == 16'h0021)
+   if(addressOut == 16'h0020)
 		if((UUT.fsmController.regWrite) && (busOutput == 16'h0100))
 			$display("Correct result: LUI Instruction Successful");
 		else
@@ -297,15 +297,14 @@ begin
 	instruction = 16'b0100000110000010;
    repeat(3) @(posedge clk);
 	
-	if((UUT.fsmController.regWrite) && (busOutput == 16'h0023))
+	if((UUT.fsmController.regWrite) && (busOutput == 16'h0022))
 		$display("Correct result: JAL Part1 Instruction Successful");
 	else
 		$display("Incorrect result: JAL Part1 Instruction Not Successful");
-
 		
 	repeat(1) @(posedge clk);
 	
-	if(addressOut == 16'h0002)
+	if(addressOut == 16'h0023)
 		$display("Correct result: JAL Part2 Instruction Successful");
 	else
 		$display("Incorrect result: JAL Part2 Instruction Not Successful");
@@ -316,19 +315,21 @@ endtask
 task StoreInstruction;
 begin
 	instruction = 16'b0100010101000001;
-	repeat(4) @(posedge clk);
+	repeat(3) @(posedge clk);
 	
 	if((UUT.memWrite) && (busOutput == 16'h0005) && (UUT.regA))
 		$display("Correct result: STOR Successful");
 	else
 		$display("Incorrect result: STOR Instruction Not Successful");
+	
+	repeat(1) @(posedge clk);
 end
 endtask
 
 task LoadInstruction;
 begin
 	instruction = 16'b0100000100000001;
-	repeat(4) @(posedge clk);
+	repeat(3) @(posedge clk);
 	
 	if((UUT.regWrite) && (busOutput == 16'h0005) && (UUT.regA))
 		$display("Correct result: LOAD Successful");

@@ -172,11 +172,17 @@ always @(currentstate) begin
 					regAddB <= instruction[11:8];
 					
 				// JAL Type Instruction
-				end else begin
+				end else if (instruction[7:4] == 4'b1000) begin
 					instructionOp <= {instruction[15:12], instruction[7:4]};
 					flagOp <= 4'b1111;
 					regAddA <= instruction[3:0];
 					regAddB <= instruction[11:8];
+				
+				// Jump Cond Type Instruction
+				end else begin
+					instructionOp <= {instruction[15:12], instruction[7:4]};
+					flagOp  <= instruction[11:8];
+					regAddA <= instruction[3:0];
 				end
 			
 			// Shift Type Instruction
@@ -196,17 +202,12 @@ always @(currentstate) begin
 			
 			// Conditional Type Instruction
 			end else begin
-				flagOp <= instruction[11:8];
 				
 				// Branch Cond Type Instruction
 				if (instruction[15:12] == 4'b1100) begin
+					flagOp <= instruction[11:8];
 					instructionOp[7:4] <= instruction[15:12];
 					immediate <= instruction[7:0];
-				
-				// Jump Cond Type Instruction
-				end else begin
-					instructionOp <= {instruction[15:12], instruction[7:4]};
-					regAddA <= instruction[3:0];
 				end
 			end
 		end

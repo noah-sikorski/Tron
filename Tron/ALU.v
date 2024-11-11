@@ -20,11 +20,11 @@ assign resor  = reg1 | reg2;
 assign resxor = reg1 ^ reg2;
 
 always@(*) begin
-	// Carry 	Flag: Bit 0 = C0
-	// Low 		Flag: Bit 1 = L1
-	// Overflow Flag: Bit 2 = O2
-	// Equal 	Flag: Bit 3 = E3
-	// Negative Flag: Bit 4 = N4
+	// Carry 	Flag: Bit 0 = C0 : C
+	// Low 		Flag: Bit 1 = L1 : L
+	// Overflow Flag: Bit 2 = O2 : F
+	// Equal 	Flag: Bit 3 = E3 : Z
+	// Negative Flag: Bit 4 = N4 : N
 	case(inst[2:0])
 		// Case for addition and subtraction.
 		3'b000: begin

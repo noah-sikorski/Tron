@@ -39,6 +39,8 @@ initial begin
 	JALInstruction;
 	StoreInstruction;
 	LoadInstruction;
+	JumpInstructions;
+	BranchInstructions;
 	instruction = 16'b0000000000000000;
 	//$stop;
 end
@@ -336,6 +338,85 @@ begin
 	else
 		$display("Incorrect result: LOAD Instruction Not Successful");
 	ResetInstruction;
+end
+endtask
+
+task JumpInstructions;
+begin
+	// Uncodonditonal Jump
+	instruction = 16'b0100111011000001;
+	repeat(3) @(posedge clk);
+	
+	// Compare two equals
+	instruction = 16'b0000000110110001;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0001)
+		$display("Correct result: JUC Successful");
+	else
+		$display("Incorrect result: JUC Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Equal Jump
+	instruction = 16'b0100000011000001;
+	repeat(3) @(posedge clk);
+	
+	// Compare two non-equals
+	instruction = 16'b0000010010110001;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0001)
+		$display("Correct result: JEQ Successful");
+	else
+		$display("Incorrect result: JEQ Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Non-Equal Jump
+	instruction = 16'b0100000111000001;
+	repeat(3) @(posedge clk);
+	
+	// Compare less than
+	instruction = 16'b0000001010110001; // rsrc < rdst
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0001)
+		$display("Correct result: JNE Successful");
+	else
+		$display("Incorrect result: JNE Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Less Than Jump
+	instruction = 16'b0100110011000001;
+	repeat(3) @(posedge clk);
+	
+	// Compare greater than
+	instruction = 16'b0000000110110010; // rsrc > rdst
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0001)
+		$display("Correct result: JLT Successful");
+	else
+		$display("Incorrect result: JLT Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Greater Than Jump
+	instruction = 16'b0100011011000001;
+	repeat(3) @(posedge clk);
+	
+	// Filler
+	instruction = 16'b0000000110110010;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0001)
+		$display("Correct result: JGT Successful");
+	else
+		$display("Incorrect result: JGT Not Successful");
+	repeat(2) @(posedge clk);
+end
+endtask
+
+task BranchInstructions;
+begin
+	
 end
 endtask
 

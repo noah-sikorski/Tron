@@ -416,7 +416,74 @@ endtask
 
 task BranchInstructions;
 begin
+	// Uncodonditonal Branch 3
+	instruction = 16'b1100111000000011;
+	repeat(3) @(posedge clk);
 	
+	// Compare two equals
+	instruction = 16'b0000000110110001;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0005)
+		$display("Correct result: BUC Successful");
+	else
+		$display("Incorrect result: BUC Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Equal Branch 3
+	instruction = 16'b1100000000000011;
+	repeat(3) @(posedge clk);
+	
+	// Compare two non-equals
+	instruction = 16'b0000010010110001;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0009)
+		$display("Correct result: BEQ Successful");
+	else
+		$display("Incorrect result: BEQ Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Non-Equal Branch 3
+	instruction = 16'b1100000100000011;
+	repeat(3) @(posedge clk);
+	
+	// Compare less than
+	instruction = 16'b0000001010110001; // rsrc < rdst
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h000d)
+		$display("Correct result: BNE Successful");
+	else
+		$display("Incorrect result: BNE Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Less Than Branch 3
+	instruction = 16'b1100110000000011;
+	repeat(3) @(posedge clk);
+	
+	// Compare greater than
+	instruction = 16'b0000000110110010; // rsrc > rdst
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0011)
+		$display("Correct result: BLT Successful");
+	else
+		$display("Incorrect result: BLT Not Successful");
+	repeat(2) @(posedge clk);
+	
+	
+	// Greater Than Branch 3
+	instruction = 16'b1100011000000011;
+	repeat(3) @(posedge clk);
+	
+	// Filler
+	instruction = 16'b0000000110110010;
+	repeat(1) @(posedge clk);
+	if(addressOut == 16'h0015)
+		$display("Correct result: BGT Successful");
+	else
+		$display("Incorrect result: BGT Not Successful");
+	repeat(2) @(posedge clk);
 end
 endtask
 

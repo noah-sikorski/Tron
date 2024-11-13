@@ -6,9 +6,7 @@ wire [15:0] busOutput;
 
 Tron UUT(
 	.clk(clk),
-	.reset(reset),
-	.addressOut(addressOut),
-	.busOutput(busOutput)
+	.reset(reset)
 );
 
 initial begin 

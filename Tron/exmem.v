@@ -10,8 +10,8 @@ module exmem #(parameter DATA_WIDTH=16, parameter ADDR_WIDTH=16) (
 	input we1, we2, clk,
 	
 	output reg  [(DATA_WIDTH-1):0] LED,
-	output wire [(DATA_WIDTH-1):0] dataOut1,
-	output wire [(DATA_WIDTH-1):0] dataOut2
+	output reg [(DATA_WIDTH-1):0] dataOut1,
+	output reg [(DATA_WIDTH-1):0] dataOut2
 );
 
 
@@ -25,7 +25,7 @@ reg [ADDR_WIDTH-1:0] addr2_reg;
 
 //enable IO
 wire IO;
-assign IO = (ram[32768] == 16'b0000000000000001);
+assign IO = (addr1[14] == 1'b1);//(ram[32768] == 16'b0000000000000001);
 
 initial begin
 	$display("Loading memory");
@@ -36,31 +36,38 @@ end
 
 always @(posedge clk) begin
 
-	// Write
-	if(we1) begin
-		if(IO) begin //If IO is enabled then write the computed value to the LED's
-			LED <= ram[255];	
-		end 
-		else begin
+		if (we1) 
+		begin
 			ram[addr1] <= dataIn1;
+			dataOut1 <= dataIn1;
 		end
-	end 
-	// register to hold the next address
-	addr1_reg <= addr1;
+		else 
+		begin
+			dataOut1 <= ram[addr1];
+		end 
 	
 end
 
 always @(posedge clk) begin
-	if(we2) begin
-		ram[addr2] <= dataIn2;
-	end
-	addr2_reg <= addr2;
+		if (we2) 
+		begin
+			ram[addr2] <= dataIn2;
+			dataOut2 <= dataIn2;
+		end
+		else 
+		begin
+			dataOut2 <= ram[addr2];
+		end  
 end
 
+always @(posedge clk) begin
+	if(IO) begin //If IO is enabled then write the computed value to the LED's
+		LED <= dataIn1;	
+	end 
+end
 
-
-assign dataOut1 = ram[addr1_reg];
-assign dataOut2 = ram[addr2_reg];
+//assign dataOut1 = ram[addr1_reg];
+//assign dataOut2 = ram[addr2_reg];
 
 
 

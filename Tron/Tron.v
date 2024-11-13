@@ -1,9 +1,7 @@
 module Tron(
 	input clk,
 	input reset,
-	input wire [15:0] instruction,
-	output wire [15:0] addressOut,
-	output wire [15:0] busOutput
+	output wire [15:0] LED
 );
 
 wire [15:0] regA;
@@ -26,6 +24,8 @@ wire fetchPhase;
 wire [15:0] tempAddressOut;
 wire [15:0] tempbusOutput;
 wire [15:0] memData;
+wire [15:0] muxTopOutput;
+wire [15:0] decoderInput;
 
 //temp wires for VGA
 wire [15:0]dataIn2;
@@ -33,7 +33,7 @@ wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-//wire [15:0] instruction;
+wire [15:0] instruction;
 
 Controller fsmController (
 	.clk(clk),
@@ -81,24 +81,33 @@ Datapath UUTdatapath(
 	.regA(regA)
 );
 
+Multiplexer muxTop(
+.d0(regA),
+.d1(tempAddressOut),
+.s(fetchPhase),
+.y(muxTopOutput)
+ );
+ 
+Decoder dec(
+.fetchPhase(fetchPhase),
+.dataIn(decoderInput),
+.memData(memData),
+.instruction(instruction)
+);
 
 exmem mem(
 .dataIn1(tempbusOutput),
-.addr1(regA),
+.addr1(muxTopOutput),
 .dataIn2(dataIn2),
 .addr2(addr2),
-//.ProgramCounter(tempAddressOut),
 .we1(memWrite),
 .we2(we2),
 .clk(clk),
-.dataOut1(memData),
+.dataOut1(decoderInput),
 .dataOut2(dataOut2),
-//.instruction(instruction),
-.fetchPhase(fetchPhase)
+.LED(LED)
 );
 
 
-assign addressOut = tempAddressOut;
-assign busOutput = tempbusOutput;
 
 endmodule

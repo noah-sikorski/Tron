@@ -38,6 +38,7 @@ localparam SHIFT	= 8'b10001110;
 localparam LUIS	= 8'b10001111;
 localparam LOADS  = 8'b10001010;
 localparam STORS  = 8'b10001011;
+localparam BCONDS = 8'b10001000;
 
 localparam ADD 	= 8'b00000101;
 localparam ADDI   = 8'b01010000;
@@ -78,7 +79,7 @@ always @(posedge clk) begin
 end
 
 // Next state logic (determines what the next state will be)
-always @(currentstate) begin
+always @(*) begin
 	case(currentstate)
 		FETCH: nextstate <= DECODE;
 		
@@ -109,15 +110,16 @@ always @(currentstate) begin
 		
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
-		LOADS: nextstate <= LOAD;
+		LOAD: nextstate <= LOADS;
 		STOR:  nextstate <= STORS;
+		BCOND: nextstate <= BCONDS;
 		
 		default:	nextstate <= FETCH;
 	endcase
 end
 
 // Output logic (controls what happens in each state)
-always @(currentstate) begin
+always @(*) begin
 	// Initialize outputs.
 	ALUOp     <= 4'b0;
    shiftOp   <= 2'b0;
@@ -294,12 +296,12 @@ always @(currentstate) begin
 		end
 		
 		// Stall to retrieve value form memory
-		LOADS: begin
+		LOAD: begin
 			
 		end
 		
 		// Phase to Load to register.
-		LOAD: begin
+		LOADS: begin
 			busOp    <= 3'b011;
 			regWrite <= 1'b1;
 			pcAdd <= 1'b1;
@@ -333,6 +335,9 @@ always @(currentstate) begin
 		BCOND: begin
 			pcBranch <= 1'b1;
 			immMUX <= 1'b1;
+		end
+		BCONDS: begin
+		
 		end
 		
 		// Default Phase should never happen.

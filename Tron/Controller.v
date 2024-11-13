@@ -7,7 +7,7 @@ module Controller #(parameter WIDTH=16, REGBITS=4) (
 	input [15:0] instruction,
 	
 	output reg[7:0] instructionOp = 8'b0,
-	output reg[WIDTH-1:0] immediate = 16'b0,
+	output reg[7:0] immediate = 8'b0,
 	output reg[REGBITS-1:0] regAddA = 4'b0,
 	output reg[REGBITS-1:0] regAddB = 4'b0,
 	output reg[3:0] flagOp = 4'b0,
@@ -38,7 +38,6 @@ localparam SHIFT	= 8'b10001110;
 localparam LUIS	= 8'b10001111;
 localparam LOADS  = 8'b10001010;
 localparam STORS  = 8'b10001011;
-localparam BCONDS = 8'b10001000;
 
 localparam ADD 	= 8'b00000101;
 localparam ADDI   = 8'b01010000;
@@ -112,8 +111,8 @@ always @(*) begin
 		JAL:  nextstate <= JCOND;
 		LOAD: nextstate <= LOADS;
 		STOR:  nextstate <= STORS;
-		BCOND: nextstate <= BCONDS;
 		
+		// All remaining cases including RTYPE, ITYPE, SHIFT.
 		default:	nextstate <= FETCH;
 	endcase
 end
@@ -141,7 +140,7 @@ always @(*) begin
 			// Initialize registers, immediate, and OPCode.
 			regAddA       <= 4'b0;
 			regAddB       <= 4'b0;
-			immediate     <= 16'b0;
+			immediate     <= 8'b0;
 			instructionOp <= 8'b0;
 			flagOp		  <= 4'b0;
 			
@@ -216,14 +215,7 @@ always @(*) begin
 		
 		// Phase to determine the next phase to go to.
 		DECODE: begin 
-			// Sign Extend the Immediate Value.
-			if (instructionOp == ADDI || instructionOp == SUBI || instructionOp == CMPI || instructionOp == BCOND) begin
-				immediate <= {{8{immediate[7]}}, immediate[7:0]};
-			end else if (instructionOp == LSHI0 || instructionOp == LSHI1) begin
-				immediate <= {{12{immediate[3]}}, immediate[3:0]};
-			end else begin
-				immediate <= {8'b0, immediate[7:0]};
-			end
+			
 		end
 		
 		// Phase to determine RType outputs.
@@ -273,7 +265,7 @@ always @(*) begin
 		
 		// Phase 2 Load Upper Immediate.
 		LUIS: begin
-			immediate <= 16'b0000000000001000;
+			immediate <= 8'b00001000;
 			immMUX    <= 1'b1;
 			busOp     <= 3'b001;
 			regWrite  <= 1'b1;
@@ -336,17 +328,9 @@ always @(*) begin
 			pcBranch <= 1'b1;
 			immMUX <= 1'b1;
 		end
-		BCONDS: begin
-		
-		end
 		
 		// Default Phase should never happen.
 		default: begin 
-			regAddA       <= 4'b0;
-			regAddB       <= 4'b0;
-			immediate     <= 16'b0;
-			instructionOp <= 8'b0;
-			flagOp		  <= 4'b0;
 		end
 	endcase
 end

@@ -2,7 +2,7 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 (
 	input [15:0] memData,
    input [7:0] instructionOp,
-	input [WIDTH-1:0] immediate,
+	input [7:0] immediate,
 	input [3:0] regAddA,
 	input [3:0] regAddB,
 	input [3:0] ALUOp,
@@ -29,17 +29,20 @@ wire [15:0] IMMMuxRes;
 wire [15:0] ALUresult;
 wire [4:0] flagreg;
 wire [15:0] shifterOutput;
+wire [15:0] extendedImmediate;
 
 // Setup with always statement with instruction as input.
 
-ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(immediate),
+SignExtend extend(.immediate(immediate), .instructionOp(instructionOp), .extendedImmediate(extendedImmediate));
+
+ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(extendedImmediate),
 						.pcAdd(pcAdd), .pcJump(pcJump), .pcBranch(pcBranch), .addressOut(addressOut),
 						.rTarget(regA), .clk(clk));
 
 Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 						.wd(busOutput), .rd1(regA), .rd2(regB));
 
-Multiplexer IMMmux(.d0(regA), .d1(immediate), .s(immMUX), .y(IMMMuxRes));  
+Multiplexer IMMmux(.d0(regA), .d1(extendedImmediate), .s(immMUX), .y(IMMMuxRes));  
 
 ALU ALu(.reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagWrite), .result(ALUresult), 
 		  .flagreg(flagreg));

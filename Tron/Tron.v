@@ -1,7 +1,11 @@
 module Tron(
 	input clk,
 	input reset,
-	output wire [15:0] LED
+	output wire [15:0] LED,
+	
+	input wire [15:0] instruction,
+	output wire [15:0] addressOut,
+	output wire [15:0] busOutput
 );
 
 wire [15:0] regA;
@@ -21,8 +25,8 @@ wire pcJump;
 wire pcBranch;
 wire flagWrite;
 wire fetchPhase;
-wire [15:0] tempAddressOut;
-wire [15:0] tempbusOutput;
+//wire [15:0] addressOut;
+//wire [15:0] busOutput;
 wire [15:0] memData;
 wire [15:0] muxTopOutput;
 wire [15:0] decoderInput;
@@ -33,7 +37,7 @@ wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-wire [15:0] instruction;
+//wire [15:0] instruction;
 
 Controller fsmController (
 	.clk(clk),
@@ -76,14 +80,15 @@ Datapath UUTdatapath(
 	.pcBranch(pcBranch),
 	.flagWrite(flagWrite),
    .clk(clk),
-   .addressOut(tempAddressOut),
-	.busOutput(tempbusOutput),
+   .addressOut(addressOut),
+	.busOutput(busOutput),
 	.regA(regA)
 );
 
+/*
 Multiplexer muxTop(
 .d0(regA),
-.d1(tempAddressOut),
+.d1(addressOut),
 .s(fetchPhase),
 .y(muxTopOutput)
  );
@@ -96,7 +101,7 @@ Decoder dec(
 );
 
 exmem mem(
-.dataIn1(tempbusOutput),
+.dataIn1(busOutput),
 .addr1(muxTopOutput),
 .dataIn2(dataIn2),
 .addr2(addr2),
@@ -107,7 +112,7 @@ exmem mem(
 .dataOut2(dataOut2),
 .LED(LED)
 );
-
+*/
 
 
 endmodule

@@ -37,10 +37,10 @@ initial begin
 	LSHI1Instruction;
 	LUIInstruction;
 	JALInstruction;
-	StoreInstruction;
-	LoadInstruction;
 	JumpInstructions;
 	BranchInstructions;
+	StoreInstruction;
+	LoadInstruction;
 	instruction = 16'b0000000000000000;
 	//$stop;
 end

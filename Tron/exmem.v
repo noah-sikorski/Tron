@@ -25,7 +25,7 @@ reg [ADDR_WIDTH-1:0] addr2_reg;
 
 //enable IO
 wire IO;
-assign IO = (addr1[14] == 1'b1); //(ram[32768] == 16'b0000000000000001);
+assign IO = (addr1[15:14] == 2'b11); //(ram[32768] == 16'b0000000000000001);
 
 initial begin
 	$display("Loading memory");
@@ -54,7 +54,7 @@ end
 
 always @(posedge clk) begin
 	if (IO) begin //If IO is enabled then write the computed value to the LED's
-		LED <= dataIn1;	
+		LED <= dataIn1;
 	end 
 end
 

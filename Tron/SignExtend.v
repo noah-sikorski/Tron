@@ -1,5 +1,5 @@
 module SignExtend (
-	input [15:0] immediate,
+	input [7:0] immediate,
 	input [7:0] instructionOp,
 	output reg [15:0] extendedImmediate
 );

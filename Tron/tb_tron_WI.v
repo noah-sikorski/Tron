@@ -1,17 +1,17 @@
 module tb_tron_WI();
 reg clk;
 reg reset;
-wire [15:0] addressOut;
-wire [15:0] busOutput;
+wire [15:0] LED;
 
 Tron UUT(
 	.clk(clk),
-	.reset(reset)
+	.reset(reset),
+	.LED(LED)
 );
 
 initial begin 
-clk = 0;
-forever #5 clk = ~clk;
+	clk = 0;
+	forever #5 clk = ~clk;
 end
 
 endmodule

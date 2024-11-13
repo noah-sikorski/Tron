@@ -1,16 +1,15 @@
-module Tron(
+/*
+
+*/
+module Tron (
 	input clk,
 	input reset,
-	output wire [15:0] LED,
-	
-	input wire [15:0] instruction,
-	output wire [15:0] addressOut,
-	output wire [15:0] busOutput
+	output wire [15:0] LED
 );
 
 wire [15:0] regA;
 wire [7:0] instructionOp;
-wire [15:0] immediate;
+wire [7:0] immediate;
 wire [3:0] regAddA;
 wire [3:0] regAddB;
 wire [3:0] flagOp;
@@ -25,8 +24,8 @@ wire pcJump;
 wire pcBranch;
 wire flagWrite;
 wire fetchPhase;
-//wire [15:0] addressOut;
-//wire [15:0] busOutput;
+wire [15:0] addressOut;
+wire [15:0] busOutput;
 wire [15:0] memData;
 wire [15:0] muxTopOutput;
 wire [15:0] decoderInput;
@@ -37,7 +36,9 @@ wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-//wire [15:0] instruction;
+wire [15:0] instruction;
+
+InstructionDecoder ic(.instruction(instruction), .instructionOp(instructionOp));
 
 Controller fsmController (
 	.clk(clk),
@@ -85,7 +86,7 @@ Datapath UUTdatapath(
 	.regA(regA)
 );
 
-/*
+
 Multiplexer muxTop(
 .d0(regA),
 .d1(addressOut),
@@ -112,7 +113,6 @@ exmem mem(
 .dataOut2(dataOut2),
 .LED(LED)
 );
-*/
 
 
 endmodule

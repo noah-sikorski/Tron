@@ -5,6 +5,8 @@ Fourth bit signifies if signed or unsigned.
 Fifth bit signifies if should be subtract operation.
 */
 module ALU #(parameter WIDTH=16) (
+	input clk,
+
 	input [WIDTH-1:0] reg1, reg2,
 	input [3:0] inst,
 	input flagWrite,
@@ -18,6 +20,16 @@ assign ressum = reg1 + (inst[3] ? ~reg2:reg2) + inst[3];
 assign resand = reg1 & reg2;
 assign resor  = reg1 | reg2;
 assign resxor = reg1 ^ reg2;
+
+always @(negedge clk) begin
+	if (flagWrite) begin
+		flagreg[0] <= ressum[16];
+		flagreg[1] <= reg2 < reg1;
+		flagreg[2] <= (reg2[WIDTH-1] != reg1[WIDTH-1]) && (ressum[WIDTH-1] != reg2[WIDTH-1]);
+		flagreg[3] <= ressum == {WIDTH{1'b0}};
+		flagreg[4] <= ressum[WIDTH-1];
+	end
+end
 
 always@(*) begin
 	// Carry 	Flag: Bit 0 = C0 : C
@@ -43,14 +55,6 @@ always@(*) begin
 			result <= {WIDTH{1'b0}};
 		end
 	endcase
-	
-	if (flagWrite) begin
-		flagreg[0] <= ressum[16];
-		flagreg[1] <= reg2 < reg1;
-		flagreg[2] <= (reg2[WIDTH-1] != reg1[WIDTH-1]) && (ressum[WIDTH-1] != reg2[WIDTH-1]);
-		flagreg[3] <= ressum == {WIDTH{1'b0}};
-		flagreg[4] <= ressum[WIDTH-1];
-	end
 end
 	
 endmodule

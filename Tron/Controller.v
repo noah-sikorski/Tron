@@ -7,11 +7,6 @@ module Controller #(parameter WIDTH=16, REGBITS=4) (
 	input [15:0] instruction,
 	input [7:0] instructionOp,
 	
-	output reg[7:0] immediate = 8'b0,
-	output reg[REGBITS-1:0] regAddA = 4'b0,
-	output reg[REGBITS-1:0] regAddB = 4'b0,
-	output reg[3:0] flagOp = 4'b0,
-	
 	output reg[3:0] ALUOp,
    output reg[1:0] shiftOp,
 	output reg[2:0] busOp,
@@ -22,6 +17,7 @@ module Controller #(parameter WIDTH=16, REGBITS=4) (
 	output reg regWrite,
 	output reg memWrite,
 	output reg flagWrite,
+	output reg LUIOp,
 	
 	output reg pcAdd,
 	output reg pcJump,
@@ -131,80 +127,14 @@ always @(*) begin
 	pcAdd 	<= 1'b0;
 	pcJump	<= 1'b0;
 	pcBranch	<= 1'b0;
-	
-			regAddA       <= 4'b0;
-			regAddB       <= 4'b0;
-			immediate     <= 8'b0;
-			flagOp		  <= 4'b0;
+	LUIOp    <= 1'b0;
 	
 	fetchPhase <= 1'b0;
 	
 	case (currentstate)
 		// Phase to decode instruction.
 		FETCH: begin
-			// Initialize registers, immediate, and OPCode.
-			regAddA       <= 4'b0;
-			regAddB       <= 4'b0;
-			immediate     <= 8'b0;
-			flagOp		  <= 4'b0;
-			fetchPhase 	  <= 1'b1;
-			
-			// Register Type Instruction
-			if (instruction[15:12] == 4'b0000) begin
-				regAddA <= instruction[3:0];
-				regAddB <= instruction[11:8];
-				
-			// Immediate Type Instruction
-			end else if (instruction[13] || instruction[12]) begin
-				regAddB <= instruction[11:8];
-				immediate <= instruction[7:0];
-			
-			// Special Type Instruction
-			end else if (instruction[15:12] == 4'b0100) begin	
-				// LOAD Type Instruction
-				if (instruction[7:4] == 4'b0000) begin
-					regAddA <= instruction[3:0];
-					regAddB <= instruction[11:8];
-					
-				// STOR Type Instruction
-				end else if (instruction[7:4] == 4'b0100) begin
-					regAddA <= instruction[3:0];
-					regAddB <= instruction[11:8];
-					
-				// JAL Type Instruction
-				end else if (instruction[7:4] == 4'b1000) begin
-					flagOp <= 4'b1111;
-					regAddA <= instruction[3:0];
-					regAddB <= instruction[11:8];
-				
-				// Jump Cond Type Instruction
-				end else begin
-					flagOp  <= instruction[11:8];
-					regAddA <= instruction[3:0];
-				end
-			
-			// Shift Type Instruction
-			end else if (instruction[15:12] == 4'b1000) begin
-				// LSH Type Instruction
-				if (instruction[7:4] == 4'b0100) begin
-					regAddA <= instruction[3:0];
-					regAddB <= instruction[11:8];
-					
-				// LSHI Type Instruction
-				end else begin
-					regAddB <= instruction[11:8];
-					immediate <= instruction[3:0];
-				end
-			
-			// Conditional Type Instruction
-			end else begin
-				
-				// Branch Cond Type Instruction
-				if (instruction[15:12] == 4'b1100) begin
-					flagOp <= instruction[11:8];
-					immediate <= instruction[7:0];
-				end
-			end
+			fetchPhase <= 1'b1;
 		end
 		
 		// Phase to determine the next phase to go to.
@@ -258,7 +188,7 @@ always @(*) begin
 		
 		// Phase 2 Load Upper Immediate.
 		LUIS: begin
-			immediate <= 8'b00001000;
+			LUIOp		 <= 1'b1;
 			immMUX    <= 1'b1;
 			busOp     <= 3'b001;
 			regWrite  <= 1'b1;

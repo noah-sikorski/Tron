@@ -4,7 +4,11 @@
 module Tron (
 	input clk,
 	input reset,
-	output wire [15:0] LED
+	output wire [15:0] LED,
+	
+	input [15:0] instruction,
+	output wire [15:0] busOutput,
+	output wire [15:0] addressOut
 );
 
 wire [15:0] regA;
@@ -24,8 +28,9 @@ wire pcJump;
 wire pcBranch;
 wire flagWrite;
 wire fetchPhase;
-wire [15:0] addressOut;
-wire [15:0] busOutput;
+wire LUIOp;
+//wire [15:0] addressOut;
+//wire [15:0] busOutput;
 wire [15:0] memData;
 wire [15:0] muxTopOutput;
 wire [15:0] decoderInput;
@@ -36,19 +41,24 @@ wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-wire [15:0] instruction;
+//wire [15:0] instruction;
 
-InstructionDecoder ic(.instruction(instruction), .instructionOp(instructionOp));
+InstructionDecoder ic(
+	.instruction(instruction),
+	
+	.instructionOp(instructionOp),
+	.regAddA(regAddA),
+	.regAddB(regAddB),
+	.immediate(immediate),
+	.flagOp(flagOp)
+);
 
 Controller fsmController (
 	.clk(clk),
    .reset(reset),
    .instruction(instruction),
 	.instructionOp(instructionOp),
-   .immediate(immediate),
-   .regAddA(regAddA),
-   .regAddB(regAddB),
-   .flagOp(flagOp),
+	
    .ALUOp(ALUOp),
    .shiftOp(shiftOp),
    .busOp(busOp),
@@ -59,7 +69,8 @@ Controller fsmController (
    .pcJump(pcJump),
    .pcBranch(pcBranch),
 	.flagWrite(flagWrite),
-	.fetchPhase(fetchPhase)
+	.fetchPhase(fetchPhase),
+	.LUIOp(LUIOp)
 );
 
 Datapath UUTdatapath(
@@ -71,6 +82,7 @@ Datapath UUTdatapath(
 	.ALUOp(ALUOp),
 	.shiftOp(shiftOp),
 	.busOp(busOp),
+	.LUIOp(LUIOp),
 	.immMUX(immMux),
 	.regWrite(regWrite),
 	.memWrite(memWrite),
@@ -86,7 +98,7 @@ Datapath UUTdatapath(
 	.regA(regA)
 );
 
-
+/*
 Multiplexer muxTop(
 .d0(regA),
 .d1(addressOut),
@@ -94,7 +106,7 @@ Multiplexer muxTop(
 .y(muxTopOutput)
  );
  
-Decoder dec(
+FetchDecoder dec(
 .fetchPhase(fetchPhase),
 .dataIn(decoderInput),
 .memData(memData),
@@ -113,6 +125,7 @@ exmem mem(
 .dataOut2(dataOut2),
 .LED(LED)
 );
+*/
 
 
 endmodule

@@ -18,9 +18,11 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 	input pcBranch,
 	input clk,
 	input flagWrite,
+	input LUIOp,
+	
    output wire [WIDTH - 1: 0] addressOut,
 	output wire [WIDTH - 1: 0] busOutput,
-	output wire [WIDTH - 1: 0]regA
+	output wire [WIDTH - 1: 0] regA
 );
 
 
@@ -42,9 +44,9 @@ ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immed
 Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 						.wd(busOutput), .rd1(regA), .rd2(regB));
 
-Multiplexer IMMmux(.d0(regA), .d1(extendedImmediate), .s(immMUX), .y(IMMMuxRes));  
+Multiplexer IMMmux(.d0(regA), .d1(extendedImmediate), .s(immMUX), .LUIOp(LUIOp), .y(IMMMuxRes));  
 
-ALU ALu(.reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagWrite), .result(ALUresult), 
+ALU ALu(.clk(clk), .reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagWrite), .result(ALUresult), 
 		  .flagreg(flagreg));
 
 Shifter shift(.data_in(regB), .shamt(IMMMuxRes), .shift_op(shiftOp), .data_out(shifterOutput));

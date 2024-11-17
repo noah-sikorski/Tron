@@ -39,6 +39,8 @@ localparam STORS  = 8'b10001011;
 
 localparam ADD 	= 8'b00000101;
 localparam ADDI   = 8'b01010000;
+localparam MUL		= 8'b00001110;
+localparam MULI	= 8'b11100000;
 localparam SUB  	= 8'b00001001;
 localparam SUBI   = 8'b10010000;
 localparam CMP  	= 8'b00001011;
@@ -89,6 +91,7 @@ always @(*) begin
 				XOR: nextstate <= RTYPE;
 				CMP: nextstate <= RTYPE;
 				MOV: nextstate <= RTYPE;
+				MUL: nextstate <= RTYPE;
 				
 				LSHI0: nextstate <= SHIFT;
 				LSHI1: nextstate <= SHIFT;
@@ -101,6 +104,7 @@ always @(*) begin
 				XORI: nextstate <= ITYPE;
 				CMPI: nextstate <= ITYPE;
 				MOVI: nextstate <= ITYPE;
+				MULI: nextstate <= ITYPE;
 				default: nextstate <= instructionOp;
 			endcase
 		end
@@ -108,7 +112,7 @@ always @(*) begin
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
 		LOAD: nextstate <= LOADS;
-		STOR:  nextstate <= STORS;
+		STOR: nextstate <= STORS;
 		
 		// All remaining cases including RTYPE, ITYPE, SHIFT.
 		default:	nextstate <= FETCH;
@@ -156,8 +160,9 @@ always @(*) begin
 				AND: begin ALUOp <= 4'b0001; flagWrite <= 1'b1; end
 				OR:  begin ALUOp <= 4'b0010; flagWrite <= 1'b1; end
 				XOR: begin ALUOp <= 4'b0011; flagWrite <= 1'b1; end
-				CMP: begin ALUOp <= 4'b1000; regWrite <= 1'b0; flagWrite <= 1'b1; end
-				MOV: begin ALUOp <= 4'b0000; busOp    <= 3'b010; end
+				CMP: begin ALUOp <= 4'b1000; flagWrite <= 1'b1; regWrite  <= 1'b0; end
+				MUL: begin ALUOp <= 4'b0100; end
+				MOV: begin ALUOp <= 4'b0000; busOp     <= 3'b010; end
 				default: begin end
 			endcase
 		end
@@ -176,7 +181,8 @@ always @(*) begin
 				ORI:  begin ALUOp <= 4'b0010; flagWrite <= 1'b1; end
 				XORI: begin ALUOp <= 4'b0011; flagWrite <= 1'b1; end
 				CMPI: begin ALUOp <= 4'b1000; flagWrite <= 1'b1; regWrite <= 1'b0; end
-				MOVI: begin ALUOp <= 4'b0000; busOp    <= 3'b010; end
+				MULI: begin ALUOp <= 4'b0100; end
+				MOVI: begin ALUOp <= 4'b0000; busOp     <= 3'b010; end
 				default: begin end
 			endcase
 		end

@@ -29,9 +29,114 @@ CMP %re %rc
 JNE %rf
 
 .GameLoop
+# Check direction and branch accordingly Blue bike
+CMPI $0 %r1
+BEQ .move_upB
+
+CMPI $1 %r1
+BEQ .move_rightB
+
+CMPI $2 %r1
+BEQ .move_downB
+
+CMPI $3 %r1
+BEQ .move_leftB
+
+
+
+.blueBikeMovement
+.move_upB:
+    # Decrease Y position
+    ADDI $1 %r3
+    BUC .blueEnd
+
+.move_downB:
+    # Increase Y position
+    SUBI $1 %r3
+    BUC .blueEnd
+
+.move_leftB:
+    # Decrease X position
+    SUBI $1 %r2
+    BUC .blueEnd
+
+.move_rightB:
+    # Increase X position
+    ADDI $1 %r3
+    BUC .blueEnd
+
+.blueEnd
+LUI $156 %rA
+ORI $64  %rA   #Load 40000 into rA to find in memory
+ADD %r2  %rA   # rA is X loc in memory
+    
+MOVI %160 %rB  # Load 160 into rB for memory loc
+MUL $r3   %rB  # 160 8 %r3 = y posin memory 
+
+ADD %rA %rB    # rB hodl blue pos in memory
+
+LOAD %rA %rB   # rA holds the value of the glyph
+CMPI $0  %rA
+BNE .blueDied
+
+
+.yellowBikeMovement
+
+CMPI $0 %r4
+BEQ .move_upY
+
+CMPI $1 %r4
+BEQ .move_rightY
+
+CMPI $2 %r4
+BEQ .move_downY
+
+CMPI $3 %r4
+BEQ .move_leftY
+
+
+.move_upY:
+    # Decrease Y position
+    ADDI $1 %r6
+    BUC .yellowEnd
+
+.move_downY:
+    # Increase Y position
+    SUBI $1 %r6
+    BUC .yellowEnd
+
+.move_leftY:
+    # Decrease X position
+    SUBI $1 %r6
+    BUC .yellowEnd
+
+.move_rightY:
+    # Increase X position
+    ADDI $1 %r6
+    BUC .yellowEnd
+
+.yellowEnd
+LUI $156 %rD
+ORI $64  %rD   #Load 40000 into rA to find in memory
+ADD %r5  %rD   # rA is X loc in memory
+
+MOVI $0 rE
+MOVI %160 %rE  # Load 160 into rB for memory loc
+MUL $r3   %rE  # 160 8 %r3 = y posin memory 
+
+ADD %rD %rE    # rE hold Yellow pos in memory
+
+LOAD %rD %rE   # rD holds the value of the glyph
+
+CMPI $0  %rD
+BNE .yellowDied
 
 
 MOVI .CounterLoopStart %rf
 JUC %rf
+
+
+.blueDied
+.yellowDied
 
 .End

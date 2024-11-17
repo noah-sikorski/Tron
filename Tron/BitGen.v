@@ -6,13 +6,15 @@ input bright,
 input [15:0] hCount,
 input [15:0] vCount,
 
-output reg [15:0] memAddress,
+output [15:0] memAddress,
 input [15:0] memData,
 
 output reg[7:0] VGA_R,
 output reg[7:0] VGA_G,
 output reg[7:0] VGA_B
 );
+
+wire pixelPosition;
 
 localparam glyph0  = 16'd0;  // Black Square
 localparam glyph1  = 16'd1;  // Blue Square
@@ -71,27 +73,63 @@ always @(*) begin
 		case (memData)
 			// Black Square
 			glyph0: begin
+				VGA_R <= 8'd0;
+				VGA_G <= 8'd0;
+				VGA_B <= 8'd0;
+				
+				/*
 				memAddress <= 60000 + hCount % 4 + (vCount % 4) * 4;
 				VGA_R <= {memData[15:11], 3'b0};
 				VGA_G <= {memData[10:5], 2'b0};
 				VGA_B <= {memData[4:0], 3'b0};
+				*/
 			end
 			
 			// Blue Square
 			glyph1: begin
-				memAddress <= 60016 + hCount % 4 + (vCount % 4) * 4;
+				VGA_R <= 8'd0;
+				VGA_G <= 8'd0;
+				VGA_B <= 8'd255;
+				// memAddress <= 60016 + hCount % 4 + (vCount % 4) * 4;
 			end
 			
 			// Yellow Square
 			glyph2: begin
-				
+				VGA_R <= 8'd255;
+				VGA_G <= 8'd255;
+				VGA_B <= 8'd0;
 			end
 			
+			// Blue Horizontal Path
+			glyph4: begin
+				case (pixelPosition)
+					// Outer Edge
+					0, 1, 2, 3, 12, 13, 14, 15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd162;
+						VGA_B <= 8'd230;
+					end
+					
+					// Inner Edge
+					4, 5, 6, 7, 8, 9, 10, 11: begin
+						VGA_R <= 8'd156;
+						VGA_G <= 8'd219;
+						VGA_B <= 8'd230;
+					end
+				endcase
+			end
 			
+			// Should not happen.
+			default: begin
+				VGA_R <= 8'd0;
+				VGA_G <= 8'd0;
+				VGA_B <= 8'd0;
+			end
 		endcase
 	end
 end
 
-assign memAddress = 40000 + hCount + vCount * 640;
+assign pixelPosition = hCount % 4 + (vCount % 4) * 4;
+assign memAddress = 40000 + hCount >> 2 + vCount * 160;
 
 endmodule

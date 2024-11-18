@@ -100,14 +100,35 @@ BEQ .move_leftB
 
 
 .blueBikeMovement
+
+
+LUI $156  %rA
+ORI $64   %rA   #Load 40000 into rA to find in memory
+ADD $r2   %rA   #rA 
+
+MOVI $0   %rB
+ORI %160  %rB  # Load 160 into rB for memory loc
+MUL $r3   %rB  # 160 8 %r3 = y posin memory 
+
+ADD %rA   %rB    # rB holds blue pos in memory
+
 .move_upB:
-    # Decrease Y position
-    ADDI $1 %r3
+    # Increase Y position
+    MOVI $5 %rA
+    STOR $rA %rB
+    SUBI $1  %r3
+    # Bike stuff 
+    MOVI $0 $rA
+    ORI $160 $rA
+    SUB %rA %rB
+
     BUC .blueEnd
+
+# TODO Other direction paint squares
 
 .move_downB:
     # Increase Y position
-    SUBI $1 %r3
+    ADDI $1 %r3
     BUC .blueEnd
 
 .move_leftB:
@@ -153,12 +174,12 @@ BEQ .move_leftY
 
 .move_upY:
     # Decrease Y position
-    ADDI $1 %r6
+    SUBI $1 %r6
     BUC .yellowEnd
 
 .move_downY:
     # Increase Y position
-    SUBI $1 %r6
+    ADDI $1 %r6
     BUC .yellowEnd
 
 .move_leftY:

@@ -8,6 +8,7 @@ module SignExtend (
 );
 
 localparam ADDI   = 8'b01010000;
+localparam MULI	= 8'b11100000;
 localparam SUBI   = 8'b10010000;
 localparam CMPI   = 8'b10110000;
 localparam ANDI   = 8'b00010000;
@@ -17,7 +18,7 @@ localparam BCOND 	= 8'b11000000;
 
 always @(*) begin
 	// Sign Extend the Immediate Value.
-	if (instructionOp == ADDI || instructionOp == SUBI || instructionOp == CMPI || instructionOp == BCOND) begin
+	if (instructionOp == ADDI || instructionOp == MULI || instructionOp == SUBI || instructionOp == CMPI || instructionOp == BCOND) begin
 		extendedImmediate <= {{8{immediate[7]}}, immediate[7:0]};
 	end else if (instructionOp == LSHI0 || instructionOp == LSHI1) begin
 		extendedImmediate <= {{12{immediate[3]}}, immediate[3:0]};

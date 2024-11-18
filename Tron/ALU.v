@@ -15,11 +15,12 @@ module ALU #(parameter WIDTH=16) (
 	output reg [4:0] flagreg = 5'b0
 );
 
-wire [WIDTH:0] ressum, resand, resor, resxor;
+wire [WIDTH:0] ressum, resand, resor, resxor, resmul;
 assign ressum = reg1 + (inst[3] ? ~reg2:reg2) + inst[3];
 assign resand = reg1 & reg2;
 assign resor  = reg1 | reg2;
 assign resxor = reg1 ^ reg2;
+assign resmul = reg1 * reg2;
 
 // Assign the flagreg everytime the negedge clock occurs if flagWrite is on.
 always @(negedge clk) begin
@@ -51,6 +52,9 @@ always@(*) begin
 		// Case for XOR.
 		end 3'b011: begin
 			result <= resxor[15:0];
+		// Case for MUL.
+		end 3'b100: begin
+			result <= resmul[15:0];
 		// Default Case
 		end default: begin
 			result <= {WIDTH{1'b0}};

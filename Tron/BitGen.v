@@ -6,15 +6,15 @@ input bright,
 input [15:0] hCount,
 input [15:0] vCount,
 
-output [15:0] memAddress,
-input [15:0] memData,
+output [15:0] memAddress, // To exmem addr2
+input [15:0] memData,      //dataOut 2
 
 output reg[7:0] VGA_R,
 output reg[7:0] VGA_G,
 output reg[7:0] VGA_B
 );
 
-wire pixelPosition;
+wire [15:0] pixelPosition;
 
 localparam glyph0  = 16'd0;  // Black Square
 localparam glyph1  = 16'd1;  // Blue Square
@@ -104,17 +104,22 @@ always @(*) begin
 			glyph4: begin
 				case (pixelPosition)
 					// Outer Edge
-					0, 1, 2, 3, 12, 13, 14, 15: begin
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd12, 16'd13, 16'd14, 16'd15: begin
 						VGA_R <= 8'd0;
 						VGA_G <= 8'd162;
 						VGA_B <= 8'd230;
 					end
 					
 					// Inner Edge
-					4, 5, 6, 7, 8, 9, 10, 11: begin
+					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
 						VGA_R <= 8'd156;
 						VGA_G <= 8'd219;
 						VGA_B <= 8'd230;
+					end
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
 					end
 				endcase
 			end
@@ -126,10 +131,14 @@ always @(*) begin
 				VGA_B <= 8'd0;
 			end
 		endcase
+	end else begin
+		VGA_R <= 8'd0;
+		VGA_G <= 8'd0;
+		VGA_B <= 8'd0;
 	end
 end
 
-assign pixelPosition = hCount % 4 + (vCount % 4) * 4;
-assign memAddress = 40000 + hCount >> 2 + vCount * 160;
+assign pixelPosition = hCount % 16'd4 + (vCount % 16'd4) * 16'd4;
+assign memAddress = 16'd40000 + hCount >> 16'd2 + vCount * 16'd160;
 
 endmodule

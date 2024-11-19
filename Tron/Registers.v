@@ -15,7 +15,7 @@ reg [WIDTH-1:0] RAM [(1<<REGBITS)-1:0];
 // Load file RAM into the reg RAM.
 initial begin
 	$display("Loading register file");
-	$readmemb("C:\\IntelQuartus\\23.1.1\\ece3710\\Tron\\emptyreg.dat", RAM); 
+	$readmemb("C:\\intelFPGA_lite\\23.1std\\quartus\\bin64\\3710\\Tron\\emptyreg.dat", RAM); 
 	$display("done with RF load"); 
 end
 

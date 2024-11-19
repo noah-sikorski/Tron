@@ -8,9 +8,27 @@ module Tron (
 	input clk,
 	input reset,
 	
-	input [7:0] switches, 
-	output wire [7:0] LED
+	input [7:0] switches,
+	
+	output reg VGA_HS,
+	output reg VGA_VS,
+	output reg VGA_CLK,
+	output reg VGA_SYNC_N,
+	output reg VGA_BLANK_N,
+
+	output reg[7:0] VGA_R,
+	output reg[7:0] VGA_G,
+	output reg[7:0] VGA_B	
+	
+	
 );
+
+reg enable = 0;
+
+// Run the clock at 25 MHz and save to the enable wire with the inputted 50 MHz clock.
+always @(posedge clk) begin
+	enable <= ~enable;
+end
 
 // Decoded Instrcution numbers.
 wire [7:0] instructionOp;
@@ -46,6 +64,19 @@ wire [15:0]dataIn2;
 wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
+
+//VGA control
+
+wire [15:0] hCount;
+wire [15:0] vCount;
+
+wire bright;
+wire hSync;
+wire vSync;
+
+wire [7:0]outRed;
+wire [7:0]outGreen;
+wire [7:0]outBlue;
 
 // The instruction to execute
 wire [15:0] instruction;
@@ -109,6 +140,7 @@ Datapath UUTdatapath(
 
 // Decide if a program counter or data should be sent into data.
 Multiplexer muxTop(
+.LUIOp(1'b0),
 .d0(regA),
 .d1(addressOut),
 .s(fetchPhase),
@@ -134,8 +166,57 @@ exmem mem(
 .we2(we2),
 .clk(~clk),
 .dataOut1(decoderInput),
-.dataOut2(dataOut2),
-.LED(LED)
+.dataOut2(dataOut2)
 );
+
+VGAControl VGAc(
+.reset(reset),
+.clk(enable),
+.hSync(hSync),
+.vSync(vSync),
+.bright(bright),
+.hCount(hCount),
+.vCount(vCount)
+);
+
+BitGen bg(
+.bright(bright),
+.hCount(hCount - 144),
+.vCount(vCount),
+.memAddress(addr2),
+.memData(dataOut2),
+.VGA_R(outRed),
+.VGA_G(outGreen),
+.VGA_B(outBlue)
+
+);
+
+// Output VGASync when either hSync or vSync is on.
+always @(hSync, vSync) begin
+	if (!hSync || !vSync)
+		VGA_SYNC_N <= 0;
+	else
+		VGA_SYNC_N <= 1;
+end
+
+// Always save the values to the output of the VGA.
+always @(*) begin
+	VGA_HS <= hSync;
+	VGA_VS <= vSync;
+	VGA_CLK <= enable;
+	
+	// Allow output to only be applied whe bright is on.
+	if (bright) 
+		VGA_BLANK_N <= 1;
+	else
+		VGA_BLANK_N <= 0;
+	
+	VGA_R <= outRed;
+	VGA_G <= outGreen;
+	VGA_B <= outBlue;
+		
+
+end
+
 
 endmodule

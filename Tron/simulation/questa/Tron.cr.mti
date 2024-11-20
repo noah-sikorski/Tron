@@ -1,0 +1,120 @@
+C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Registers
+
+Top level modules:
+	Registers
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module InstructionDecoder
+
+Top level modules:
+	InstructionDecoder
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module BitGen
+
+Top level modules:
+	BitGen
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module SignExtend
+
+Top level modules:
+	SignExtend
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Controller
+
+Top level modules:
+	Controller
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Shifter
+
+Top level modules:
+	Shifter
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Decoder
+
+Top level modules:
+	Decoder
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module VGAControl
+
+Top level modules:
+	VGAControl
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module tb_tron_WI
+
+Top level modules:
+	tb_tron_WI
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Datapath
+
+Top level modules:
+	Datapath
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module FetchDecoder
+
+Top level modules:
+	FetchDecoder
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module tb_Tron
+
+Top level modules:
+	tb_Tron
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Bus
+
+Top level modules:
+	Bus
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Tron
+
+Top level modules:
+	Tron
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module Multiplexer
+
+Top level modules:
+	Multiplexer
+
+} {} {}} C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v {1 {vlog -work Tron -vopt -stats=none C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+-- Compiling module exmem
+
+Top level modules:
+	exmem
+
+} {} {}}

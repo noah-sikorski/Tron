@@ -14,6 +14,7 @@
 .move_downY
 .move_leftY
 
+
 .StartScreen
 
 
@@ -25,18 +26,11 @@ LUI $231   %r2
 ORI $64    %r2    # Load the value 59200 into r2 for end of mem wipe
 
 .memEraseLoop
-LOAD %r0 %r1      # remove this part mem
+STOR %r0 %r1      # remove this part mem
 ADDI $1  %r1      # Add 1 mem
 
 CMP %r1 %r2
 BNE .memEraseLoop # Jumpback to memErase loop
-
-
-
-
-
-
-
 
 
 .StartGame

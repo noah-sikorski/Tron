@@ -17,9 +17,6 @@ wire[7:0] VGA_R;
 wire[7:0] VGA_G;
 wire[7:0] VGA_B;
 
-
-
-
 Tron UUT(
 	.clk(clk),
 	.reset(reset),
@@ -32,21 +29,18 @@ Tron UUT(
 	.VGA_R(VGA_R),
 	.VGA_G(VGA_G),
 	.VGA_B(VGA_B)
-	
-
 );
 
 initial begin 
 	clk = 0;
 	forever #5 clk = ~clk;
-	
 end
 
 initial begin
-reset = 0;
-switches = 0;
-repeat(600)@(posedge clk);
-switches = 6;
+	reset = 0;
+	repeat(4) @(posedge clk);
+	reset = 1;
+	repeat(1000) @(posedge clk);
 end
 
 endmodule

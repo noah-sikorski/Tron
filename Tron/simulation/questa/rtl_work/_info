@@ -1,0 +1,385 @@
+m255
+K4
+z2
+!s11f vlog 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/IntelQuartus/23.1.1/ece3710/Tron/simulation/questa
+vALU
+2C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+!s110 1732075618
+!i10b 1
+!s100 eL]kdfVniG;z]7078Jj2B1
+IWP[WQeSFUJ=i^b0;`CimB0
+R0
+Z1 w1732070898
+8C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+!i122 10
+L0 7 59
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 OL;L;2023.3;77
+r1
+!s85 0
+31
+Z4 !s108 1732075618.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v|
+!i113 0
+Z5 o-vlog01compat -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z6 !s92 -vlog01compat -work work +incdir+C:/IntelQuartus/23.1.1/ece3710/Tron -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z7 tCvgOpt 0
+n@a@l@u
+vBitGen
+2C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+!s110 1732075619
+!i10b 1
+!s100 9Z57BnY@0lYUXJDLo;NeQ3
+IJ[gHOGiM9XYKOh9SLUeM62
+R0
+w1732075387
+8C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+!i122 11
+L0 4 135
+R2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v|
+!i113 0
+R5
+R6
+R7
+n@bit@gen
+vBus
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+Z8 !s110 1732075617
+!i10b 1
+!s100 ?XFRfW?lfRY^SieI9ElNo1
+IIU:ombQC:HU4TLf4E2RB?1
+R0
+Z9 w1731595753
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+!i122 9
+L0 4 35
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075617.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v|
+!i113 0
+R5
+R6
+R7
+n@bus
+vController
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+R8
+!i10b 1
+!s100 gbNn?B6dP<GbFcNddz0__3
+I;kl022iNSaQFzi=ihK6cX3
+R0
+R1
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+!i122 8
+L0 6 264
+R2
+R3
+r1
+!s85 0
+31
+Z10 !s108 1732075616.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v|
+!i113 0
+R5
+R6
+R7
+n@controller
+vDatapath
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+!s110 1732075616
+!i10b 1
+!s100 Z6m815L:hTGA?SlXg^7PJ1
+IIWeIeM]kO291;LY_4bU^Q1
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+!i122 7
+L0 4 56
+R2
+R3
+r1
+!s85 0
+31
+R10
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v|
+!i113 0
+R5
+R6
+R7
+n@datapath
+vexmem
+2C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+!s110 1732075621
+!i10b 1
+!s100 oKO4J`8B3[JYdSkzPgmhS1
+I218zAn8?aVBZkLE;PWLPA3
+R0
+w1732072147
+8C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+!i122 14
+L0 4 57
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075621.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v|
+!i113 0
+R5
+R6
+R7
+vFetchDecoder
+2C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+Z11 !s110 1732075615
+!i10b 1
+!s100 SUPS0AWMT9;eba6jF;^`02
+IEhWaGhzR_:nlF>UMO3`O=3
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+!i122 6
+L0 4 26
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075615.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v|
+!i113 0
+R5
+R6
+R7
+n@fetch@decoder
+vInstructionDecoder
+2C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+R11
+!i10b 1
+!s100 e1zJi=N>i73<kaoEl_RPV3
+ILVPVhoD:gkh2AOSKXS8Ao3
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+!i122 5
+L0 4 85
+R2
+R3
+r1
+!s85 0
+31
+Z12 !s108 1732075614.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v|
+!i113 0
+R5
+R6
+R7
+n@instruction@decoder
+vMultiplexer
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+Z13 !s110 1732075614
+!i10b 1
+!s100 >b=_:OS0zPQm35fI=VAKN1
+IKW7NXk9fTjQ;URjJW>8aG0
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+!i122 4
+L0 4 14
+R2
+R3
+r1
+!s85 0
+31
+R12
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v|
+!i113 0
+R5
+R6
+R7
+n@multiplexer
+vProgramCounter
+2C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+R13
+!i10b 1
+!s100 k9;SWL_cHJG0blSV7E6QA3
+ITlj;]_W[R72V9JY17_lL[2
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+!i122 3
+L0 5 238
+R2
+R3
+r1
+!s85 0
+31
+Z14 !s108 1732075613.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v|
+!i113 0
+R5
+R6
+R7
+n@program@counter
+vRegisters
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+Z15 !s110 1732075620
+!i10b 1
+!s100 dUZdb41SLf^im13^08_Kl1
+IIiZciGO@[Td308WndKGUl2
+R0
+w1732072116
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+!i122 13
+L0 6 26
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075620.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v|
+!i113 0
+R5
+R6
+R7
+n@registers
+vShifter
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+Z16 !s110 1732075613
+!i10b 1
+!s100 XY8_CfmAGKS`5aT2@7`F[3
+IOdl]5C8ei^QQb]HS=JTN^0
+R0
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+!i122 2
+L0 4 22
+R2
+R3
+r1
+!s85 0
+31
+R14
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v|
+!i113 0
+R5
+R6
+R7
+n@shifter
+vSignExtend
+2C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+R16
+!i10b 1
+!s100 Wb4iR6<c[P6Hc@dcFG@Yf3
+I`z?7GC_g6zMib@VXCnJo[0
+R0
+R1
+8C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+!i122 1
+L0 4 27
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075612.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v|
+!i113 0
+R5
+R6
+R7
+n@sign@extend
+vTron
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+!s110 1732075612
+!i10b 1
+!s100 jkC[Z`_U_zMe6342PP>@01
+IX0dhl`e8di<Z8L[3>i7j]1
+R0
+w1732074040
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+!i122 0
+L0 7 211
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075611.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v|
+!i113 0
+R5
+R6
+R7
+n@tron
+vVGAControl
+2C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+R15
+!i10b 1
+!s100 ED<6nO]0EcN2eB_ik5Mfo3
+IE1:;a<iELLiC?T<^ePM<?3
+R0
+w1732074524
+8C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+!i122 12
+L0 4 54
+R2
+R3
+r1
+!s85 0
+31
+!s108 1732075619.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/IntelQuartus/23.1.1/ece3710/Tron|C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v|
+!i113 0
+R5
+R6
+R7
+n@v@g@a@control

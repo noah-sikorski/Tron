@@ -6,7 +6,7 @@ input bright,
 input [15:0] hCount,
 input [15:0] vCount,
 
-output [15:0] memAddress, // To exmem addr2
+output [15:0] memAddress,	// To exmem addr2
 input [15:0] memData,      //dataOut 2
 
 output reg[7:0] VGA_R,
@@ -76,13 +76,6 @@ always @(*) begin
 				VGA_R <= 8'd0;
 				VGA_G <= 8'd0;
 				VGA_B <= 8'd0;
-				
-				/*
-				memAddress <= 60000 + hCount % 4 + (vCount % 4) * 4;
-				VGA_R <= {memData[15:11], 3'b0};
-				VGA_G <= {memData[10:5], 2'b0};
-				VGA_B <= {memData[4:0], 3'b0};
-				*/
 			end
 			
 			// Blue Square
@@ -90,7 +83,6 @@ always @(*) begin
 				VGA_R <= 8'd0;
 				VGA_G <= 8'd0;
 				VGA_B <= 8'd255;
-				// memAddress <= 60016 + hCount % 4 + (vCount % 4) * 4;
 			end
 			
 			// Yellow Square
@@ -116,6 +108,8 @@ always @(*) begin
 						VGA_G <= 8'd219;
 						VGA_B <= 8'd230;
 					end
+					
+					// Should never happen
 					default: begin
 						VGA_R <= 8'd0;
 						VGA_G <= 8'd0;
@@ -139,6 +133,6 @@ always @(*) begin
 end
 
 assign pixelPosition = hCount % 16'd4 + (vCount % 16'd4) * 16'd4;
-assign memAddress = 16'd40000 + hCount >> 16'd2 + vCount * 16'd160;
+assign memAddress = 16'd40000 + {2'b0, hCount[15:2]} + vCount * 16'd160;
 
 endmodule

@@ -1,0 +1,503 @@
+m255
+K4
+z2
+Z0 !s12c _opt1
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+Z2 !s12c _opt
+R1
+R2
+R1
+R2
+R1
+!s11f vlog 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z3 dC:/IntelQuartus/23.1.1/ece3710/Tron/simulation/questa
+T_opt
+!s110 1731820133
+VmAJY?Fmn>Y3a<zD[DTk4Z2
+Z4 04 10 4 work tb_tron_WI fast 0
+=1-d4d8533ed703-67397a62-197-5bd4
+R1
+Z5 !s12b OEM100
+!s124 OEM10U15 
+o-quiet -auto_acc_if_foreign -work work +acc
+Z6 tCvgOpt 0
+n@_opt
+Z7 OL;O;2023.3;77
+R3
+T_opt1
+!s110 1732078487
+VehNVfjo<<_C1]:jQ_31Cb3
+R4
+=5-d4d8533ed703-673d6b97-dc-6da4
+R1
+R5
+!s124 OEM10U17 
+o-quiet -auto_acc_if_foreign -work Tron +acc
+R6
+n@_opt1
+R7
+vALU
+2C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+Z8 !s110 1732078463
+!i10b 1
+!s100 T0RXfVnl@nnfE25nVHM7O3
+I_V9zABD=L:6FPXzGVgQ]R3
+R3
+Z9 w1732070898
+8C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v
+!i122 468
+L0 7 59
+Z10 VDg1SIo80bB@j0V0VzS_@n1
+Z11 OL;L;2023.3;77
+r1
+!s85 0
+31
+Z12 !s108 1732078463.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/ALU.v|
+!i113 0
+Z13 o-work Tron -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R6
+n@a@l@u
+vBitGen
+2C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+R8
+!i10b 1
+!s100 dbJ<;_UBC3bJTj2j9GLlJ3
+I;OB@QTEc09>kS2]Ao04@K0
+R3
+w1732075387
+8C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v
+!i122 469
+L0 4 135
+R10
+R11
+r1
+!s85 0
+31
+R12
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/BitGen.v|
+!i113 0
+R13
+R6
+n@bit@gen
+vBus
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+Z14 !s110 1732078464
+!i10b 1
+!s100 :41MY7j>^AVP;^Yn8=iCE2
+Iz2Jae>dkV:SX^e[7eQ]US1
+R3
+Z15 w1731595753
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v
+!i122 470
+L0 4 35
+R10
+R11
+r1
+!s85 0
+31
+R12
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Bus.v|
+!i113 0
+R13
+R6
+n@bus
+vController
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+R14
+!i10b 1
+!s100 R6Ib`CoB]<ciJgP[:=[kj0
+IOAegg^o=5adM2ZUL210=Z3
+R3
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v
+!i122 471
+L0 6 264
+R10
+R11
+r1
+!s85 0
+31
+Z16 !s108 1732078464.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Controller.v|
+!i113 0
+R13
+R6
+n@controller
+vDatapath
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+R14
+!i10b 1
+!s100 e:4;zd6lBOl0=`g8:abOk0
+I8d;KR<GVAGm_S[ZCO:c_<3
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v
+!i122 472
+L0 4 56
+R10
+R11
+r1
+!s85 0
+31
+R16
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Datapath.v|
+!i113 0
+R13
+R6
+n@datapath
+vDecoder
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v
+R14
+!i10b 1
+!s100 UlB5j38ZYJ1GbihK604^Y2
+ICiOYYM[8[dl8DOMN[D:`g0
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v
+!i122 473
+L0 1 16
+R10
+R11
+r1
+!s85 0
+31
+R16
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Decoder.v|
+!i113 0
+R13
+R6
+n@decoder
+vexmem
+2C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+R14
+!i10b 1
+!s100 hfoA8PTVT6XgOd_^DWgea1
+I^0V0U_DeQ;OV^e:WLAQPn2
+R3
+w1732072147
+8C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v
+!i122 474
+L0 4 57
+R10
+R11
+r1
+!s85 0
+31
+R16
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/exmem.v|
+!i113 0
+R13
+R6
+vFetchDecoder
+2C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+Z17 !s110 1732078465
+!i10b 1
+!s100 ajh0z=;<E_04hKcM2jdID0
+INWDRfGzge<85Wo845[]:L2
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v
+!i122 475
+L0 4 26
+R10
+R11
+r1
+!s85 0
+31
+Z18 !s108 1732078465.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/FetchDecoder.v|
+!i113 0
+R13
+R6
+n@fetch@decoder
+vInstructionDecoder
+2C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+R17
+!i10b 1
+!s100 J172H_nzi<Fn1MaEZ9OcL3
+I3^mjVCVV;kBQ9izG5Jzdg0
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v
+!i122 476
+L0 4 85
+R10
+R11
+r1
+!s85 0
+31
+R18
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/InstructionDecoder.v|
+!i113 0
+R13
+R6
+n@instruction@decoder
+vMultiplexer
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+R17
+!i10b 1
+!s100 kfL[Y8TMQfHBf8No2KzDH2
+I@[eJi[h_boAP0dkP:J?Qe2
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v
+!i122 477
+L0 4 14
+R10
+R11
+r1
+!s85 0
+31
+R18
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Multiplexer.v|
+!i113 0
+R13
+R6
+n@multiplexer
+vProgramCounter
+2C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+R17
+!i10b 1
+!s100 PcLGgaDR@g<ei:KXO>C@e1
+I84FQmI_3W1>U1PcX2bM?R2
+R3
+w1732078452
+8C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v
+!i122 478
+L0 5 266
+R10
+R11
+r1
+!s85 0
+31
+R18
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/ProgramCounter.v|
+!i113 0
+R13
+R6
+n@program@counter
+vRegisters
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+Z19 !s110 1732078466
+!i10b 1
+!s100 =]W2PXhz4J@Q:`@mj`@zd2
+I@iC7g?I`b?AKJ<B<c8Q:32
+R3
+w1732072116
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v
+!i122 479
+L0 6 26
+R10
+R11
+r1
+!s85 0
+31
+R18
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Registers.v|
+!i113 0
+R13
+R6
+n@registers
+vShifter
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+R19
+!i10b 1
+!s100 `DWPE;Pf^<7>UD?hQ_k3G1
+IfSf`174;OT8dWC?8OgZ@P2
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v
+!i122 480
+L0 4 22
+R10
+R11
+r1
+!s85 0
+31
+Z20 !s108 1732078466.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Shifter.v|
+!i113 0
+R13
+R6
+n@shifter
+vSignExtend
+2C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+R19
+!i10b 1
+!s100 H@Zk_dlY`RiWDe8ZQ^g@^2
+I@^m7?0`DFE^gT?QiH2Xk;0
+R3
+R9
+8C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v
+!i122 481
+L0 4 27
+R10
+R11
+r1
+!s85 0
+31
+R20
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/SignExtend.v|
+!i113 0
+R13
+R6
+n@sign@extend
+vtb_Tron
+2C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v
+R19
+!i10b 1
+!s100 CjSD[f@9Uha:MU2eG0WRQ2
+IMVD]<1OTAe6K70Z6O6eVn1
+R3
+R15
+8C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v
+!i122 482
+L0 8 515
+R10
+R11
+r1
+!s85 0
+31
+R20
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/tb_Tron.v|
+!i113 0
+R13
+R6
+ntb_@tron
+vtb_tron_WI
+2C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v
+Z21 !s110 1732078467
+!i10b 1
+!s100 Jjc=z_[UFg6=Yg2m5]RaK3
+I^OIR?SiUbkBHeNB6[4`J`2
+R3
+w1732073204
+8C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v
+!i122 483
+L0 4 43
+R10
+R11
+r1
+!s85 0
+31
+R20
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/tb_tron_WI.v|
+!i113 0
+R13
+R6
+ntb_tron_@w@i
+vTron
+2C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+R21
+!i10b 1
+!s100 4H>Ud2]FmJziVbYfiM8hG0
+I<I2=N73O9XGcdi=B?R1cL1
+R3
+w1732075895
+8C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v
+!i122 484
+L0 7 211
+R10
+R11
+r1
+!s85 0
+31
+Z22 !s108 1732078467.000000
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/Tron.v|
+!i113 0
+R13
+R6
+n@tron
+vVGAControl
+2C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+R21
+!i10b 1
+!s100 =ZIYnPz@oL_L3hQ2FVn=42
+I2K6@Z1T@X4k:61[;aJdfl2
+R3
+w1732074524
+8C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+FC:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v
+!i122 485
+L0 4 54
+R10
+R11
+r1
+!s85 0
+31
+R22
+!s107 C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v|
+!s90 -reportprogress|300|-work|Tron|-vopt|-stats=none|C:/IntelQuartus/23.1.1/ece3710/Tron/VGAControl.v|
+!i113 0
+R13
+R6
+n@v@g@a@control

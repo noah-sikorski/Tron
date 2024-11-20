@@ -59,14 +59,13 @@ wire [15:0] muxTopOutput;
 wire [15:0] decoderInput;
 wire [15:0] regA;
 
-//temp wires for VGA
+// Temp wires for VGA
 wire [15:0]dataIn2;
 wire [15:0]dataOut2;
 wire [15:0]addr2;
 wire we2;
 
-//VGA control
-
+// VGA control
 wire [15:0] hCount;
 wire [15:0] vCount;
 
@@ -82,7 +81,7 @@ wire [7:0]outBlue;
 wire [15:0] instruction;
 
 // Decode the inputted instruction.
-InstructionDecoder ic(
+InstructionDecoder InstructionDecoder (
 	.instruction(instruction),
 	
 	.instructionOp(instructionOp),
@@ -93,7 +92,7 @@ InstructionDecoder ic(
 );
 
 // Output each of the control signals.
-Controller fsmController (
+Controller Controller (
 	.clk(clk),
    .reset(reset),
    .instruction(instruction),
@@ -113,7 +112,7 @@ Controller fsmController (
 	.LUIOp(LUIOp)
 );
 // Create final outputs according to control signals.
-Datapath UUTdatapath(
+Datapath Datapath(
 	.memData(memData),
 	.instructionOp(instructionOp),
 	.immediate(immediate),
@@ -139,7 +138,7 @@ Datapath UUTdatapath(
 );
 
 // Decide if a program counter or data should be sent into data.
-Multiplexer muxTop(
+Multiplexer TopMultiplexer(
 .LUIOp(1'b0),
 .d0(regA),
 .d1(addressOut),
@@ -148,7 +147,7 @@ Multiplexer muxTop(
 );
 
 // Decode the information from the memory.
-FetchDecoder dec(
+FetchDecoder FetchDecoder(
 .fetchPhase(fetchPhase),
 .dataIn(decoderInput),
 .memData(memData),
@@ -156,7 +155,7 @@ FetchDecoder dec(
 );
 
 // Retrieve and send infromation in RAM.
-exmem mem(
+exmem exmem(
 .switches(switches),
 .dataIn1(busOutput),
 .addr1(muxTopOutput),
@@ -169,7 +168,7 @@ exmem mem(
 .dataOut2(dataOut2)
 );
 
-VGAControl VGAc(
+VGAControl VGAControl(
 .reset(reset),
 .clk(enable),
 .hSync(hSync),
@@ -179,16 +178,15 @@ VGAControl VGAc(
 .vCount(vCount)
 );
 
-BitGen bg(
+BitGen BitGen(
 .bright(bright),
-.hCount(hCount - 144),
+.hCount(hCount - 16'd145),
 .vCount(vCount),
 .memAddress(addr2),
 .memData(dataOut2),
 .VGA_R(outRed),
 .VGA_G(outGreen),
 .VGA_B(outBlue)
-
 );
 
 // Output VGASync when either hSync or vSync is on.
@@ -205,7 +203,7 @@ always @(*) begin
 	VGA_VS <= vSync;
 	VGA_CLK <= enable;
 	
-	// Allow output to only be applied whe bright is on.
+	// Allow output to only be applied when bright is on.
 	if (bright) 
 		VGA_BLANK_N <= 1;
 	else
@@ -214,9 +212,6 @@ always @(*) begin
 	VGA_R <= outRed;
 	VGA_G <= outGreen;
 	VGA_B <= outBlue;
-		
-
 end
-
 
 endmodule

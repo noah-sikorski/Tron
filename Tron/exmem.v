@@ -27,7 +27,7 @@ assign IO = (addr1 == 16'd127);
 
 initial begin
     $display("Loading memory");
-    $readmemh("C:\\intelFPGA_lite\\23.1std\\quartus\\bin64\\3710\\Tron\\FinalTron.dat", ram);
+    $readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Assembler\\FinalTron.dat", ram);
     $display("done loading");
 end
 

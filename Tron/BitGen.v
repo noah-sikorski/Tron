@@ -56,25 +56,25 @@ localparam glyph32 = 16'd32; // Yellow Corner Left Up
 localparam glyph33 = 16'd33; // Yellow Corner Right Down
 localparam glyph34 = 16'd34; // Yellow Corner Right Up
 
-localparam glyph41 = 16'd41; // Yellow Bike Horizontal 1
-localparam glyph42 = 16'd42; // Yellow Bike Horizontal 2
-localparam glyph43 = 16'd43; // Yellow Bike Horizontal 3
-localparam glyph44 = 16'd44; // Yellow Bike Horizontal 4
-localparam glyph45 = 16'd45; // Yellow Bike Horizontal 5
-localparam glyph46 = 16'd46; // Yellow Bike Horizontal 6
-localparam glyph47 = 16'd47; // Yellow Bike Horizontal 7
-localparam glyph48 = 16'd48; // Yellow Bike Horizontal 8
-localparam glyph49 = 16'd49; // Yellow Bike Horizontal 9
+localparam glyph35 = 16'd35; // Yellow Bike Horizontal 1
+localparam glyph36 = 16'd36; // Yellow Bike Horizontal 2
+localparam glyph37 = 16'd37; // Yellow Bike Horizontal 3
+localparam glyph38 = 16'd38; // Yellow Bike Horizontal 4
+localparam glyph39 = 16'd39; // Yellow Bike Horizontal 5
+localparam glyph40 = 16'd40; // Yellow Bike Horizontal 6
+localparam glyph41 = 16'd41; // Yellow Bike Horizontal 7
+localparam glyph42 = 16'd42; // Yellow Bike Horizontal 8
+localparam glyph43 = 16'd43; // Yellow Bike Horizontal 9
 
-localparam glyph51 = 16'd51; // Yellow Bike Vertical 1
-localparam glyph52 = 16'd52; // Yellow Bike Vertical 2
-localparam glyph53 = 16'd53; // Yellow Bike Vertical 3
-localparam glyph54 = 16'd54; // Yellow Bike Vertical 4
-localparam glyph55 = 16'd55; // Yellow Bike Vertical 5
-localparam glyph56 = 16'd56; // Yellow Bike Vertical 6
-localparam glyph57 = 16'd57; // Yellow Bike Vertical 7
-localparam glyph58 = 16'd58; // Yellow Bike Vertical 8
-localparam glyph59 = 16'd59; // Yellow Bike Vertical 9
+localparam glyph44 = 16'd44; // Yellow Bike Vertical 1
+localparam glyph45 = 16'd45; // Yellow Bike Vertical 2
+localparam glyph46 = 16'd46; // Yellow Bike Vertical 3
+localparam glyph47 = 16'd47; // Yellow Bike Vertical 4
+localparam glyph48 = 16'd48; // Yellow Bike Vertical 5
+localparam glyph49 = 16'd49; // Yellow Bike Vertical 6
+localparam glyph50 = 16'd50; // Yellow Bike Vertical 7
+localparam glyph51 = 16'd51; // Yellow Bike Vertical 8
+localparam glyph52 = 16'd52; // Yellow Bike Vertical 9
 
 always @(*) begin
 	if (bright) begin

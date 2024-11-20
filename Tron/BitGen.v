@@ -81,23 +81,23 @@ always @(*) begin
 		case (memData)
 			// Black Square
 			glyph0: begin
-				VGA_R <= 8'd0;
-				VGA_G <= 8'd0;
-				VGA_B <= 8'd0;
+				VGA_R = 8'd0;
+				VGA_G = 8'd0;
+				VGA_B = 8'd0;
 			end
 			
 			// Blue Square
 			glyph1: begin
-				VGA_R <= 8'd0;
-				VGA_G <= 8'd0;
-				VGA_B <= 8'd255;
+				VGA_R = 8'd0;
+				VGA_G = 8'd0;
+				VGA_B = 8'd255;
 			end
 			
 			// Yellow Square
 			glyph2: begin
-				VGA_R <= 8'd255;
-				VGA_G <= 8'd255;
-				VGA_B <= 8'd0;
+				VGA_R = 8'd255;
+				VGA_G = 8'd255;
+				VGA_B = 8'd0;
 			end
 			
 			// Blue Horizontal Path
@@ -105,23 +105,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -131,23 +131,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					16'd1, 16'd2, 16'd5, 16'd6, 16'd9, 16'd10, 16'd13, 16'd14: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -157,23 +157,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					16'd5, 16'd6, 16'd9, 16'd10: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -183,23 +183,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd7, 16'd11, 16'd12, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10, 16'd13, 16'd14: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -209,23 +209,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd7, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					16'd1, 16'd2, 16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -235,23 +235,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd8, 16'd12, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					 16'd5, 16'd6, 16'd7, 16'd9, 16'd10, 16'd11, 16'd13, 16'd14: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -261,23 +261,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd4, 16'd8, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd162;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd0;
+						VGA_G = 8'd162;
+						VGA_B = 8'd230;
 					end
 					
 					// Inner
 					 16'd1, 16'd2, 16'd5, 16'd6, 16'd7, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd156;
-						VGA_G <= 8'd219;
-						VGA_B <= 8'd230;
+						VGA_R = 8'd156;
+						VGA_G = 8'd219;
+						VGA_B = 8'd230;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -287,23 +287,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd12: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					 16'd9, 16'd10, 16'd11, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -313,23 +313,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -339,23 +339,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd11, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd8, 16'd9, 16'd10, 16'd12, 16'd13, 16'd14: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -365,23 +365,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					16'd0, 16'd1, 16'd2, 16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10, 16'd12, 16'd13, 16'd14: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					16'd3, 16'd7, 16'd11, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -391,23 +391,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Gray
 					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -417,23 +417,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					 16'd1, 16'd2, 16'd3,  16'd5, 16'd6, 16'd7,  16'd9, 16'd10, 16'd11, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					   16'd0, 16'd4, 16'd8, 16'd12: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -443,23 +443,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd4, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd1, 16'd2, 16'd3, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -469,23 +469,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -495,23 +495,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd3, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd4, 16'd5, 16'd6: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -521,23 +521,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -547,22 +547,22 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -572,23 +572,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -598,23 +598,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -624,23 +624,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Gray
 					16'd1, 16'd2, 16'd5, 16'd6, 16'd9, 16'd10, 16'd13, 16'd14: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -650,23 +650,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -676,23 +676,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -702,23 +702,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					 16'd4, 16'd5, 16'd6,  16'd7, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Blue Portion of Bike
 					   16'd0, 16'd1, 16'd2, 16'd3: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -728,23 +728,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd255;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd255;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -754,23 +754,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -780,23 +780,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					16'd1, 16'd2, 16'd5, 16'd6, 16'd9, 16'd10, 16'd13, 16'd14: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -806,23 +806,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					16'd5, 16'd6, 16'd9, 16'd10: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -832,23 +832,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd7, 16'd11, 16'd12, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10, 16'd13, 16'd14: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -858,23 +858,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd7, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					16'd1, 16'd2, 16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -884,23 +884,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd8, 16'd12, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					 16'd5, 16'd6, 16'd7, 16'd9, 16'd10, 16'd11, 16'd13, 16'd14: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -910,23 +910,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Outer Edge
 					16'd0, 16'd3, 16'd4, 16'd8, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd201;
-						VGA_B <= 8'd14;
+						VGA_R = 8'd255;
+						VGA_G = 8'd201;
+						VGA_B = 8'd14;
 					end
 					
 					// Inner
 					 16'd1, 16'd2, 16'd5, 16'd6, 16'd7, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd254;
-						VGA_B <= 8'd145;
+						VGA_R = 8'd255;
+						VGA_G = 8'd254;
+						VGA_B = 8'd145;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -936,23 +936,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd12: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					 16'd9, 16'd10, 16'd11, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -962,23 +962,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -988,23 +988,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd11, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					16'd8, 16'd9, 16'd10, 16'd12, 16'd13, 16'd14: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1014,23 +1014,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					16'd0, 16'd1, 16'd2, 16'd4, 16'd5, 16'd6, 16'd8, 16'd9, 16'd10, 16'd12, 16'd13, 16'd14: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Yellow Portion of Bike
 					16'd3, 16'd7, 16'd11, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1040,23 +1040,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Gray
 					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Yellow Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1066,23 +1066,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Tire
 					 16'd1, 16'd2, 16'd3,  16'd5, 16'd6, 16'd7,  16'd9, 16'd10, 16'd11, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd127;
-						VGA_G <= 8'd127;
-						VGA_B <= 8'd127;
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
 					end
 					
 					// Yellow Portion of Bike
 					   16'd0, 16'd4, 16'd8, 16'd12: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1092,23 +1092,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd0, 16'd4, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					16'd1, 16'd2, 16'd3, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1118,23 +1118,23 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1144,23 +1144,256 @@ always @(*) begin
 				case (pixelPosition)
 					// Background
 					16'd3, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 					
 					// Yellow Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd4, 16'd5, 16'd6: begin
-						VGA_R <= 8'd255;
-						VGA_G <= 8'd255;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
 					end
 					
 					// Should never happen
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 1
+			glyph44: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Yellow Portion of Bike
+					 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 2
+			glyph45: begin
+				case (pixelPosition)
+					// Tire
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
+					end
+					
+					// Yellow Portion of Bike
+					16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 3
+			glyph46: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Yellow Portion of Bike
+					16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 4
+			glyph47: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Yellow Portion of Bike
+					 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 5
+			glyph48: begin
+				case (pixelPosition)
+					// Gray
+					16'd1, 16'd2, 16'd5, 16'd6, 16'd9, 16'd10, 16'd13, 16'd14: begin
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
+					end
+					
+					// Yellow Portion of Bike
+					16'd0, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd15: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 6
+			glyph49: begin
+				case (pixelPosition)
+					// Background
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Yellow Portion of Bike
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 7
+			glyph50: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 8
+			glyph51: begin
+				case (pixelPosition)
+					// Tire
+					 16'd4, 16'd5, 16'd6,  16'd7, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R = 8'd127;
+						VGA_G = 8'd127;
+						VGA_B = 8'd127;
+					end
+					
+					// Blue Portion of Bike
+					   16'd0, 16'd1, 16'd2, 16'd3: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+				endcase
+			end
+			
+			// Yellow Bike Vertical 9
+			glyph52: begin
+				case (pixelPosition)
+					// Background
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
+					end
+					
+					// Yellow Portion of Bike
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9: begin
+						VGA_R = 8'd255;
+						VGA_G = 8'd255;
+						VGA_B = 8'd0;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R = 8'd0;
+						VGA_G = 8'd0;
+						VGA_B = 8'd0;
 					end
 				endcase
 			end
@@ -1168,19 +1401,19 @@ always @(*) begin
 			
 			// Should not happen.
 			default: begin
-				VGA_R <= 8'd0;
-				VGA_G <= 8'd0;
-				VGA_B <= 8'd0;
+				VGA_R = 8'd0;
+				VGA_G = 8'd0;
+				VGA_B = 8'd0;
 			end
 		endcase
 	end else begin
-		VGA_R <= 8'd0;
-		VGA_G <= 8'd0;
-		VGA_B <= 8'd0;
+		VGA_R = 8'd0;
+		VGA_G = 8'd0;
+		VGA_B = 8'd0;
 	end
 end
 
-assign pixelPosition = hCount % 16'd4 + (vCount % 16'd4) * 16'd4;
-assign memAddress = 16'd40000 + {2'b0, hCount[15:2]} + vCount * 16'd160;
+assign pixelPosition = (hCount & 16'd3) + ((vCount & 16'd3) << 2);
+assign memAddress = 16'd40000 + {2'b0, hCount[15:2]} + (vCount * 16'd160);
 
 endmodule

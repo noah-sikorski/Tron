@@ -38,15 +38,15 @@ localparam glyph16 = 16'd16; // Blue Bike Horizontal 7
 localparam glyph17 = 16'd17; // Blue Bike Horizontal 8
 localparam glyph18 = 16'd18; // Blue Bike Horizontal 9
 
-localparam glyph21 = 16'd21; // Blue Bike Vertical 1
-localparam glyph22 = 16'd22; // Blue Bike Vertical 2
-localparam glyph23 = 16'd23; // Blue Bike Vertical 3
-localparam glyph24 = 16'd24; // Blue Bike Vertical 4
-localparam glyph25 = 16'd25; // Blue Bike Vertical 5
-localparam glyph26 = 16'd26; // Blue Bike Vertical 6
-localparam glyph27 = 16'd27; // Blue Bike Vertical 7
-localparam glyph28 = 16'd28; // Blue Bike Vertical 8
-localparam glyph29 = 16'd29; // Blue Bike Vertical 9
+localparam glyph19 = 16'd19; // Blue Bike Vertical 1
+localparam glyph20 = 16'd20; // Blue Bike Vertical 2
+localparam glyph21 = 16'd21; // Blue Bike Vertical 3
+localparam glyph22 = 16'd22; // Blue Bike Vertical 4
+localparam glyph23 = 16'd23; // Blue Bike Vertical 5
+localparam glyph24 = 16'd24; // Blue Bike Vertical 6
+localparam glyph25 = 16'd25; // Blue Bike Vertical 7
+localparam glyph26 = 16'd26; // Blue Bike Vertical 8
+localparam glyph27 = 16'd27; // Blue Bike Vertical 9
 
 localparam glyph34 = 16'd34; // Yellow Horizontal Path
 localparam glyph35 = 16'd35; // Yellow Vertical Path
@@ -502,6 +502,239 @@ always @(*) begin
 					
 					// Blue Portion of Bike
 					16'd0, 16'd1, 16'd2, 16'd4, 16'd5, 16'd6: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 1
+			glyph19: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 2
+			glyph20: begin
+				case (pixelPosition)
+					// Tire
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
+						VGA_R <= 8'd127;
+						VGA_G <= 8'd127;
+						VGA_B <= 8'd127;
+					end
+					
+					// Blue Portion of Bike
+					16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 3
+			glyph21: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 4
+			glyph22: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					 16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 5
+			glyph23: begin
+				case (pixelPosition)
+					// Gray
+					16'd1, 16'd2, 16'd5, 16'd6, 16'd9, 16'd10, 16'd13, 16'd14: begin
+						VGA_R <= 8'd127;
+						VGA_G <= 8'd127;
+						VGA_B <= 8'd127;
+					end
+					
+					// Blue Portion of Bike
+					16'd0, 16'd3, 16'd4, 16'd7, 16'd8, 16'd11, 16'd12, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 6
+			glyph24: begin
+				case (pixelPosition)
+					// Background
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 7
+			glyph25: begin
+				case (pixelPosition)
+					// Background
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 8
+			glyph26: begin
+				case (pixelPosition)
+					// Tire
+					 16'd4, 16'd5, 16'd6,  16'd7, 16'd8, 16'd9, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R <= 8'd127;
+						VGA_G <= 8'd127;
+						VGA_B <= 8'd127;
+					end
+					
+					// Blue Portion of Bike
+					   16'd0, 16'd1, 16'd2, 16'd3: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd255;
+					end
+					
+					// Should never happen
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Blue Bike Vertical 9
+			glyph27: begin
+				case (pixelPosition)
+					// Background
+					16'd2, 16'd3, 16'd6, 16'd7, 16'd10, 16'd11, 16'd12, 16'd13, 16'd14, 16'd15: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Blue Portion of Bike
+					16'd0, 16'd1, 16'd4, 16'd5, 16'd8, 16'd9: begin
 						VGA_R <= 8'd0;
 						VGA_G <= 8'd0;
 						VGA_B <= 8'd255;

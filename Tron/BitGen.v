@@ -23,6 +23,7 @@ localparam glyph2  = 16'd2;  // Yellow Square
 localparam glyph3  = 16'd3;  // Blue Horizontal Path
 localparam glyph4  = 16'd4;  // Blue Vertical Path
 localparam glyph5  = 16'd5;  // Blue Generic Corner Path
+
 localparam glyph6  = 16'd6;  // Blue Corner Left Down
 localparam glyph7  = 16'd7;  // Blue Corner Left Up
 localparam glyph8  = 16'd8;  // Blue Corner Right Down

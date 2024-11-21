@@ -8,10 +8,10 @@ CMP %r1 %r2
 BNE .memEraseLoop 
 MOVI $0 %r1 
 MOVI $55 %r2 
-MOVI $40 %r3 
+MOVI $80 %r3 
 MOVI $0 %r4 
 MOVI $110 %r5 
-MOVI $40 %r6 
+MOVI $80 %r6 
 LUI $156 %rA 
 ORI $64 %rA 
 ADD %r2 %rA 
@@ -30,15 +30,21 @@ MUL %r6 %rB
 ADD %rA %rB 
 MOVI $2 %rE 
 STOR %rE %rB 
-MOVI .CounterLoop %rf 
-LUI $117 %re 
-ORI $48 %re 
-MOVI $0 %rc 
+LUI $117 %rE 
+ORI $48 %rE 
+MOVI $0 %rC 
 ADDI $0 %r0 
 ADDI $0 %r0 
-ADDI $1 %rc 
-CMP %re %rc 
-JNE %rf 
+ADDI $1 %rC 
+CMP %rE %rC 
+BNE .CounterLoop 
+LUI $156 %rA 
+ORI $64 %rA 
+ADD %r2 %rA 
+MOVI $0 %rB 
+ORI $160 %rB 
+MUL %r3 %rB 
+ADD %rA %rB 
 CMPI $0 %r1 
 BEQ .move_upB 
 CMPI $1 %r1 
@@ -47,19 +53,13 @@ CMPI $2 %r1
 BEQ .move_downB 
 CMPI $3 %r1 
 BEQ .move_leftB 
-LUI $156 %rA 
-ORI $64 %rA 
-ADD %r2 %rA 
-MOVI $0 %rB 
-ORI $160 %rB 
-MUL %r3 %rB 
-ADD %rA %rB 
-MOVI $5 %rA 
-STOR %rA %rB 
+MOVI $1 %rC 
+STOR %rC %rB 
 SUBI $1 %r3 
 MOVI $0 %rA 
 ORI $160 %rA 
 SUB %rA %rB 
+STOR %rC %rB 
 BUC .blueEnd 
 ADDI $1 %r3 
 BUC .blueEnd 
@@ -69,14 +69,11 @@ ADDI $1 %r3
 BUC .blueEnd 
 LUI $156 %rA 
 ORI $64 %rA 
-ADD %r2 %rA 
+ADD %r5 %rA 
 MOVI $0 %rB 
 ORI $160 %rB 
-MUL %r3 %rB 
+MUL %r6 %rB 
 ADD %rA %rB 
-LOAD %rA %rB 
-CMPI $0 %rA 
-BNE .blueDied 
 CMPI $0 %r4 
 BEQ .move_upY 
 CMPI $1 %r4 
@@ -85,7 +82,13 @@ CMPI $2 %r4
 BEQ .move_downY 
 CMPI $3 %r4 
 BEQ .move_leftY 
+MOVI $2 %rC 
+STOR %rC %rB 
 SUBI $1 %r6 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUB %rA %rB 
+STOR %rC %rB 
 BUC .yellowEnd 
 ADDI $1 %r6 
 BUC .yellowEnd 
@@ -93,15 +96,4 @@ SUBI $1 %r6
 BUC .yellowEnd 
 ADDI $1 %r6 
 BUC .yellowEnd 
-LUI $156 %rD 
-ORI $64 %rD 
-ADD %r5 %rD 
-MOVI $0 %rE 
-ORI $160 %rE 
-MUL %r3 %rE 
-ADD %rD %rE 
-LOAD %rD %rE 
-CMPI $0 %rD 
-BNE .yellowDied 
-MOVI .CounterLoopStart %rf 
-JUC %rf 
+BUC .CounterLoopStart 

@@ -15,8 +15,8 @@ output reg [15:0] vCount
 
 always @(posedge clk) begin
     if (~reset) begin
-        hCount <= 0;
-        vCount <= 0;
+        hCount <= 16'b0;
+        vCount <= 16'b0;
     end
 
     if (vCount < 2) begin
@@ -30,26 +30,26 @@ always @(posedge clk) begin
             vCount <= 0;
         hSync <= 0;
         bright <= 0;
-        hCount <= hCount + 1;
+        hCount <= hCount + 16'b1;
 
     end else if (hCount < 144) begin
         hSync <= 1;
         bright <= 0;
-        hCount <= hCount + 1;
+        hCount <= hCount + 16'b1;
     end
 
     else if (hCount < 784) begin
         bright <= 1;
-        hCount <= hCount + 1;
+        hCount <= hCount + 16'b1;
     end
 
     else if (hCount < 800) begin
         bright <= 0;
         if (hCount >= 799) begin
             hCount <= 0;
-            vCount <= vCount + 1;
+            vCount <= vCount + 16'b1;
         end else begin
-            hCount <= hCount + 1;
+            hCount <= hCount + 16'b1;
         end
     end
 end

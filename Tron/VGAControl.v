@@ -7,51 +7,84 @@ input clk,
 
 output reg hSync,
 output reg vSync,
-output reg bright,
+output wire bright,
 
 output reg [15:0] hCount,
 output reg [15:0] vCount
 );
 
+reg hBright = 1'b0;
+reg vBright = 1'b0;
+
+assign bright = hBright & vBright;
+
 always @(posedge clk) begin
-    if (~reset) begin
-        hCount <= 16'b0;
-        vCount <= 16'b0;
-    end
+	if (~reset) begin
+		hCount <= 16'b0;
+		vCount <= 16'b0;
+	end
 
-    if (vCount < 2) begin
-        vSync <= 0;
-    end else begin
-        vSync <= 1;
-    end
-
-    if (hCount < 96) begin
-        if (vCount >= 479)
-            vCount <= 0;
-        hSync <= 0;
-        bright <= 0;
-        hCount <= hCount + 16'b1;
-
-    end else if (hCount < 144) begin
-        hSync <= 1;
-        bright <= 0;
-        hCount <= hCount + 16'b1;
-    end
-
-    else if (hCount < 784) begin
-        bright <= 1;
-        hCount <= hCount + 16'b1;
-    end
-
-    else if (hCount < 800) begin
-        bright <= 0;
-        if (hCount >= 799) begin
-            hCount <= 0;
-            vCount <= vCount + 16'b1;
-        end else begin
-            hCount <= hCount + 16'b1;
-        end
-    end
+	
+	// Vertical Sync Timing
+	// Pulse Width
+	if (vCount < 2) begin
+		vSync <= 1'b0;
+		vBright <= 1'b0;
+	end
+	// Back Porch
+	else if (vCount < 31) begin
+		vSync <= 1'b1;
+		vBright <= 1'b0;
+	end
+	// Display Time
+	else if (vCount < 511) begin
+		vSync <= 1'b1;
+		vBright <= 1'b1;
+	end
+	// Front Porch
+	else if (vCount < 520) begin
+		vSync <= 1'b1;
+		vBright <= 1'b0;
+	end
+	// After Full Pulse
+	else if (hCount >= 520) begin
+		vSync <= 1'b0;
+		vBright <= 1'b0;
+		vCount <= 16'b0;
+	end
+	
+	
+	// Horizontal Sync Timing
+	// Pulse Width
+	if (hCount < 96) begin
+		hSync <= 1'b0;
+		hBright <= 1'b0;
+		hCount <= hCount + 16'b1;
+	// Back Porch
+	end else if (hCount < 144) begin
+		hSync <= 1'b1;
+		hBright <= 1'b0;
+		hCount <= hCount + 16'b1;
+	end
+	// Display Time
+	else if (hCount < 784) begin
+		hSync <= 1'b1;
+		hBright <= 1'b1;
+		hCount <= hCount + 16'b1;
+	end
+	// Front Porch
+	else if (hCount < 799) begin
+		hSync <= 1'b1;
+		hBright <= 1'b0;
+		hCount <= hCount + 16'b1;
+	end
+	// After Full Pulse
+	else if (hCount >= 799) begin
+		hSync <= 1'b0;
+		hBright <= 1'b0;
+		hCount <= 16'b0;
+		vCount <= vCount + 16'b1;
+	end
 end
 
 endmodule

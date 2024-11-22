@@ -148,6 +148,7 @@ Multiplexer TopMultiplexer(
 
 // Decode the information from the memory.
 FetchDecoder FetchDecoder(
+.clk(clk),
 .fetchPhase(fetchPhase),
 .dataIn(decoderInput),
 .memData(memData),
@@ -168,6 +169,7 @@ exmem exmem(
 .dataOut2(dataOut2)
 );
 
+// Control the order of counts for VGA.
 VGAControl VGAControl(
 .reset(reset),
 .clk(enable),
@@ -178,10 +180,11 @@ VGAControl VGAControl(
 .vCount(vCount)
 );
 
+// According to counts, find the colors of the VGA.
 BitGen BitGen(
 .bright(bright),
 .hCount(hCount - 16'd145),
-.vCount(vCount),
+.vCount(vCount - 16'd31),
 .memAddress(addr2),
 .memData(dataOut2),
 .VGA_R(outRed),

@@ -20,6 +20,25 @@ CMP %r1 %r2       # Leave loop if the entire memory has been set to all 0's
 BNE .memEraseLoop
 
 
+.tempTest
+LUI $156  %rA
+ORI $64   %rA  # %rA = 40000 (top left corner)
+MOVI $2   %rB  # %rB = yellow glyph
+STOR %rB  %rA  # Top left corner is yellow
+
+LUI $1    %rC
+ORI $31   %rC
+ADD %rC %rA  # %rA = 40159 (top right corner)
+STOR %rB  %rA  # Top right corner is yellow
+
+LUI $231  %rA
+ORI $63   %rA  # %rA = 59199 (bottom right corner)
+STOR %rB  %rA  # Bottom Right corner is yellow
+
+SUB %rC %rA  # %rA = 59040 (bottom left corner)
+STOR %rB  %rA  # Bottom Left corner is yellow
+
+
 .StartGame
 # Blue Bike Start Registers
 MOVI $0   %r1   # Up Direction

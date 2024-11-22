@@ -2,28 +2,33 @@
 Decode the next instruction to either be memory or an instruciton.
 */
 module FetchDecoder(
-input         fetchPhase,
-input  [15:0] dataIn,
+input clk,
+input fetchPhase,
+input [15:0] dataIn,
 
 output reg [15:0] memData,
 output reg [15:0] instruction
 );
-wire [15:0] tempInstruction;
-wire [15:0] tempMemData;
 
-always @(*)begin
-	if(fetchPhase)begin
+reg [15:0] tempInstruction;
+reg [15:0] tempMemData;
+
+always @(*) begin
+	instruction <= 16'b0;
+	memData <= 16'b0;
+	
+	if(fetchPhase) begin
 		instruction <= dataIn;
 		memData <= tempMemData;
-		end
-	else begin
+	end else begin
 		memData <= dataIn;
 		instruction <= tempInstruction;
-		end
+	end
 end
 
-assign tempInstruction = instruction;
-assign tempMemData = memData;
-
+always @(posedge clk) begin
+	tempInstruction <= instruction;
+	tempMemData <= memData;
+end
 
 endmodule

@@ -34,8 +34,6 @@ localparam RTYPE	= 8'b10001100;
 localparam ITYPE 	= 8'b10001101;
 localparam SHIFT	= 8'b10001110;
 localparam LUIS	= 8'b10001111;
-localparam LOADS  = 8'b10001010;
-localparam STORS  = 8'b10001011;
 
 localparam ADD 	= 8'b00000101;
 localparam ADDI   = 8'b01010000;
@@ -111,8 +109,6 @@ always @(*) begin
 		
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
-		LOAD: nextstate <= LOADS;
-		STOR: nextstate <= STORS;
 		
 		// All remaining cases including RTYPE, ITYPE, SHIFT.
 		default:	nextstate <= FETCH;
@@ -218,13 +214,8 @@ always @(*) begin
 			endcase
 		end
 		
-		// Stall to retrieve value form memory
-		LOAD: begin
-			
-		end
-		
 		// Phase to Load to register.
-		LOADS: begin
+		LOAD: begin
 			busOp    <= 3'b011;
 			regWrite <= 1'b1;
 			pcAdd <= 1'b1;
@@ -234,11 +225,7 @@ always @(*) begin
 		STOR: begin
 			busOp    <= 3'b101;
 			memWrite <= 1'b1;
-		end
-		
-		// Stall to allow store into memory.
-		STORS: begin
-			pcAdd <= 1'b1;
+			pcAdd    <= 1'b1;
 		end
 		
 		// Phase to jump and save pc to memory.

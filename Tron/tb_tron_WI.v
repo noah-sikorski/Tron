@@ -5,7 +5,7 @@ module tb_tron_WI();
 
 reg clk;
 reg reset;
-reg [7:0] switches;
+reg [9:0] switches = 10'b0100000000; // Go Right
 
 wire VGA_HS;
 wire VGA_VS;

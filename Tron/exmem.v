@@ -6,11 +6,11 @@ module exmem #(parameter DATA_WIDTH=16, parameter ADDR_WIDTH=16) (
     input [(ADDR_WIDTH-1):0] addr1,
     input [(DATA_WIDTH-1):0] dataIn2,
     input [(ADDR_WIDTH-1):0] addr2,
-    input [7:0] switches,
+    input [9:0] switches,
 
     input we1, we2, clk,
 
-    output reg [7:0] LED,
+    output reg [9:0] LED,
     output wire [(DATA_WIDTH-1):0] dataOut1,
     output reg [(DATA_WIDTH-1):0] dataOut2
 );
@@ -23,11 +23,11 @@ reg [ADDR_WIDTH-1:0] tempDataOut1;
 
 //enable IO
 wire IO;
-assign IO = (addr1 == 16'd127);
+assign IO = (addr1 == 16'd60000);
 
 initial begin
     $display("Loading memory");
-    $readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Assembler\\SimpleSimpleTron.dat", ram);
+    $readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Assembler\\SimpleTron.dat", ram);
     $display("done loading");
 end
 
@@ -52,9 +52,9 @@ end
 
 always @(posedge clk) begin
 	if (IO & we1)
-		LED <= dataIn1[7:0];
+		LED <= dataIn1[9:0];
 end
 
-assign dataOut1 = IO ? {8'b0, switches} : tempDataOut1;
+assign dataOut1 = IO ? {6'b0, switches} : tempDataOut1;
 
 endmodule

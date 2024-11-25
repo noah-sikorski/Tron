@@ -8,7 +8,7 @@ module Tron (
 	input clk,
 	input reset,
 	
-	input [7:0] switches,
+	input [9:0] switches,
 	
 	output reg VGA_HS,
 	output reg VGA_VS,
@@ -19,8 +19,6 @@ module Tron (
 	output reg[7:0] VGA_R,
 	output reg[7:0] VGA_G,
 	output reg[7:0] VGA_B	
-	
-	
 );
 
 reg enable = 0;

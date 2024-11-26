@@ -37,7 +37,3 @@ LOAD %r3 %r9        # The desired Fibo. number will be laoded into r3
 
 STOR %r3 %r6        # Store the Fibo. number in r3 to r6 in order to actually write to the LEDs
 BUC $-6             # Branch back to the .inputExport loop forever
-
-
-
-

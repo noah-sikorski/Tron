@@ -1,9 +1,11 @@
 # Definitions:
-# Direction:   0=up 1=right 2=down 3=left
-# Blue Bike:   r1=direction r2=xPosition r3=yPosition
-# Yellow Bike: r4=direction r5=xPosition r6=yPosition
+# Direction:    0=up 1=right 2=down 3=left
+# Blue Bike:    r1=direction r2=xPosition r3=yPosition
+# Yellow Bike:  r4=direction r5=xPosition r6=yPosition
+# IO Direction: 1=BlueUp  2=BlueRight  4=BlueDown  8=BlueLeft
+# IO Direction: 16=YellowUp 32=YellowRight 64=YellowDown 128=YellowLeft
+# IO Direction: 256=Start/Reset Game
 
-.StartScreen
 
 .resetGame
 LUI $156  %r1
@@ -20,6 +22,18 @@ CMP %r1 %r2       # Leave loop if the entire memory has been set to all 0's
 BNE .memEraseLoop
 
 
+.StartScreen
+# TODO: Add actual start screen
+
+LUI $234 %r7
+ORI $96  %r7   # Store IO/Switch location in the address $60000
+LOAD %r8 %r7   # Load the switch value into r8
+
+LUI $1 %r9
+CMP %r9 %r8
+BNE .StartScreen
+
+
 .StartGame
 # Blue Bike Start Registers
 MOVI $0   %r1   # Up Direction
@@ -30,7 +44,6 @@ MOVI $80  %r3   # y = 80
 MOVI $0   %r4   # Up Direction
 MOVI $110 %r5   # x = 110
 MOVI $80  %r6   # y = 80
-
 
 LUI $156  %rA
 ORI $64   %rA  # Load 40000 into rA to find in memory
@@ -45,7 +58,6 @@ ADD %rA   %rB  # rB holds blue pos in memory
 MOVI $1   %rE  
 # TODO: Change what image is displayed:
 STOR %rE  %rB  # Load blue square into mem
-
 
 LUI $156 %rA
 ORI $64  %rA   # Load 40000 into rA to find in memory
@@ -63,11 +75,17 @@ STOR %rE  %rB  #Load Yellow square into mem
 
 
 .CounterLoopStart
-LUI $117 %rE
-ORI $48  %rE # Place 30000 as a end to the counter in %rE
+LUI $156 %rE
+ORI $64  %rE # Place 40000 as a end to the counter in %rE
 MOVI $0  %rC # Clear %rC
 
 .CounterLoop
+ADDI $0 %r0 # nop
+ADDI $0 %r0 # nop
+ADDI $0 %r0 # nop
+ADDI $0 %r0 # nop
+ADDI $0 %r0 # nop
+ADDI $0 %r0 # nop
 ADDI $0 %r0 # nop
 ADDI $0 %r0 # nop
 ADDI $1 %rC # Increment %rC
@@ -77,9 +95,6 @@ BNE .CounterLoop
 
 .GameLoop
 
-.blueBikeIO
-# TODO: Check blue IO and see if direction has changed.
-# TODO: If direction has changed, just change the value of %r1.
 
 .blueBikeStart
 LUI $156  %rA
@@ -92,8 +107,156 @@ MUL %r3   %rB  # 160 * %r3 = y position in memory
 
 ADD %rA   %rB  # rB holds blue pos in memory
 
-# TODO: Find a way to tell if the direction has changed to update glyphs correctly.
-# Check direction and branch accordingly Blue bike
+
+.blueBikeIO
+LUI $234 %r7
+ORI $96  %r7   # Store IO/Switch location in the address $60000
+LOAD %r8 %r7   # Load the switch value into r8
+
+CMPI $0 %r1
+BEQ .blueUpCases
+CMPI $1 %r1
+BEQ .blueRightCases
+CMPI $2 %r1
+BEQ .blueDownCases
+CMPI $3 %r1
+BEQ .blueLeftCases
+BUC .blueBikeMotion
+
+
+.blueUpCases
+ANDI $15 %r8
+CMPI $1 %r8
+BEQ .blueRotateUpToUp
+CMPI $2 %r8
+BEQ .blueRotateUpToRight
+CMPI $4 %r8
+BEQ .blueRotateUpToDown
+CMPI $8 %r8
+BEQ .blueRotateUpToLeft
+BUC .blueBikeMotion
+
+.blueRotateUpToUp
+BUC .blueBikeMotion
+
+.blueRotateUpToRight
+MOVI $1 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateUpToDown
+BUC .blueBikeMotion
+
+.blueRotateUpToLeft
+MOVI $3 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+BUC .blueBikeMotion
+
+
+.blueRightCases
+ANDI $15 %r8
+CMPI $1 %r8
+BEQ .blueRotateRightToUp
+CMPI $2 %r8
+BEQ .blueRotateRightToRight
+CMPI $4 %r8
+BEQ .blueRotateRightToDown
+CMPI $8 %r8
+BEQ .blueRotateRightToLeft
+BUC .blueBikeMotion
+
+.blueRotateRightToUp
+MOVI $0 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateRightToRight
+BUC .blueBikeMotion
+
+.blueRotateRightToDown
+MOVI $2 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateRightToLeft
+BUC .blueBikeMotion
+
+BUC .blueBikeMotion
+
+
+.blueDownCases
+ANDI $15 %r8
+CMPI $1 %r8
+BEQ .blueRotateDownToUp
+CMPI $2 %r8
+BEQ .blueRotateDownToRight
+CMPI $4 %r8
+BEQ .blueRotateDownToDown
+CMPI $8 %r8
+BEQ .blueRotateDownToLeft
+BUC .blueBikeMotion
+
+.blueRotateDownToUp
+BUC .blueBikeMotion
+
+.blueRotateDownToRight
+MOVI $1 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateDownToDown
+BUC .blueBikeMotion
+
+.blueRotateDownToLeft
+MOVI $3 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+BUC .blueBikeMotion
+
+
+.blueLeftCases
+ANDI $15 %r8
+CMPI $1 %r8
+BEQ .blueRotateLeftToUp
+CMPI $2 %r8
+BEQ .blueRotateLeftToRight
+CMPI $4 %r8
+BEQ .blueRotateLeftToDown
+CMPI $8 %r8
+BEQ .blueRotateLeftToLeft
+BUC .blueBikeMotion
+
+.blueRotateLeftToUp
+MOVI $0 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateLeftToRight
+BUC .blueBikeMotion
+
+.blueRotateLeftToDown
+MOVI $2 %r1
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .blueEnd
+
+.blueRotateLeftToLeft
+BUC .blueBikeMotion
+
+BUC .blueBikeMotion
+
+
+.blueBikeMotion
 CMPI $0 %r1
 BEQ .move_upB
 
@@ -107,46 +270,67 @@ CMPI $3 %r1
 BEQ .move_leftB
 
 
-.move_upB
 # TODO: Change glyphs to be paths
+# TODO: Account for collisions by making sure the next block it will move to is not 0.
+# TODO: Change glyph to bike not blue square
+.move_upB
 MOVI $1 %rC
 STOR %rC %rB # Place path block for previous bike location
-
-# TODO: Account for collisions by making sure the next block it will move to is not 0.
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r3
 MOVI $0  %rA
 ORI $160 %rA
-SUB %rA  %rB # Move address to new lcoation of bike
+SUB %rA  %rB # Move address to new location of bike
 
-# TODO: Change glyph to bike not blue square
-STOR %rC %rB # Place bike at new location
+# Place bike at new location
+STOR %rC %rB
 BUC .blueEnd
 
-# TODO Other direction paint squares
-
-.move_downB
-# Increase Y position
-ADDI $1 %r3
-BUC .blueEnd
-
-.move_leftB
-# Decrease X position
-SUBI $1 %r2
-BUC .blueEnd
 
 .move_rightB
-# Increase X position
-ADDI $1 %r3
+MOVI $1 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Move bike to new location and update glyph at that new location
+ADDI $1  %r2
+ADDI $1  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
 BUC .blueEnd
+
+
+.move_downB
+MOVI $1 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Increase Y position
+ADDI $1 %r3
+MOVI $0  %rA
+ORI $160 %rA
+ADD %rA  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
+BUC .blueEnd
+
+
+.move_leftB
+MOVI $1 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Move bike to new location and update glyph at that new location
+SUBI $1  %r2
+SUBI $1  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
+BUC .blueEnd
+
 
 .blueEnd
 
-
-.yellowBikeIO
-# TODO: Check yellow IO and see if direction has changed.
-# TODO: If direction has changed, just change the value of %r4.
 
 .yellowBikeStart
 LUI $156  %rA
@@ -159,8 +343,172 @@ MUL %r6   %rB  # 160 * %r3 = y position in memory
 
 ADD %rA   %rB  # rB holds yellow pos in memory
 
-# TODO: Find a way to tell if the direction has changed to update glyphs correctly.
-# Check direction and branch accordingly Yellow bike
+
+.yellowBikeIO
+LUI $234 %r7
+ORI $96  %r7   # Store IO/Switch location in the address $60000
+LOAD %r8 %r7   # Load the switch value into r8
+
+CMPI $0 %r4
+BEQ .yellowUpCases
+CMPI $1 %r4
+BEQ .yellowRightCases
+CMPI $2 %r4
+BEQ .yellowDownCases
+CMPI $3 %r4
+BEQ .yellowLeftCases
+BUC .yellowBikeMotion
+
+
+.yellowUpCases
+MOVI $0 %r7
+ORI  $240 %r7
+AND  %r7 %r8
+CMPI $16 %r8
+BEQ .yellowRotateUpToUp
+CMPI $32 %r8
+BEQ .yellowRotateUpToRight
+CMPI $64 %r8
+BEQ .yellowRotateUpToDown
+MOVI $0 %r7
+ORI  $128 %r7
+CMP  %r7 %r8
+BEQ .yellowRotateUpToLeft
+BUC .yellowBikeMotion
+
+.yellowRotateUpToUp
+BUC .yellowBikeMotion
+
+.yellowRotateUpToRight
+MOVI $1 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateUpToDown
+BUC .yellowBikeMotion
+
+.yellowRotateUpToLeft
+MOVI $3 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+BUC .yellowBikeMotion
+
+
+.yellowRightCases
+MOVI $0 %r7
+ORI  $240 %r7
+AND  %r7 %r8
+CMPI $16 %r8
+BEQ .yellowRotateRightToUp
+CMPI $32 %r8
+BEQ .yellowRotateRightToRight
+CMPI $64 %r8
+BEQ .yellowRotateRightToDown
+MOVI $0 %r7
+ORI  $128 %r7
+CMP  %r7 %r8
+BEQ .yellowRotateRightToLeft
+BUC .yellowBikeMotion
+
+.yellowRotateRightToUp
+MOVI $0 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateRightToRight
+BUC .yellowBikeMotion
+
+.yellowRotateRightToDown
+MOVI $2 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateRightToLeft
+BUC .yellowBikeMotion
+
+BUC .yellowBikeMotion
+
+
+.yellowDownCases
+MOVI $0 %r7
+ORI  $240 %r7
+AND  %r7 %r8
+CMPI $16 %r8
+BEQ .yellowRotateDownToUp
+CMPI $32 %r8
+BEQ .yellowRotateDownToRight
+CMPI $64 %r8
+BEQ .yellowRotateDownToDown
+MOVI $0 %r7
+ORI  $128 %r7
+CMP  %r7 %r8
+BEQ .yellowRotateDownToLeft
+BUC .yellowBikeMotion
+
+.yellowRotateDownToUp
+BUC .yellowBikeMotion
+
+.yellowRotateDownToRight
+MOVI $1 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateDownToDown
+BUC .yellowBikeMotion
+
+.yellowRotateDownToLeft
+MOVI $3 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+BUC .yellowBikeMotion
+
+
+.yellowLeftCases
+MOVI $0 %r7
+ORI  $240 %r7
+AND  %r7 %r8
+CMPI $16 %r8
+BEQ .yellowRotateLeftToUp
+CMPI $32 %r8
+BEQ .yellowRotateLeftToRight
+CMPI $64 %r8
+BEQ .yellowRotateLeftToDown
+MOVI $0 %r7
+ORI  $128 %r7
+CMP  %r7 %r8
+BEQ .yellowRotateLeftToLeft
+BUC .yellowBikeMotion
+
+.yellowRotateLeftToUp
+MOVI $0 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateLeftToRight
+BUC .yellowBikeMotion
+
+.yellowRotateLeftToDown
+MOVI $2 %r4
+# TODO: Collision Check
+# TODO: Add rotation glyph
+BUC .yellowEnd
+
+.yellowRotateLeftToLeft
+BUC .yellowBikeMotion
+
+BUC .yellowBikeMotion
+
+
+.yellowBikeMotion
 CMPI $0 %r4
 BEQ .move_upY
 
@@ -173,13 +521,12 @@ BEQ .move_downY
 CMPI $3 %r4
 BEQ .move_leftY
 
-
-.move_upY
 # TODO: Change glyphs to be paths
+# TODO: Account for collisions by making sure the next block it will move to is not 0.
+# TODO: Change glyph to bike not blue square
+.move_upY
 MOVI $2 %rC
 STOR %rC %rB # Place path block for previous bike location
-
-# TODO: Account for collisions by making sure the next block it will move to is not 0.
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r6
@@ -187,32 +534,58 @@ MOVI $0  %rA
 ORI $160 %rA
 SUB %rA  %rB # Move address to new lcoation of bike
 
-# TODO: Change glyph to bike not yellow square
-STOR %rC %rB # Place bike at new location
+# Place bike at new location
+STOR %rC %rB 
 BUC .yellowEnd
 
-# TODO Other direction paint squares
-
-.move_downY
-# Increase Y position
-ADDI $1 %r6
-BUC .yellowEnd
-
-.move_leftY
-# Decrease X position
-SUBI $1 %r6
-BUC .yellowEnd
 
 .move_rightY
-# Increase X position
-ADDI $1 %r6
+MOVI $2 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Move bike to new location and update glyph at that new location
+ADDI $1  %r5
+ADDI $1  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
 BUC .yellowEnd
+
+
+.move_downY
+MOVI $2 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Increase Y position
+ADDI $1 %r6
+MOVI $0  %rA
+ORI $160 %rA
+ADD %rA  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
+BUC .yellowEnd
+
+
+.move_leftY
+MOVI $2 %rC
+STOR %rC %rB # Place path block for previous bike location
+
+# Move bike to new location and update glyph at that new location
+SUBI $1  %r5
+SUBI $1  %rB # Move address to new location of bike
+
+# Place bike at new location
+STOR %rC %rB
+BUC .yellowEnd
+
 
 .yellowEnd
 
 
-# If no characters died, restart the counter and perform the next game loop
-BUC .CounterLoopStart
+# Restart Counter and Game Loop
+MOVI .CounterLoopStart %rF
+JUC %rF
 
 
 .blueDied
@@ -222,4 +595,3 @@ BUC .CounterLoopStart
 
 
 .End
-

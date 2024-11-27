@@ -60,15 +60,33 @@ ADD %rA %rB
 LUI $234 %r7 
 ORI $96 %r7 
 LOAD %r8 %r7 
+LUI .blueUpCases %rF 
+MOVI .blueUpCases %rE 
+OR %rE %rF 
 CMPI $0 %r1 
-BEQ .blueUpCases 
+JEQ %rF 
+LUI .blueRightCases %rF 
+MOVI .blueRightCases %rE 
+OR %rE %rF 
 CMPI $1 %r1 
-BEQ .blueRightCases 
+JEQ %rF 
+LUI .blueDownCases %rF 
+MOVI .blueDownCases %rE 
+OR %rE %rF 
 CMPI $2 %r1 
-BEQ .blueDownCases 
+JEQ %rF 
+LUI .blueLeftCases %rF 
+MOVI .blueLeftCases %rE 
+OR %rE %rF 
 CMPI $3 %r1 
-BEQ .blueLeftCases 
-BUC .blueBikeMotion 
+JEQ %rF 
+LUI .blueBikeMotion %rF 
+MOVI .blueBikeMotion %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .blueBikeMotion %rF 
+MOVI .blueBikeMotion %rE 
+OR %rE %rF 
 ANDI $15 %r8 
 CMPI $1 %r8 
 BEQ .blueRotateUpToUp 
@@ -78,14 +96,22 @@ CMPI $4 %r8
 BEQ .blueRotateUpToDown 
 CMPI $8 %r8 
 BEQ .blueRotateUpToLeft 
-BUC .blueBikeMotion 
-BUC .blueBikeMotion 
+JUC %rF 
+JUC %rF 
 MOVI $1 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $3 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .blueBikeMotion %rF 
+MOVI .blueBikeMotion %rE 
+OR %rE %rF 
 ANDI $15 %r8 
 CMPI $1 %r8 
 BEQ .blueRotateRightToUp 
@@ -95,14 +121,22 @@ CMPI $4 %r8
 BEQ .blueRotateRightToDown 
 CMPI $8 %r8 
 BEQ .blueRotateRightToLeft 
-BUC .blueBikeMotion 
+JUC %rF 
 MOVI $0 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $2 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
+LUI .blueBikeMotion %rF 
+MOVI .blueBikeMotion %rE 
+OR %rE %rF 
 ANDI $15 %r8 
 CMPI $1 %r8 
 BEQ .blueRotateDownToUp 
@@ -112,14 +146,22 @@ CMPI $4 %r8
 BEQ .blueRotateDownToDown 
 CMPI $8 %r8 
 BEQ .blueRotateDownToLeft 
-BUC .blueBikeMotion 
-BUC .blueBikeMotion 
+JUC %rF 
+JUC %rF 
 MOVI $1 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $3 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .blueBikeMotion %rF 
+MOVI .blueBikeMotion %rE 
+OR %rE %rF 
 ANDI $15 %r8 
 CMPI $1 %r8 
 BEQ .blueRotateLeftToUp 
@@ -129,50 +171,231 @@ CMPI $4 %r8
 BEQ .blueRotateLeftToDown 
 CMPI $8 %r8 
 BEQ .blueRotateLeftToLeft 
-BUC .blueBikeMotion 
+JUC %rF 
 MOVI $0 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $2 %r1 
-BUC .blueEnd 
-BUC .blueBikeMotion 
-BUC .blueBikeMotion 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
+LUI .move_upB %rF 
+MOVI .move_upB %rE 
+OR %rE %rF 
 CMPI $0 %r1 
-BEQ .move_upB 
+JEQ %rF 
+LUI .move_rightB %rF 
+MOVI .move_rightB %rE 
+OR %rE %rF 
 CMPI $1 %r1 
-BEQ .move_rightB 
+JEQ %rF 
+LUI .move_downB %rF 
+MOVI .move_downB %rE 
+OR %rE %rF 
 CMPI $2 %r1 
-BEQ .move_downB 
+JEQ %rF 
+LUI .move_leftB %rF 
+MOVI .move_leftB %rE 
+OR %rE %rF 
 CMPI $3 %r1 
-BEQ .move_leftB 
-MOVI $1 %rC 
-STOR %rC %rB 
-SUBI $1 %r3 
-MOVI $0 %rA 
-ORI $160 %rA 
-SUB %rA %rB 
-STOR %rC %rB 
-BUC .blueEnd 
-MOVI $1 %rC 
-STOR %rC %rB 
-ADDI $1 %r2 
-ADDI $1 %rB 
-STOR %rC %rB 
-BUC .blueEnd 
-MOVI $1 %rC 
-STOR %rC %rB 
-ADDI $1 %r3 
+JEQ %rF 
+MOVI $4 %rC 
 MOVI $0 %rA 
 ORI $160 %rA 
 ADD %rA %rB 
 STOR %rC %rB 
-BUC .blueEnd 
-MOVI $1 %rC 
-STOR %rC %rB 
-SUBI $1 %r2 
+MOVI $0 %rC 
 SUBI $1 %rB 
 STOR %rC %rB 
-BUC .blueEnd 
+ADDI $2 %rB 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUBI $1 %r3 
+SUB %rA %rB 
+MOVI $26 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $25 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $27 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUB %rA %rB 
+MOVI $23 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $22 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $24 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUB %rA %rB 
+MOVI $20 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $19 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $21 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $3 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUBI $1 %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+ADD %rA %rB 
+STOR %rC %rB 
+SUB %rA %rB 
+SUB %rA %rB 
+STOR %rC %rB 
+ADD %rA %rB 
+ADDI $1 %r2 
+ADDI $1 %rB 
+MOVI $13 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $10 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $16 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+ADDI $1 %rB 
+MOVI $14 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $11 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $17 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+ADDI $1 %rB 
+MOVI $15 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $12 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $18 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $4 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUB %rA %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+SUBI $1 %rB 
+STOR %rC %rB 
+ADDI $2 %rB 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADDI $1 %r3 
+ADD %rA %rB 
+MOVI $26 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $25 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $27 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADD %rA %rB 
+MOVI $23 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $22 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $24 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADD %rA %rB 
+MOVI $20 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $19 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $21 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $3 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+ADDI $1 %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+ADD %rA %rB 
+STOR %rC %rB 
+SUB %rA %rB 
+SUB %rA %rB 
+STOR %rC %rB 
+ADD %rA %rB 
+SUBI $1 %r2 
+SUBI $1 %rB 
+MOVI $13 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $10 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $16 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $14 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $11 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $17 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $15 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $12 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $18 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+LUI .blueEnd %rF 
+MOVI .blueEnd %rE 
+OR %rE %rF 
+JUC %rF 
 LUI $156 %rA 
 ORI $64 %rA 
 ADD %r5 %rA 
@@ -183,15 +406,33 @@ ADD %rA %rB
 LUI $234 %r7 
 ORI $96 %r7 
 LOAD %r8 %r7 
+LUI .yellowUpCases %rF 
+MOVI .yellowUpCases %rE 
+OR %rE %rF 
 CMPI $0 %r4 
-BEQ .yellowUpCases 
+JEQ %rF 
+LUI .yellowRightCases %rF 
+MOVI .yellowRightCases %rE 
+OR %rE %rF 
 CMPI $1 %r4 
-BEQ .yellowRightCases 
+JEQ %rF 
+LUI .yellowDownCases %rF 
+MOVI .yellowDownCases %rE 
+OR %rE %rF 
 CMPI $2 %r4 
-BEQ .yellowDownCases 
+JEQ %rF 
+LUI .yellowLeftCases %rF 
+MOVI .yellowLeftCases %rE 
+OR %rE %rF 
 CMPI $3 %r4 
-BEQ .yellowLeftCases 
-BUC .yellowBikeMotion 
+JEQ %rF 
+LUI .yellowBikeMotion %rF 
+MOVI .yellowBikeMotion %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .yellowBikeMotion %rF 
+MOVI .yellowBikeMotion %rE 
+OR %rE %rF 
 MOVI $0 %r7 
 ORI $240 %r7 
 AND %r7 %r8 
@@ -205,14 +446,22 @@ MOVI $0 %r7
 ORI $128 %r7 
 CMP %r7 %r8 
 BEQ .yellowRotateUpToLeft 
-BUC .yellowBikeMotion 
-BUC .yellowBikeMotion 
+JUC %rF 
+JUC %rF 
 MOVI $1 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $3 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .yellowBikeMotion %rF 
+MOVI .yellowBikeMotion %rE 
+OR %rE %rF 
 MOVI $0 %r7 
 ORI $240 %r7 
 AND %r7 %r8 
@@ -226,14 +475,22 @@ MOVI $0 %r7
 ORI $128 %r7 
 CMP %r7 %r8 
 BEQ .yellowRotateRightToLeft 
-BUC .yellowBikeMotion 
+JUC %rF 
 MOVI $0 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $2 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
+LUI .yellowBikeMotion %rF 
+MOVI .yellowBikeMotion %rE 
+OR %rE %rF 
 MOVI $0 %r7 
 ORI $240 %r7 
 AND %r7 %r8 
@@ -247,14 +504,22 @@ MOVI $0 %r7
 ORI $128 %r7 
 CMP %r7 %r8 
 BEQ .yellowRotateDownToLeft 
-BUC .yellowBikeMotion 
-BUC .yellowBikeMotion 
+JUC %rF 
+JUC %rF 
 MOVI $1 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $3 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .yellowBikeMotion %rF 
+MOVI .yellowBikeMotion %rE 
+OR %rE %rF 
 MOVI $0 %r7 
 ORI $240 %r7 
 AND %r7 %r8 
@@ -268,49 +533,232 @@ MOVI $0 %r7
 ORI $128 %r7 
 CMP %r7 %r8 
 BEQ .yellowRotateLeftToLeft 
-BUC .yellowBikeMotion 
+JUC %rF 
 MOVI $0 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
 MOVI $2 %r4 
-BUC .yellowEnd 
-BUC .yellowBikeMotion 
-BUC .yellowBikeMotion 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+JUC %rF 
+LUI .move_upY %rF 
+MOVI .move_upY %rE 
+OR %rE %rF 
 CMPI $0 %r4 
-BEQ .move_upY 
+JEQ %rF 
+LUI .move_rightY %rF 
+MOVI .move_rightY %rE 
+OR %rE %rF 
 CMPI $1 %r4 
-BEQ .move_rightY 
+JEQ %rF 
+LUI .move_downY %rF 
+MOVI .move_downY %rE 
+OR %rE %rF 
 CMPI $2 %r4 
-BEQ .move_downY 
+JEQ %rF 
+LUI .move_leftY %rF 
+MOVI .move_leftY %rE 
+OR %rE %rF 
 CMPI $3 %r4 
-BEQ .move_leftY 
-MOVI $2 %rC 
-STOR %rC %rB 
-SUBI $1 %r6 
-MOVI $0 %rA 
-ORI $160 %rA 
-SUB %rA %rB 
-STOR %rC %rB 
-BUC .yellowEnd 
-MOVI $2 %rC 
-STOR %rC %rB 
-ADDI $1 %r5 
-ADDI $1 %rB 
-STOR %rC %rB 
-BUC .yellowEnd 
-MOVI $2 %rC 
-STOR %rC %rB 
-ADDI $1 %r6 
+JEQ %rF 
+MOVI $29 %rC 
 MOVI $0 %rA 
 ORI $160 %rA 
 ADD %rA %rB 
 STOR %rC %rB 
-BUC .yellowEnd 
-MOVI $2 %rC 
-STOR %rC %rB 
-SUBI $1 %r5 
+MOVI $0 %rC 
 SUBI $1 %rB 
 STOR %rC %rB 
-BUC .yellowEnd 
-MOVI .CounterLoopStart %rF 
+ADDI $2 %rB 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUBI $1 %r6 
+SUB %rA %rB 
+MOVI $51 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $50 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $52 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUB %rA %rB 
+MOVI $48 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $47 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $48 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+SUB %rA %rB 
+MOVI $45 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $44 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $46 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $28 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUBI $1 %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+ADD %rA %rB 
+STOR %rC %rB 
+SUB %rA %rB 
+SUB %rA %rB 
+STOR %rC %rB 
+ADD %rA %rB 
+ADDI $1 %r5 
+ADDI $1 %rB 
+MOVI $38 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $35 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $41 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+ADDI $1 %rB 
+MOVI $39 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $36 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $42 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+ADDI $1 %rB 
+MOVI $40 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $37 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $43 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $29 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUB %rA %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+SUBI $1 %rB 
+STOR %rC %rB 
+ADDI $2 %rB 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADDI $1 %r6 
+ADD %rA %rB 
+MOVI $51 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $50 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $52 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADD %rA %rB 
+MOVI $48 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $47 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $49 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+ADD %rA %rB 
+MOVI $45 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $44 %rC 
+STOR %rC %rB 
+ADDI $2 %rB 
+MOVI $46 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+MOVI $28 %rC 
+MOVI $0 %rA 
+ORI $160 %rA 
+ADDI $1 %rB 
+STOR %rC %rB 
+MOVI $0 %rC 
+ADD %rA %rB 
+STOR %rC %rB 
+SUB %rA %rB 
+SUB %rA %rB 
+STOR %rC %rB 
+ADD %rA %rB 
+SUBI $1 %r5 
+SUBI $1 %rB 
+MOVI $38 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $35 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $41 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $39 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $36 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $42 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $40 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+MOVI $37 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+ADD %rA %rB 
+MOVI $43 %rC 
+STOR %rC %rB 
+SUB %rA %rB 
+LUI .yellowEnd %rF 
+MOVI .yellowEnd %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .CounterLoopStart %rF 
+MOVI .CounterLoopStart %rE 
+OR %rE %rF 
 JUC %rF 

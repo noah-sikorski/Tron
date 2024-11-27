@@ -4,7 +4,7 @@
 # Yellow Bike:  r4=direction r5=xPosition r6=yPosition
 # IO Direction: 1=BlueUp  2=BlueRight  4=BlueDown  8=BlueLeft
 # IO Direction: 16=YellowUp 32=YellowRight 64=YellowDown 128=YellowLeft
-# IO Direction: 256=Start/Reset Game
+# IO Direction: 256=Start Game
 
 
 .resetGame
@@ -113,18 +113,42 @@ LUI $234 %r7
 ORI $96  %r7   # Store IO/Switch location in the address $60000
 LOAD %r8 %r7   # Load the switch value into r8
 
+
+LUI  .blueUpCases %rF
+MOVI .blueUpCases %rE
+OR   %rE %rF
 CMPI $0 %r1
-BEQ .blueUpCases
+JEQ  %rF
+
+LUI  .blueRightCases %rF
+MOVI .blueRightCases %rE
+OR   %rE %rF
 CMPI $1 %r1
-BEQ .blueRightCases
+JEQ  %rF
+
+LUI  .blueDownCases %rF
+MOVI .blueDownCases %rE
+OR   %rE %rF
 CMPI $2 %r1
-BEQ .blueDownCases
+JEQ  %rF
+
+LUI  .blueLeftCases %rF
+MOVI .blueLeftCases %rE
+OR   %rE %rF
 CMPI $3 %r1
-BEQ .blueLeftCases
-BUC .blueBikeMotion
+JEQ  %rF
+
+LUI  .blueBikeMotion %rF
+MOVI .blueBikeMotion %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .blueUpCases
+LUI  .blueBikeMotion %rF
+MOVI .blueBikeMotion %rE
+OR   %rE %rF
+
 ANDI $15 %r8
 CMPI $1 %r8
 BEQ .blueRotateUpToUp
@@ -134,30 +158,38 @@ CMPI $4 %r8
 BEQ .blueRotateUpToDown
 CMPI $8 %r8
 BEQ .blueRotateUpToLeft
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateUpToUp
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateUpToRight
 MOVI $1 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateUpToDown
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateUpToLeft
 MOVI $3 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
-
-BUC .blueBikeMotion
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .blueRightCases
+LUI  .blueBikeMotion %rF
+MOVI .blueBikeMotion %rE
+OR   %rE %rF
+
 ANDI $15 %r8
 CMPI $1 %r8
 BEQ .blueRotateRightToUp
@@ -167,30 +199,38 @@ CMPI $4 %r8
 BEQ .blueRotateRightToDown
 CMPI $8 %r8
 BEQ .blueRotateRightToLeft
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateRightToUp
 MOVI $0 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateRightToRight
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateRightToDown
 MOVI $2 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateRightToLeft
-BUC .blueBikeMotion
-
-BUC .blueBikeMotion
+JUC %rF
 
 
 .blueDownCases
+LUI  .blueBikeMotion %rF
+MOVI .blueBikeMotion %rE
+OR   %rE %rF
+
 ANDI $15 %r8
 CMPI $1 %r8
 BEQ .blueRotateDownToUp
@@ -200,30 +240,38 @@ CMPI $4 %r8
 BEQ .blueRotateDownToDown
 CMPI $8 %r8
 BEQ .blueRotateDownToLeft
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateDownToUp
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateDownToRight
 MOVI $1 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateDownToDown
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateDownToLeft
 MOVI $3 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
-
-BUC .blueBikeMotion
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .blueLeftCases
+LUI  .blueBikeMotion %rF
+MOVI .blueBikeMotion %rE
+OR   %rE %rF
+
 ANDI $15 %r8
 CMPI $1 %r8
 BEQ .blueRotateLeftToUp
@@ -233,100 +281,296 @@ CMPI $4 %r8
 BEQ .blueRotateLeftToDown
 CMPI $8 %r8
 BEQ .blueRotateLeftToLeft
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateLeftToUp
 MOVI $0 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateLeftToRight
-BUC .blueBikeMotion
+JUC %rF
 
 .blueRotateLeftToDown
 MOVI $2 %r1
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .blueEnd
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .blueRotateLeftToLeft
-BUC .blueBikeMotion
-
-BUC .blueBikeMotion
+JUC %rF
 
 
 .blueBikeMotion
+LUI  .move_upB %rF
+MOVI .move_upB %rE
+OR   %rE %rF
 CMPI $0 %r1
-BEQ .move_upB
+JEQ  %rF
 
+LUI  .move_rightB %rF
+MOVI .move_rightB %rE
+OR   %rE %rF
 CMPI $1 %r1
-BEQ .move_rightB
+JEQ  %rF
 
+LUI  .move_downB %rF
+MOVI .move_downB %rE
+OR   %rE %rF
 CMPI $2 %r1
-BEQ .move_downB
+JEQ  %rF
 
+LUI  .move_leftB %rF
+MOVI .move_leftB %rE
+OR   %rE %rF
 CMPI $3 %r1
-BEQ .move_leftB
+JEQ  %rF
 
 
 # TODO: Change glyphs to be paths
 # TODO: Account for collisions by making sure the next block it will move to is not 0.
 # TODO: Change glyph to bike not blue square
 .move_upB
-MOVI $1 %rC
+MOVI $4 %rC
+MOVI $0  %rA
+ORI $160 %rA
+ADD %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0 %rC
+SUBI $1 %rB
+STOR %rC %rB # Remove Bike Corner
+ADDI $2 %rB
+STOR %rC %rB # Remove Bike Corner
+SUBI $1 %rB  # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r3
-MOVI $0  %rA
-ORI $160 %rA
-SUB %rA  %rB # Move address to new location of bike
 
-# Place bike at new location
+SUB %rA  %rB
+MOVI $26 %rC
 STOR %rC %rB
-BUC .blueEnd
+SUBI $1  %rB
+MOVI $25 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $27 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+SUB %rA  %rB
+MOVI $23 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $22 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $24 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+SUB %rA  %rB
+MOVI $20 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $19 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $21 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+# End Up Movement
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_rightB
-MOVI $1 %rC
+MOVI $3 %rC
+MOVI $0  %rA
+ORI $160 %rA
+SUBI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+SUB  %rA %rB
+SUB  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+ADD  %rA %rB # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r2
-ADDI $1  %rB # Move address to new location of bike
 
-# Place bike at new location
+ADDI $1  %rB
+MOVI $13 %rC
 STOR %rC %rB
-BUC .blueEnd
+SUB  %rA %rB
+MOVI $10 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $16 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+ADDI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $11 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $17 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+ADDI $1  %rB
+MOVI $15 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $12 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $18 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+# End Right Movement
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_downB
-MOVI $1 %rC
-STOR %rC %rB # Place path block for previous bike location
-
-# Increase Y position
-ADDI $1 %r3
+MOVI $4 %rC
 MOVI $0  %rA
 ORI $160 %rA
-ADD %rA  %rB # Move address to new location of bike
+SUB %rA  %rB
+STOR %rC %rB # Place path block for previous bike location
 
-# Place bike at new location
+MOVI $0 %rC
+SUBI $1 %rB
+STOR %rC %rB # Remove Bike Corner
+ADDI $2 %rB
+STOR %rC %rB # Remove Bike Corner
+SUBI $1 %rB  # restore to middle of bike
+
+# Move bike to new location and update glyph at that new location
+ADDI $1  %r3
+
+ADD %rA  %rB
+MOVI $26 %rC
 STOR %rC %rB
-BUC .blueEnd
+SUBI $1  %rB
+MOVI $25 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $27 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+ADD %rA  %rB
+MOVI $23 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $22 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $24 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+ADD %rA  %rB
+MOVI $20 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $19 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $21 %rC
+STOR %rC %rB
+SUBI $1 %rB
+
+# End Down Movement
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_leftB
-MOVI $1 %rC
+MOVI $3 %rC
+MOVI $0  %rA
+ORI $160 %rA
+ADDI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+SUB  %rA %rB
+SUB  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+ADD  %rA %rB # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r2
-SUBI $1  %rB # Move address to new location of bike
 
-# Place bike at new location
+SUBI $1  %rB
+MOVI $13 %rC
 STOR %rC %rB
-BUC .blueEnd
+SUB  %rA %rB
+MOVI $10 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $16 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+SUBI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $11 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $17 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+SUBI $1  %rB
+MOVI $15 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $12 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $18 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+# End Right Movement
+LUI  .blueEnd %rF
+MOVI .blueEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .blueEnd
@@ -349,18 +593,42 @@ LUI $234 %r7
 ORI $96  %r7   # Store IO/Switch location in the address $60000
 LOAD %r8 %r7   # Load the switch value into r8
 
+
+LUI  .yellowUpCases %rF
+MOVI .yellowUpCases %rE
+OR   %rE %rF
 CMPI $0 %r4
-BEQ .yellowUpCases
+JEQ  %rF
+
+LUI  .yellowRightCases %rF
+MOVI .yellowRightCases %rE
+OR   %rE %rF
 CMPI $1 %r4
-BEQ .yellowRightCases
+JEQ  %rF
+
+LUI  .yellowDownCases %rF
+MOVI .yellowDownCases %rE
+OR   %rE %rF
 CMPI $2 %r4
-BEQ .yellowDownCases
+JEQ  %rF
+
+LUI  .yellowLeftCases %rF
+MOVI .yellowLeftCases %rE
+OR   %rE %rF
 CMPI $3 %r4
-BEQ .yellowLeftCases
-BUC .yellowBikeMotion
+JEQ  %rF
+
+LUI  .yellowBikeMotion %rF
+MOVI .yellowBikeMotion %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .yellowUpCases
+LUI  .yellowBikeMotion %rF
+MOVI .yellowBikeMotion %rE
+OR   %rE %rF
+
 MOVI $0 %r7
 ORI  $240 %r7
 AND  %r7 %r8
@@ -374,30 +642,38 @@ MOVI $0 %r7
 ORI  $128 %r7
 CMP  %r7 %r8
 BEQ .yellowRotateUpToLeft
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateUpToUp
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateUpToRight
 MOVI $1 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateUpToDown
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateUpToLeft
 MOVI $3 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
-
-BUC .yellowBikeMotion
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .yellowRightCases
+LUI  .yellowBikeMotion %rF
+MOVI .yellowBikeMotion %rE
+OR   %rE %rF
+
 MOVI $0 %r7
 ORI  $240 %r7
 AND  %r7 %r8
@@ -411,30 +687,38 @@ MOVI $0 %r7
 ORI  $128 %r7
 CMP  %r7 %r8
 BEQ .yellowRotateRightToLeft
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateRightToUp
 MOVI $0 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateRightToRight
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateRightToDown
 MOVI $2 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateRightToLeft
-BUC .yellowBikeMotion
-
-BUC .yellowBikeMotion
+JUC  %rF
 
 
 .yellowDownCases
+LUI  .yellowBikeMotion %rF
+MOVI .yellowBikeMotion %rE
+OR   %rE %rF
+
 MOVI $0 %r7
 ORI  $240 %r7
 AND  %r7 %r8
@@ -448,30 +732,38 @@ MOVI $0 %r7
 ORI  $128 %r7
 CMP  %r7 %r8
 BEQ .yellowRotateDownToLeft
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateDownToUp
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateDownToRight
 MOVI $1 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateDownToDown
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateDownToLeft
 MOVI $3 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
-
-BUC .yellowBikeMotion
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .yellowLeftCases
+LUI  .yellowBikeMotion %rF
+MOVI .yellowBikeMotion %rE
+OR   %rE %rF
+
 MOVI $0 %r7
 ORI  $240 %r7
 AND  %r7 %r8
@@ -485,107 +777,306 @@ MOVI $0 %r7
 ORI  $128 %r7
 CMP  %r7 %r8
 BEQ .yellowRotateLeftToLeft
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateLeftToUp
 MOVI $0 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateLeftToRight
-BUC .yellowBikeMotion
+JUC %rF
 
 .yellowRotateLeftToDown
 MOVI $2 %r4
 # TODO: Collision Check
 # TODO: Add rotation glyph
-BUC .yellowEnd
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 .yellowRotateLeftToLeft
-BUC .yellowBikeMotion
-
-BUC .yellowBikeMotion
+JUC %rF
 
 
 .yellowBikeMotion
+LUI  .move_upY %rF
+MOVI .move_upY %rE
+OR   %rE %rF
 CMPI $0 %r4
-BEQ .move_upY
+JEQ  %rF
 
+LUI  .move_rightY %rF
+MOVI .move_rightY %rE
+OR   %rE %rF
 CMPI $1 %r4
-BEQ .move_rightY
+JEQ  %rF
 
+LUI  .move_downY %rF
+MOVI .move_downY %rE
+OR   %rE %rF
 CMPI $2 %r4
-BEQ .move_downY
+JEQ  %rF
 
+LUI  .move_leftY %rF
+MOVI .move_leftY %rE
+OR   %rE %rF
 CMPI $3 %r4
-BEQ .move_leftY
+JEQ  %rF
+
 
 # TODO: Change glyphs to be paths
 # TODO: Account for collisions by making sure the next block it will move to is not 0.
 # TODO: Change glyph to bike not blue square
 .move_upY
-MOVI $2 %rC
+MOVI $29 %rC
+MOVI $0  %rA
+ORI $160 %rA
+ADD %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0  %rC
+SUBI $1  %rB
+STOR %rC %rB # Remove Bike Corner
+ADDI $2  %rB
+STOR %rC %rB # Remove Bike Corner
+SUBI $1  %rB # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r6
-MOVI $0  %rA
-ORI $160 %rA
-SUB %rA  %rB # Move address to new lcoation of bike
 
-# Place bike at new location
-STOR %rC %rB 
-BUC .yellowEnd
+SUB %rA  %rB
+MOVI $51 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $50 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $52 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+SUB %rA  %rB
+MOVI $48 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $47 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $49 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+SUB %rA  %rB
+MOVI $45 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $44 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $46 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+# End Up Movement
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_rightY
-MOVI $2 %rC
+MOVI $28 %rC
+MOVI $0  %rA
+ORI $160 %rA
+SUBI $1  %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+SUB  %rA %rB
+SUB  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+ADD  %rA %rB # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r5
-ADDI $1  %rB # Move address to new location of bike
 
-# Place bike at new location
+ADDI $1  %rB
+MOVI $38 %rC
 STOR %rC %rB
-BUC .yellowEnd
+SUB  %rA %rB
+MOVI $35 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $41 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+ADDI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $36 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $42 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+ADDI $1  %rB
+MOVI $40 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $37 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $43 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+# End Right Movement
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_downY
-MOVI $2 %rC
-STOR %rC %rB # Place path block for previous bike location
-
-# Increase Y position
-ADDI $1 %r6
+MOVI $29 %rC
 MOVI $0  %rA
 ORI $160 %rA
-ADD %rA  %rB # Move address to new location of bike
+SUB %rA  %rB
+STOR %rC %rB # Place path block for previous bike location
 
-# Place bike at new location
+MOVI $0 %rC
+SUBI $1 %rB
+STOR %rC %rB # Remove Bike Corner
+ADDI $2 %rB
+STOR %rC %rB # Remove Bike Corner
+SUBI $1 %rB  # restore to middle of bike
+
+# Move bike to new location and update glyph at that new location
+ADDI $1  %r6
+
+ADD %rA  %rB
+MOVI $51 %rC
 STOR %rC %rB
-BUC .yellowEnd
+SUBI $1  %rB
+MOVI $50 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $52 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+ADD %rA  %rB
+MOVI $48 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $47 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $49 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+ADD %rA  %rB
+MOVI $45 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $44 %rC
+STOR %rC %rB
+ADDI $2  %rB
+MOVI $46 %rC
+STOR %rC %rB
+SUBI $1  %rB
+
+# End Down Movement
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .move_leftY
-MOVI $2 %rC
+MOVI $28 %rC
+MOVI $0  %rA
+ORI $160 %rA
+ADDI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
+
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+SUB  %rA %rB
+SUB  %rA %rB
+STOR %rC %rB # Remove Bike Corner
+ADD  %rA %rB # restore to middle of bike
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r5
-SUBI $1  %rB # Move address to new location of bike
 
-# Place bike at new location
+SUBI $1  %rB
+MOVI $38 %rC
 STOR %rC %rB
-BUC .yellowEnd
+SUB  %rA %rB
+MOVI $35 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $41 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+SUBI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $36 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $42 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+SUBI $1  %rB
+MOVI $40 %rC
+STOR %rC %rB
+SUB  %rA %rB
+MOVI $37 %rC
+STOR %rC %rB
+ADD  %rA %rB
+ADD  %rA %rB
+MOVI $43 %rC
+STOR %rC %rB
+SUB  %rA %rB
+
+# End Right Movement
+LUI  .yellowEnd %rF
+MOVI .yellowEnd %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .yellowEnd
 
 
 # Restart Counter and Game Loop
-MOVI .CounterLoopStart %rF
-JUC %rF
+LUI  .CounterLoopStart %rF
+MOVI .CounterLoopStart %rE
+OR   %rE %rF
+JUC  %rF
 
 
 .blueDied

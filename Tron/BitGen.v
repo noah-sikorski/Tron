@@ -55,6 +55,7 @@ localparam glyph27 = 16'd27; // Blue Bike Vertical 9
 localparam glyph28 = 16'd28; // Yellow Horizontal Path
 localparam glyph29 = 16'd29; // Yellow Vertical Path
 localparam glyph30 = 16'd30; // Yellow Generic Corner Path
+
 localparam glyph31 = 16'd31; // Yellow Corner Left Down
 localparam glyph32 = 16'd32; // Yellow Corner Left Up
 localparam glyph33 = 16'd33; // Yellow Corner Right Down

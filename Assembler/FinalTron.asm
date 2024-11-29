@@ -106,6 +106,8 @@ ORI $160  %rB  # Load 160 into rB for memory loc
 MUL %r3   %rB  # 160 * %r3 = y position in memory 
 
 ADD %rA   %rB  # rB holds blue pos in memory
+MOVI $0   %rA
+ORI $160  %rA  # Place 160 into rA for later use.
 
 
 .blueBikeIO
@@ -161,24 +163,118 @@ BEQ .blueRotateUpToLeft
 JUC %rF
 
 .blueRotateUpToUp
+.blueRotateUpToDown
 JUC %rF
 
 .blueRotateUpToRight
 MOVI $1 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r2
+
+# Rotate Glyph
+MOVI $8 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUB  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+MOVI $4  %rC
+ADDI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+ADDI $1  %rB
+MOVI $16 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $17 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $18 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $15 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $13 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $10 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $11 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $12 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
 
-.blueRotateUpToDown
-JUC %rF
-
 .blueRotateUpToLeft
 MOVI $3 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r2
+
+# Rotate Glyph
+MOVI $6 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUB  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+MOVI $4  %rC
+SUBI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+SUBI $1  %rB
+MOVI $18 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $17 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $16 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $13 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $15 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $12 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $11 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $10 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
@@ -203,27 +299,119 @@ JUC %rF
 
 .blueRotateRightToUp
 MOVI $0 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r3
+
+# Rotate Glyph
+MOVI $7  %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADDI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+MOVI $3  %rC
+SUB  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+SUB  %rA %rB
+MOVI $25 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $26 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $27 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $24 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $23 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $22 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $19 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $20 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $21 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
 
 .blueRotateRightToRight
+.blueRotateRightToLeft
 JUC %rF
 
 .blueRotateRightToDown
 MOVI $2 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r3
+
+# Rotate Glyph
+MOVI $6  %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADDI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+MOVI $3  %rC
+ADD  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+ADD  %rA %rB
+MOVI $19 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $20 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $21 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $24 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $23 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $22 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $25 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $26 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $27 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
-
-.blueRotateRightToLeft
-JUC %rF
 
 
 .blueDownCases
@@ -243,24 +431,116 @@ BEQ .blueRotateDownToLeft
 JUC %rF
 
 .blueRotateDownToUp
+.blueRotateDownToDown
 JUC %rF
 
 .blueRotateDownToRight
 MOVI $1 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r2
+
+# Rotate Glyph
+MOVI $9 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+MOVI $4  %rC
+ADDI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+ADDI $1  %rB
+MOVI $10 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $11 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $12 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $15 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $13 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $16 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $17 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $18 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
 
-.blueRotateDownToDown
-JUC %rF
-
 .blueRotateDownToLeft
 MOVI $3 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r2
+
+# Rotate Glyph
+MOVI $7 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+MOVI $4  %rC
+SUBI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+SUBI $1  %rB
+MOVI $12 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $11 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $10 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $13 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $14 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $15 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $18 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $17 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $16 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
@@ -285,27 +565,119 @@ JUC %rF
 
 .blueRotateLeftToUp
 MOVI $0 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r3
+
+# Rotate Glyph
+MOVI $9  %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUBI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+MOVI $3  %rC
+SUB  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+SUB  %rA %rB
+MOVI $27 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $26 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $25 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $22 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $23 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $24 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $21 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $20 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $19 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
 
 .blueRotateLeftToRight
+.blueRotateLeftToLeft
 JUC %rF
 
 .blueRotateLeftToDown
 MOVI $2 %r1
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r3
+
+# Rotate Glyph
+MOVI $8  %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUBI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+MOVI $3  %rC
+ADD  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+ADD  %rA %rB
+MOVI $21 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $20 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $19 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $22 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $23 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $24 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $27 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $26 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $25 %rC
+STOR %rC %rB
+
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
 JUC  %rF
-
-.blueRotateLeftToLeft
-JUC %rF
 
 
 .blueBikeMotion
@@ -339,8 +711,6 @@ JEQ  %rF
 # TODO: Change glyph to bike not blue square
 .move_upB
 MOVI $4 %rC
-MOVI $0  %rA
-ORI $160 %rA
 ADD %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -396,8 +766,6 @@ JUC  %rF
 
 .move_rightB
 MOVI $3 %rC
-MOVI $0  %rA
-ORI $160 %rA
 SUBI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -457,8 +825,6 @@ JUC  %rF
 
 .move_downB
 MOVI $4 %rC
-MOVI $0  %rA
-ORI $160 %rA
 SUB %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -473,13 +839,13 @@ SUBI $1 %rB  # restore to middle of bike
 ADDI $1  %r3
 
 ADD %rA  %rB
-MOVI $26 %rC
+MOVI $20 %rC
 STOR %rC %rB
 SUBI $1  %rB
-MOVI $25 %rC
+MOVI $19 %rC
 STOR %rC %rB
 ADDI $2  %rB
-MOVI $27 %rC
+MOVI $21 %rC
 STOR %rC %rB
 SUBI $1 %rB
 
@@ -495,13 +861,13 @@ STOR %rC %rB
 SUBI $1 %rB
 
 ADD %rA  %rB
-MOVI $20 %rC
+MOVI $26 %rC
 STOR %rC %rB
 SUBI $1  %rB
-MOVI $19 %rC
+MOVI $25 %rC
 STOR %rC %rB
 ADDI $2  %rB
-MOVI $21 %rC
+MOVI $27 %rC
 STOR %rC %rB
 SUBI $1 %rB
 
@@ -514,8 +880,6 @@ JUC  %rF
 
 .move_leftB
 MOVI $3 %rC
-MOVI $0  %rA
-ORI $160 %rA
 ADDI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -531,14 +895,14 @@ ADD  %rA %rB # restore to middle of bike
 SUBI $1  %r2
 
 SUBI $1  %rB
-MOVI $13 %rC
+MOVI $15 %rC
 STOR %rC %rB
 SUB  %rA %rB
-MOVI $10 %rC
+MOVI $12 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
-MOVI $16 %rC
+MOVI $18 %rC
 STOR %rC %rB
 SUB  %rA %rB
 
@@ -555,18 +919,18 @@ STOR %rC %rB
 SUB  %rA %rB
 
 SUBI $1  %rB
-MOVI $15 %rC
+MOVI $13 %rC
 STOR %rC %rB
 SUB  %rA %rB
-MOVI $12 %rC
+MOVI $10 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
-MOVI $18 %rC
+MOVI $16 %rC
 STOR %rC %rB
 SUB  %rA %rB
 
-# End Right Movement
+# End Left Movement
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
 OR   %rE %rF
@@ -586,6 +950,8 @@ ORI $160  %rB  # Load 160 into rB for memory loc
 MUL %r6   %rB  # 160 * %r3 = y position in memory 
 
 ADD %rA   %rB  # rB holds yellow pos in memory
+MOVI $0   %rA
+ORI $160  %rA  # Load 160 into rA for later use
 
 
 .yellowBikeIO
@@ -645,24 +1011,120 @@ BEQ .yellowRotateUpToLeft
 JUC %rF
 
 .yellowRotateUpToUp
+.yellowRotateUpToDown
 JUC %rF
 
 .yellowRotateUpToRight
 MOVI $1 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r5
+
+# Rotate Glyph
+MOVI $33 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUB  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+MOVI $29 %rC
+ADDI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+ADDI $1  %rB
+MOVI $41 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $42 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $43 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $40 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $38 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $35 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $36 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $37 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
 
-.yellowRotateUpToDown
 JUC %rF
 
 .yellowRotateUpToLeft
 MOVI $3 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r5
+
+# Rotate Glyph
+MOVI $31 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUB  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+MOVI $29 %rC
+SUBI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+SUBI $1  %rB
+MOVI $43 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $42 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $41 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $38 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $40 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $37 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $36 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $35 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
@@ -691,28 +1153,121 @@ JUC %rF
 
 .yellowRotateRightToUp
 MOVI $0 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r6
+
+# Rotate Glyph
+MOVI $32 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADDI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+MOVI $28 %rC
+SUB  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+SUB  %rA %rB
+MOVI $50 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $51 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $52 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $49 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $48 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $47 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $44 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $45 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $46 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
 
 .yellowRotateRightToRight
+.yellowRotateRightToLeft
 JUC %rF
 
 .yellowRotateRightToDown
 MOVI $2 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r6
+
+# Rotate Glyph
+MOVI $31 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADDI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+MOVI $28 %rC
+ADD  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+ADD  %rA %rB
+MOVI $44 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $45 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $46 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $49 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $48 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $47 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $50 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $51 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $52 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
-
-.yellowRotateRightToLeft
-JUC  %rF
-
 
 .yellowDownCases
 LUI  .yellowBikeMotion %rF
@@ -735,24 +1290,118 @@ BEQ .yellowRotateDownToLeft
 JUC %rF
 
 .yellowRotateDownToUp
+.yellowRotateDownToDown
 JUC %rF
 
 .yellowRotateDownToRight
 MOVI $1 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r5
+
+# Rotate Glyph
+MOVI $34 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB
+SUBI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+MOVI $29 %rC
+ADDI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+ADDI $1  %rB
+MOVI $35 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $36 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $37 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $40 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $38 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $41 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $42 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $43 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
 
-.yellowRotateDownToDown
-JUC %rF
-
 .yellowRotateDownToLeft
 MOVI $3 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r5
+
+# Rotate Glyph
+MOVI $32 %rC
+STOR %rC %rB
+MOVI $0  %rC
+ADD  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+MOVI $29 %rC
+SUBI $1  %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+SUBI $1  %rB
+MOVI $37 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $36 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $35 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $38 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $39 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $40 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $43 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $42 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $41 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
@@ -781,27 +1430,121 @@ JUC %rF
 
 .yellowRotateLeftToUp
 MOVI $0 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+SUBI $2 %r6
+
+# Rotate Glyph
+MOVI $34 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUBI $1  %rB
+STOR %rC %rB
+ADD  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+MOVI $28 %rC
+SUB  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+SUB  %rA %rB
+MOVI $52 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $51 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $50 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $47 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $48 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $49 %rC
+STOR %rC %rB
+
+SUB  %rA %rB
+MOVI $46 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $45 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $44 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
 
 .yellowRotateLeftToRight
+.yellowRotateLeftToLeft
 JUC %rF
 
 .yellowRotateLeftToDown
 MOVI $2 %r4
-# TODO: Collision Check
-# TODO: Add rotation glyph
+ADDI $2 %r6
+
+# Rotate Glyph
+MOVI $33 %rC
+STOR %rC %rB
+MOVI $0  %rC
+SUBI $1  %rB
+STOR %rC %rB
+SUB  %rA %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+ADDI $1  %rB
+STOR %rC %rB
+MOVI $28 %rC
+ADD  %rA %rB
+STOR %rC %rB
+
+# TODO: Perform Collision Check (%rB is currently left middle of og)
+ADD  %rA %rB
+MOVI $46 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $45 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $44 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $47 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $48 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $49 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $52 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $51 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $50 %rC
+STOR %rC %rB
+
+# Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
-
-.yellowRotateLeftToLeft
-JUC %rF
 
 
 .yellowBikeMotion
@@ -835,8 +1578,6 @@ JEQ  %rF
 # TODO: Change glyph to bike not blue square
 .move_upY
 MOVI $29 %rC
-MOVI $0  %rA
-ORI $160 %rA
 ADD %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -892,8 +1633,6 @@ JUC  %rF
 
 .move_rightY
 MOVI $28 %rC
-MOVI $0  %rA
-ORI $160 %rA
 SUBI $1  %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -953,8 +1692,6 @@ JUC  %rF
 
 .move_downY
 MOVI $29 %rC
-MOVI $0  %rA
-ORI $160 %rA
 SUB %rA  %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -969,15 +1706,15 @@ SUBI $1 %rB  # restore to middle of bike
 ADDI $1  %r6
 
 ADD %rA  %rB
-MOVI $51 %rC
+MOVI $45 %rC
 STOR %rC %rB
 SUBI $1  %rB
-MOVI $50 %rC
+MOVI $44 %rC
 STOR %rC %rB
 ADDI $2  %rB
-MOVI $52 %rC
+MOVI $46 %rC
 STOR %rC %rB
-SUBI $1  %rB
+SUBI $1 %rB
 
 ADD %rA  %rB
 MOVI $48 %rC
@@ -988,18 +1725,18 @@ STOR %rC %rB
 ADDI $2  %rB
 MOVI $49 %rC
 STOR %rC %rB
-SUBI $1  %rB
+SUBI $1 %rB
 
 ADD %rA  %rB
-MOVI $45 %rC
+MOVI $51 %rC
 STOR %rC %rB
 SUBI $1  %rB
-MOVI $44 %rC
+MOVI $50 %rC
 STOR %rC %rB
 ADDI $2  %rB
-MOVI $46 %rC
+MOVI $52 %rC
 STOR %rC %rB
-SUBI $1  %rB
+SUBI $1 %rB
 
 # End Down Movement
 LUI  .yellowEnd %rF
@@ -1010,8 +1747,6 @@ JUC  %rF
 
 .move_leftY
 MOVI $28 %rC
-MOVI $0  %rA
-ORI $160 %rA
 ADDI $1 %rB
 STOR %rC %rB # Place path block for previous bike location
 
@@ -1027,14 +1762,14 @@ ADD  %rA %rB # restore to middle of bike
 SUBI $1  %r5
 
 SUBI $1  %rB
-MOVI $38 %rC
+MOVI $40 %rC
 STOR %rC %rB
 SUB  %rA %rB
-MOVI $35 %rC
+MOVI $37 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
-MOVI $41 %rC
+MOVI $43 %rC
 STOR %rC %rB
 SUB  %rA %rB
 
@@ -1051,18 +1786,18 @@ STOR %rC %rB
 SUB  %rA %rB
 
 SUBI $1  %rB
-MOVI $40 %rC
+MOVI $38 %rC
 STOR %rC %rB
 SUB  %rA %rB
-MOVI $37 %rC
+MOVI $35 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
-MOVI $43 %rC
+MOVI $41 %rC
 STOR %rC %rB
 SUB  %rA %rB
 
-# End Right Movement
+# End Left Movement
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF

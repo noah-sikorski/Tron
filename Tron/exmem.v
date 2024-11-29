@@ -27,7 +27,7 @@ assign IO = (addr1 == 16'd60000);
 
 initial begin
     $display("Loading memory");
-    $readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Assembler\\SimpleTron.dat", ram);
+    $readmemh("C:\\IntelQuartus\\23.1.1\\ece3710\\Assembler\\FinalTron.dat", ram);
     $display("done loading");
 end
 

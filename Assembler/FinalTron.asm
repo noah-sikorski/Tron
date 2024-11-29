@@ -24,14 +24,51 @@ BNE .memEraseLoop
 
 .StartScreen
 # TODO: Add actual start screen
+MOVI $0 %rB
 
+# Always have %rA hold the value of 160.
+MOVI $0   %rA
+ORI  $160 %rA
+
+# Starting address is x = 11 and y = 45
+MOV  %rA %rB
+MULI $45 %rB
+ADDI $11 %rB
+LUI $156 %rC
+ORI $64  %rC
+ADD %rC  %rB
+
+# %rF holds value of .drawBlueSevenBySevenSquare address
+LUI  .drawBlueSevenBySevenSquare %rF
+MOVI .drawBlueSevenBySevenSquare %rE
+OR   %rE %rF
+
+# Draw the letter "T"
+JAL %rE %rF
+
+.StartScreenLoop
 LUI $234 %r7
 ORI $96  %r7   # Store IO/Switch location in the address $60000
 LOAD %r8 %r7   # Load the switch value into r8
 
 LUI $1 %r9
 CMP %r9 %r8
-BNE .StartScreen
+BNE .StartScreenLoop
+
+
+.clearScreen
+LUI $156  %r1
+ORI $64   %r1     # Load the value 40000 into r1 for beginning of memory wipe
+
+LUI $231   %r2  
+ORI $64    %r2    # Load the value 59200 into r2 for end of mem wipe
+
+.clearLoop
+STOR %r0 %r1      # Set the value in memory at this address to glyph 0
+ADDI $1  %r1      # Increment memory count
+
+CMP %r1 %r2       # Leave loop if the entire memory has been set to all 0's
+BNE .clearLoop
 
 
 .StartGame
@@ -1836,6 +1873,51 @@ LUI  .CounterLoopStart %rF
 MOVI .CounterLoopStart %rE
 OR   %rE %rF
 JUC  %rF
+
+
+
+# Space for Methods: Should never be called unless jumped to.
+# Return register is always rE. Do not overwrite.
+# The top left corner of the square is located in %rB.
+# Make sure to return %rB to original value.
+# Keep %rA holding the value 0f 160.
+
+.drawBlueSevenBySevenSquare
+# %rC holds value of blue square.
+MOVI $1 %rC
+
+# Make 7x7 for loop to draw all 49 squares.
+MOVI $0 %r1
+MOVI $0 %r2
+MOVI $7 %r3
+.blueSquareYLoop
+    MOVI $0 %r2
+    .blueSquareXLoop
+        STOR %rC %rB
+        ADDI $1  %rB
+        ADDI $1  %r2
+        CMP  %r2 %r3
+    BNE .blueSquareXLoop
+    SUBI $7  %rB
+    ADD  %rA %rB
+    ADDI $1  %r1
+    CMP  %r1 %r3
+BNE .blueSquareYLoop
+
+# Returning %rB to its original position
+MOV  %rA %rC
+MULI $7  %rC
+SUB  %rC %rB
+
+JUC %rE
+
+
+.drawYellowSevenBySevenSquare
+
+JUC %rE
+
+# End of space for methods.
+
 
 
 .blueDied

@@ -191,16 +191,28 @@ ADDI $1  %rB
 MOVI $16 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $17 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $18 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $15 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $14 %rC
 STOR %rC %rB
 SUBI $1  %rB
@@ -211,11 +223,27 @@ SUB  %rA %rB
 MOVI $10 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $11 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $12 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+SUBI $1  %rA
+CMP  %r2 %rA
+JGE  %rF
+ADDI $1  %rA
 
 # Jump to End
 LUI  .blueEnd %rF
@@ -706,9 +734,7 @@ CMPI $3 %r1
 JEQ  %rF
 
 
-# TODO: Change glyphs to be paths
 # TODO: Account for collisions by making sure the next block it will move to is not 0.
-# TODO: Change glyph to bike not blue square
 .move_upB
 MOVI $4 %rC
 ADD %rA  %rB
@@ -1573,9 +1599,7 @@ CMPI $3 %r4
 JEQ  %rF
 
 
-# TODO: Change glyphs to be paths
 # TODO: Account for collisions by making sure the next block it will move to is not 0.
-# TODO: Change glyph to bike not blue square
 .move_upY
 MOVI $29 %rC
 ADD %rA  %rB

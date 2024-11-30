@@ -351,36 +351,161 @@ BNE .countDownLoopY
 
 ADDI $1 %r9
 CMPI $1 %r9
-BEQ .DrawNumberThree
+BEQ .DrawFirstNumber
 CMPI $2 %r9
-BEQ .DrawNumberTwo
+BEQ .DrawSecondNumber
 CMPI $3 %r9
-BEQ .DrawNumberOne
+BEQ .DrawThirdNumber
 
-# TODO: Erase 3 2 1
+# Erase the counter numbers
+ADD %rD %rB
+LUI $156 %r1
+ORI $64 %r1 # Load the value 40000 into r1 for beginning of memory wipe
+
+.counterEraseLoop
+STOR %r0 %r1 # Set the value in memory at this address to glyph 0
+ADDI $1 %r1 # Increment memory count
+
+CMP %r1 %rB # Leave loop if the entire memory has been set to all 0's
+BNE .counterEraseLoop
+
+# Return values of blue bike as they were used.
+# Should only be called after the countdown.
+MOVI $0 %r1 # Up Direction
+MOVI $55 %r2 # x = 55
+MOVI $80 %r3 # y = 80
+
 LUI .GameLoop %rF
 MOVI .GameLoop %rE
 OR %rE %rF
 JUC %rF
 
-# TODO: Draw the actual numbers
+.DrawFirstNumber
+LUI .DrawNumberThree %rF
+MOVI .DrawNumberThree %rE
+OR %rE %rF
+JUC %rF
+
+.DrawSecondNumber
+LUI .DrawNumberTwo %rF
+MOVI .DrawNumberTwo %rE
+OR %rE %rF
+JUC %rF
+
+.DrawThirdNumber
+LUI .DrawNumberOne %rF
+MOVI .DrawNumberOne %rE
+OR %rE %rF
+JUC %rF
+
+
 .DrawNumberThree
-MOVI $53 %rC
-STOR %rC %rB
+# %rF holds value of .drawWhiteTwoByTwoSquare address
+LUI .drawWhiteTwoByTwoSquare %rF
+MOVI .drawWhiteTwoByTwoSquare %rE
+OR %rE %rF
+
 ADDI $2 %rB
-BUC .startOfCountDownXY
+JAL %rE %rF
+ADDI $2 %rB
+JAL %rE %rF
+ADDI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+ADDI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+JAL %rE %rF
+SUBI $2 %rB
+SUB %rD %rB
+JAL %rE %rF
+SUB %rD %rB
+SUB %rD %rB
+JAL %rE %rF
+SUB %rD %rB
+ADDI $16 %rB
+
+# Return to countdown
+LUI .startOfCountDownXY %rF
+MOVI .startOfCountDownXY %rE
+OR %rE %rF
+JUC %rF
 
 .DrawNumberTwo
-MOVI $53 %rC
-STOR %rC %rB
+# %rF holds value of .drawWhiteTwoByTwoSquare address
+LUI .drawWhiteTwoByTwoSquare %rF
+MOVI .drawWhiteTwoByTwoSquare %rE
+OR %rE %rF
+
+JAL %rE %rF
 ADDI $2 %rB
-BUC .startOfCountDownXY
+JAL %rE %rF
+ADDI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+ADD %rD %rB
+JAL %rE %rF
+ADD %rD %rB
+JAL %rE %rF
+ADDI $2 %rB
+JAL %rE %rF
+ADDI $2 %rB
+JAL %rE %rF
+SUBI $6 %rB
+JAL %rE %rF
+SUB %rD %rB
+SUB %rD %rB
+SUB %rD %rB
+JAL %rE %rF
+SUB %rD %rB
+ADDI $16 %rB
+
+# Return to countdown
+LUI .startOfCountDownXY %rF
+MOVI .startOfCountDownXY %rE
+OR %rE %rF
+JUC %rF
+
 
 .DrawNumberOne
-MOVI $53 %rC
-STOR %rC %rB
+# %rF holds value of .drawWhiteTwoByTwoSquare address
+LUI .drawWhiteTwoByTwoSquare %rF
+MOVI .drawWhiteTwoByTwoSquare %rE
+OR %rE %rF
+
+JAL %rE %rF
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+JAL %rE %rF
 ADDI $2 %rB
-BUC .startOfCountDownXY
+ADD %rD %rB
+JAL %rE %rF
+ADD %rD %rB
+JAL %rE %rF
+ADD %rD %rB
+JAL %rE %rF
+SUBI $2 %rB
+JAL %rE %rF
+ADDI $4 %rB
+JAL %rE %rF
+
+# Return to countdown
+LUI .startOfCountDownXY %rF
+MOVI .startOfCountDownXY %rE
+OR %rE %rF
+JUC %rF
 
 
 .CounterLoopStart
@@ -2809,19 +2934,47 @@ MOVI $2 %rC
 MOVI $0 %r1
 MOVI $0 %r2
 MOVI $2 %r3
-.blueSquareYLoop2
+.yellowSquareYLoop2
 MOVI $0 %r2
-.blueSquareXLoop2
+.yellowSquareXLoop2
 STOR %rC %rB
 ADDI $1 %rB
 ADDI $1 %r2
 CMP %r2 %r3
-BNE .blueSquareXLoop2
+BNE .yellowSquareXLoop2
 SUBI $2 %rB
 ADD %rA %rB
 ADDI $1 %r1
 CMP %r1 %r3
-BNE .blueSquareYLoop2
+BNE .yellowSquareYLoop2
+
+# Returning %rB to its original position
+MOV %rA %rC
+MULI $2 %rC
+SUB %rC %rB
+JUC %rE
+
+.drawWhiteTwoByTwoSquare
+# %rC holds value of blue square.
+MOVI $53 %rC
+
+# Make 2x2 for loop to draw all 4 squares.
+MOVI $0 %r1
+MOVI $0 %r2
+MOVI $2 %r3
+.whiteSquareYLoop2
+MOVI $0 %r2
+.whiteSquareXLoop2
+STOR %rC %rB
+ADDI $1 %rB
+ADDI $1 %r2
+CMP %r2 %r3
+BNE .whiteSquareXLoop2
+SUBI $2 %rB
+ADD %rA %rB
+ADDI $1 %r1
+CMP %r1 %r3
+BNE .whiteSquareYLoop2
 
 # Returning %rB to its original position
 MOV %rA %rC

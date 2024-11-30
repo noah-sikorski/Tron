@@ -263,27 +263,126 @@ CMP %r7 %rC
 BNE .countDownLoopY 
 ADDI $1 %r9 
 CMPI $1 %r9 
-BEQ .DrawNumberThree 
+BEQ .DrawFirstNumber 
 CMPI $2 %r9 
-BEQ .DrawNumberTwo 
+BEQ .DrawSecondNumber 
 CMPI $3 %r9 
-BEQ .DrawNumberOne 
+BEQ .DrawThirdNumber 
+ADD %rD %rB 
+LUI $156 %r1 
+ORI $64 %r1 
+STOR %r0 %r1 
+ADDI $1 %r1 
+CMP %r1 %rB 
+BNE .counterEraseLoop 
+MOVI $0 %r1 
+MOVI $55 %r2 
+MOVI $80 %r3 
 LUI .GameLoop %rF 
 MOVI .GameLoop %rE 
 OR %rE %rF 
 JUC %rF 
-MOVI $53 %rC 
-STOR %rC %rB 
+LUI .DrawNumberThree %rF 
+MOVI .DrawNumberThree %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .DrawNumberTwo %rF 
+MOVI .DrawNumberTwo %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .DrawNumberOne %rF 
+MOVI .DrawNumberOne %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .drawWhiteTwoByTwoSquare %rF 
+MOVI .drawWhiteTwoByTwoSquare %rE 
+OR %rE %rF 
 ADDI $2 %rB 
-BUC .startOfCountDownXY 
-MOVI $53 %rC 
-STOR %rC %rB 
+JAL %rE %rF 
 ADDI $2 %rB 
-BUC .startOfCountDownXY 
-MOVI $53 %rC 
-STOR %rC %rB 
+JAL %rE %rF 
 ADDI $2 %rB 
-BUC .startOfCountDownXY 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+ADDI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+SUB %rD %rB 
+JAL %rE %rF 
+SUB %rD %rB 
+SUB %rD %rB 
+JAL %rE %rF 
+SUB %rD %rB 
+ADDI $16 %rB 
+LUI .startOfCountDownXY %rF 
+MOVI .startOfCountDownXY %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .drawWhiteTwoByTwoSquare %rF 
+MOVI .drawWhiteTwoByTwoSquare %rE 
+OR %rE %rF 
+JAL %rE %rF 
+ADDI $2 %rB 
+JAL %rE %rF 
+ADDI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+ADD %rD %rB 
+JAL %rE %rF 
+ADDI $2 %rB 
+JAL %rE %rF 
+ADDI $2 %rB 
+JAL %rE %rF 
+SUBI $6 %rB 
+JAL %rE %rF 
+SUB %rD %rB 
+SUB %rD %rB 
+SUB %rD %rB 
+JAL %rE %rF 
+SUB %rD %rB 
+ADDI $16 %rB 
+LUI .startOfCountDownXY %rF 
+MOVI .startOfCountDownXY %rE 
+OR %rE %rF 
+JUC %rF 
+LUI .drawWhiteTwoByTwoSquare %rF 
+MOVI .drawWhiteTwoByTwoSquare %rE 
+OR %rE %rF 
+JAL %rE %rF 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+JAL %rE %rF 
+ADDI $2 %rB 
+ADD %rD %rB 
+JAL %rE %rF 
+ADD %rD %rB 
+JAL %rE %rF 
+ADD %rD %rB 
+JAL %rE %rF 
+SUBI $2 %rB 
+JAL %rE %rF 
+ADDI $4 %rB 
+JAL %rE %rF 
+LUI .startOfCountDownXY %rF 
+MOVI .startOfCountDownXY %rE 
+OR %rE %rF 
+JUC %rF 
 LUI $156 %rE 
 ORI $64 %rE 
 MOVI $0 %rC 
@@ -2251,12 +2350,31 @@ STOR %rC %rB
 ADDI $1 %rB 
 ADDI $1 %r2 
 CMP %r2 %r3 
-BNE .blueSquareXLoop2 
+BNE .yellowSquareXLoop2 
 SUBI $2 %rB 
 ADD %rA %rB 
 ADDI $1 %r1 
 CMP %r1 %r3 
-BNE .blueSquareYLoop2 
+BNE .yellowSquareYLoop2 
+MOV %rA %rC 
+MULI $2 %rC 
+SUB %rC %rB 
+JUC %rE 
+MOVI $53 %rC 
+MOVI $0 %r1 
+MOVI $0 %r2 
+MOVI $2 %r3 
+MOVI $0 %r2 
+STOR %rC %rB 
+ADDI $1 %rB 
+ADDI $1 %r2 
+CMP %r2 %r3 
+BNE .whiteSquareXLoop2 
+SUBI $2 %rB 
+ADD %rA %rB 
+ADDI $1 %r1 
+CMP %r1 %r3 
+BNE .whiteSquareYLoop2 
 MOV %rA %rC 
 MULI $2 %rC 
 SUB %rC %rB 

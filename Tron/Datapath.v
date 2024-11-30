@@ -54,6 +54,6 @@ ALU ALu(.clk(clk), .reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagW
 Shifter shift(.data_in(regB), .shamt(IMMMuxRes), .shift_op(shiftOp), .data_out(shifterOutput));
 
 Bus bus(.immediate(IMMMuxRes), .memout(memData), .ALUout(ALUresult), .shiftout(shifterOutput),
-						.pcout(addressOut), .selector(busOp), .dataOut(busOutput), .regBout(regB));
+						.pcout(addressOut + 16'b1), .selector(busOp), .dataOut(busOutput), .regBout(regB));
 
 endmodule

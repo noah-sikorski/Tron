@@ -81,6 +81,8 @@ localparam glyph50 = 16'd50; // Yellow Bike Vertical 7
 localparam glyph51 = 16'd51; // Yellow Bike Vertical 8
 localparam glyph52 = 16'd52; // Yellow Bike Vertical 9
 
+localparam glyph53 = 16'd53; // White Square
+
 always @(*) begin
 	if (bright) begin
 		case (memData)
@@ -1403,6 +1405,12 @@ always @(*) begin
 				endcase
 			end
 			
+			// White Square
+			glyph53: begin
+				VGA_R <= 8'd255;
+				VGA_G <= 8'd255;
+				VGA_B <= 8'd255;
+			end
 			
 			// Should not happen.
 			default: begin

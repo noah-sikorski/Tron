@@ -83,6 +83,16 @@ localparam glyph52 = 16'd52; // Yellow Bike Vertical 9
 
 localparam glyph53 = 16'd53; // White Square
 
+localparam glyph54 = 16'd54; // Explosion 1
+localparam glyph55 = 16'd55; // Explosion 2
+localparam glyph56 = 16'd56; // Explosion 3
+localparam glyph57 = 16'd57; // Explosion 4
+localparam glyph58 = 16'd58; // Explosion 5
+localparam glyph59 = 16'd59; // Explosion 6
+localparam glyph60 = 16'd60; // Explosion 7
+localparam glyph61 = 16'd61; // Explosion 8
+localparam glyph62 = 16'd62; // Explosion 9
+
 always @(*) begin
 	if (bright) begin
 		case (memData)
@@ -1410,6 +1420,275 @@ always @(*) begin
 				VGA_R <= 8'd255;
 				VGA_G <= 8'd255;
 				VGA_B <= 8'd255;
+			end
+			
+			// Explosion 1
+			glyph54: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd0, 16'd5, 16'd6, 16'd9, 16'd11, 16'd14: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Orange Portion
+					16'd10, 16'd15: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 2
+			glyph55: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd4, 16'd7, 16'd8, 16'd9, 16'd10, 16'd11: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Dark Orange Portion
+					16'd12, 16'd13: begin
+						VGA_R <= 8'd199;
+						VGA_G <= 8'd89;
+						VGA_B <= 8'd16;
+					end
+					
+					// Orange Portion
+					16'd14, 16'd15: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 3
+			glyph56: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd3, 16'd5, 16'd6, 16'd8, 16'd10, 16'd13: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Orange Portion
+					16'd9, 16'd12: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 4
+			glyph57: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd1, 16'd2, 16'd6, 16'd10, 16'd13, 16'd14: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Dark Orange Portion
+					16'd11, 16'd15: begin
+						VGA_R <= 8'd199;
+						VGA_G <= 8'd89;
+						VGA_B <= 8'd16;
+					end
+					
+					// Orange Portion
+					16'd3, 16'd7: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 5
+			glyph58: begin
+				case (pixelPosition)
+					// Light Yellow Portion
+					16'd0, 16'd1, 16'd3, 16'd7, 16'd8, 16'd12, 16'd14, 16'd15: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd249;
+						VGA_B <= 8'd189;
+					end
+					
+					// Yellow Portion
+					16'd2, 16'd4, 16'd11, 16'd13: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd242;
+						VGA_B <= 8'd0;
+					end
+					
+					// White Portion
+					16'd5, 16'd6, 16'd9, 16'd10: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 6
+			glyph59: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd1, 16'd2, 16'd5, 16'd9, 16'd13, 16'd14: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Dark Orange Portion
+					16'd0, 16'd4: begin
+						VGA_R <= 8'd199;
+						VGA_G <= 8'd89;
+						VGA_B <= 8'd16;
+					end
+					
+					// Orange Portion
+					16'd8, 16'd12: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 7
+			glyph60: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd2, 16'd5, 16'd7, 16'd9, 16'd10, 16'd12: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Orange Portion
+					16'd3, 16'd6: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 8
+			glyph61: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd4, 16'd5, 16'd6, 16'd7, 16'd8, 16'd11: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Dark Orange Portion
+					16'd2, 16'd3: begin
+						VGA_R <= 8'd199;
+						VGA_G <= 8'd89;
+						VGA_B <= 8'd16;
+					end
+					
+					// Orange Portion
+					16'd0, 16'd1: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
+			end
+			
+			// Explosion 9
+			glyph62: begin
+				case (pixelPosition)
+					// Red Portion
+					16'd1, 16'd4, 16'd6, 16'd9, 16'd10, 16'd15: begin
+						VGA_R <= 8'd237;
+						VGA_G <= 8'd28;
+						VGA_B <= 8'd36;
+					end
+					
+					// Orange Portion
+					16'd0, 16'd5: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd126;
+						VGA_B <= 8'd0;
+					end
+					
+					// Remainder black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
+					end
+				endcase
 			end
 			
 			// Should not happen.

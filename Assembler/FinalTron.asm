@@ -201,12 +201,12 @@ BNE .clearLoop
 # Blue Bike Start Registers
 MOVI $0   %r1   # Up Direction
 MOVI $55  %r2   # x = 55
-MOVI $80  %r3   # y = 80
+MOVI $80  %r3   # y = 30
 
 # Yellow Bike Start Registers
 MOVI $0   %r4   # Up Direction
-MOVI $110 %r5   # x = 110
-MOVI $80  %r6   # y = 80
+MOVI $110  %r5   # x = 58
+MOVI $80  %r6   # y = 30
 
 LUI $156  %rA
 ORI $64   %rA  # Load 40000 into rA to find in memory
@@ -710,16 +710,28 @@ SUBI $1  %rB
 MOVI $18 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $17 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $16 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $13 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $14 %rC
 STOR %rC %rB
 ADDI $1  %rB
@@ -730,11 +742,27 @@ SUB  %rA %rB
 MOVI $12 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $11 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $10 %rC
 STOR %rC %rB
+
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+
+CMP  %r2 %r0
+JLE  %rF
 
 # Jump to End
 LUI  .blueEnd %rF
@@ -791,24 +819,52 @@ MOVI $27 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $24 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $23 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $22 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $19 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $20 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $21 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+
+CMP  %r3 %r0
+JLE  %rF
+
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -851,24 +907,52 @@ MOVI $21 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $24 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $23 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $22 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $25 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $26 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $27 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+SUBI $41 %rA
+CMP  %r3 %rA
+JGE  %rF
+ADDI $41 %rA
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -916,21 +1000,33 @@ MOVI $4  %rC
 ADDI $1  %rB
 STOR %rC %rB
 
-# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+# TODO: Perform Collision Check (%rB is currently top middle of og)
 ADDI $1  %rB
 MOVI $10 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $11 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $12 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $15 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $14 %rC
 STOR %rC %rB
 SUBI $1  %rB
@@ -941,11 +1037,27 @@ ADD  %rA %rB
 MOVI $16 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $17 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $18 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+SUBI $1 %rA
+CMP  %r3 %rA
+JGE  %rF
+ADDI $1 %rA
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -972,21 +1084,33 @@ MOVI $4  %rC
 SUBI $1  %rB
 STOR %rC %rB
 
-# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+# TODO: Perform Collision Check (%rB is currently top middle of og)
 SUBI $1  %rB
 MOVI $12 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $11 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $10 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $13 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $14 %rC
 STOR %rC %rB
 ADDI $1  %rB
@@ -997,11 +1121,26 @@ ADD  %rA %rB
 MOVI $18 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $17 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $16 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
+CMP  %r2 %r0
+JLE  %rF
+
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -1045,7 +1184,7 @@ MOVI $3  %rC
 SUB  %rA %rB
 STOR %rC %rB
 
-# TODO: Perform Collision Check (%rB is currently left middle of og)
+# TODO: Perform Collision Check (%rB is currently right middle of og)
 SUB  %rA %rB
 MOVI $27 %rC
 STOR %rC %rB
@@ -1057,24 +1196,46 @@ MOVI $25 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $22 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $23 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $24 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $21 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $20 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $19 %rC
 STOR %rC %rB
+
+
+CMP  %r3 %r0
+JLE  %rF
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -1105,7 +1266,7 @@ MOVI $3  %rC
 ADD  %rA %rB
 STOR %rC %rB
 
-# TODO: Perform Collision Check (%rB is currently left middle of og)
+# TODO: Perform Collision Check (%rB is currently right middle of og)
 ADD  %rA %rB
 MOVI $21 %rC
 STOR %rC %rB
@@ -1117,24 +1278,47 @@ MOVI $19 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $22 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $23 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $24 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $27 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $26 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $25 %rC
 STOR %rC %rB
+
+SUBI $41 %rA
+CMP  %r3 %rA
+JGE  %rF
+ADDI $41 %rA
 
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -1168,6 +1352,7 @@ CMPI $3 %r1
 JEQ  %rF
 
 
+
 # TODO: Account for collisions by making sure the next block it will move to is not 0.
 .move_upB
 MOVI $4 %rC
@@ -1180,6 +1365,12 @@ STOR %rC %rB # Remove Bike Corner
 ADDI $2 %rB
 STOR %rC %rB # Remove Bike Corner
 SUBI $1 %rB  # restore to middle of bike
+
+
+# Set rF to be bluedied
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r3
@@ -1207,16 +1398,28 @@ STOR %rC %rB
 SUBI $1 %rB
 
 SUB %rA  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $20 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $19 %rC
 STOR %rC %rB
 ADDI $2  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $21 %rC
 STOR %rC %rB
 SUBI $1 %rB
 
+
+CMP  %r3 %r0
+JLE  %rF
 # End Up Movement
 LUI  .blueEnd %rF
 MOVI .blueEnd %rE
@@ -1236,6 +1439,11 @@ SUB  %rA %rB
 SUB  %rA %rB
 STOR %rC %rB # Remove Bike Corner
 ADD  %rA %rB # restore to middle of bike
+
+# Set rF to be bluedied
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r2
@@ -1265,16 +1473,30 @@ STOR %rC %rB
 SUB  %rA %rB
 
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $15 %rC
 STOR %rC %rB
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $12 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $18 %rC
 STOR %rC %rB
 SUB  %rA %rB
+
+SUBI $1 %rA
+CMP  %r2 %rA
+JGE  %rF
+ADDI $1 %rA
 
 # End Right Movement
 LUI  .blueEnd %rF
@@ -1294,6 +1516,11 @@ STOR %rC %rB # Remove Bike Corner
 ADDI $2 %rB
 STOR %rC %rB # Remove Bike Corner
 SUBI $1 %rB  # restore to middle of bike
+
+# Set rF to be bluedied
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r3
@@ -1321,15 +1548,29 @@ STOR %rC %rB
 SUBI $1 %rB
 
 ADD %rA  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $26 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $25 %rC
 STOR %rC %rB
 ADDI $2  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $27 %rC
 STOR %rC %rB
 SUBI $1 %rB
+
+SUBI $41 %rA
+CMP  %r3 %rA
+JGE  %rF
+ADDI $41 %rA
 
 # End Down Movement
 LUI  .blueEnd %rF
@@ -1350,6 +1591,11 @@ SUB  %rA %rB
 SUB  %rA %rB
 STOR %rC %rB # Remove Bike Corner
 ADD  %rA %rB # restore to middle of bike
+
+# Set rF to be bluedied
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r2
@@ -1379,16 +1625,28 @@ STOR %rC %rB
 SUB  %rA %rB
 
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $13 %rC
 STOR %rC %rB
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $10 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $16 %rC
 STOR %rC %rB
 SUB  %rA %rB
+
+CMP  %r2 %r0
+JLE  %rF
 
 # End Left Movement
 LUI  .blueEnd %rF
@@ -1398,7 +1656,6 @@ JUC  %rF
 
 
 .blueEnd
-
 
 .yellowBikeStart
 LUI $156  %rA
@@ -1499,16 +1756,28 @@ ADDI $1  %rB
 MOVI $41 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $42 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $43 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $40 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $39 %rC
 STOR %rC %rB
 SUBI $1  %rB
@@ -1519,11 +1788,27 @@ SUB  %rA %rB
 MOVI $35 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $36 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $37 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+SUBI $1  %rA
+CMP  %r5 %rA
+JGE  %rF
+ADDI $1  %rA
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1558,16 +1843,28 @@ SUBI $1  %rB
 MOVI $43 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $42 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $41 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $38 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $39 %rC
 STOR %rC %rB
 ADDI $1  %rB
@@ -1578,11 +1875,26 @@ SUB  %rA %rB
 MOVI $37 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $36 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $35 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+
+CMP  %r5 %r0
+JLE  %rF
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1643,24 +1955,51 @@ MOVI $52 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $49 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $48 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $47 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $44 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $45 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $46 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+
+CMP  %r6 %r0
+JLE  %rF
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1704,24 +2043,52 @@ MOVI $46 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $49 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $48 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $47 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $50 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $51 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $52 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+SUBI $41 %rA
+CMP  %r6 %rA
+JGE  %rF
+ADDI $41 %rA
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1778,16 +2145,28 @@ ADDI $1  %rB
 MOVI $35 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $36 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $37 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $40 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $39 %rC
 STOR %rC %rB
 SUBI $1  %rB
@@ -1798,11 +2177,27 @@ ADD  %rA %rB
 MOVI $41 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $42 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $43 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+SUBI $1 %rA
+CMP  %r6 %rA
+JGE  %rF
+ADDI $1 %rA
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1835,16 +2230,28 @@ SUBI $1  %rB
 MOVI $37 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $36 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $35 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $38 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $39 %rC
 STOR %rC %rB
 ADDI $1  %rB
@@ -1855,11 +2262,26 @@ ADD  %rA %rB
 MOVI $43 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $42 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $41 %rC
 STOR %rC %rB
+
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+CMP  %r5 %r0
+JLE  %rF
+
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -1920,30 +2342,54 @@ MOVI $50 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $47 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $48 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $49 %rC
 STOR %rC %rB
 
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $46 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $45 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $44 %rC
 STOR %rC %rB
+
+
+CMP  %r6 %r0
+JLE  %rF
 
 # Jump to End
 LUI  .yellowEnd %rF
 MOVI .yellowEnd %rE
 OR   %rE %rF
 JUC  %rF
+
+##HERE
 
 .yellowRotateLeftToRight
 .yellowRotateLeftToLeft
@@ -1981,24 +2427,47 @@ MOVI $44 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $47 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $48 %rC
 STOR %rC %rB
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $49 %rC
 STOR %rC %rB
 
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $52 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $51 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $50 %rC
 STOR %rC %rB
+
+SUBI $41 %rA
+CMP  %r6 %rA
+JGE  %rF
+ADDI $41 %rA
 
 # Jump to End
 LUI  .yellowEnd %rF
@@ -2046,6 +2515,11 @@ ADDI $2  %rB
 STOR %rC %rB # Remove Bike Corner
 SUBI $1  %rB # restore to middle of bike
 
+# Set rF to be yellowdied
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r6
 
@@ -2072,15 +2546,30 @@ STOR %rC %rB
 SUBI $1  %rB
 
 SUB %rA  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $45 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $44 %rC
 STOR %rC %rB
 ADDI $2  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $46 %rC
 STOR %rC %rB
 SUBI $1  %rB
+
+
+
+CMP  %r6 %r0
+JLE  %rF
+
 
 # End Up Movement
 LUI  .yellowEnd %rF
@@ -2101,6 +2590,11 @@ SUB  %rA %rB
 SUB  %rA %rB
 STOR %rC %rB # Remove Bike Corner
 ADD  %rA %rB # restore to middle of bike
+
+# Set rF to be yellowdied
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r5
@@ -2130,16 +2624,30 @@ STOR %rC %rB
 SUB  %rA %rB
 
 ADDI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $40 %rC
 STOR %rC %rB
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $37 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $43 %rC
 STOR %rC %rB
 SUB  %rA %rB
+
+SUBI $1 %rA
+CMP  %r5 %rA
+JGE  %rF
+ADDI $1 %rA
 
 # End Right Movement
 LUI  .yellowEnd %rF
@@ -2159,6 +2667,11 @@ STOR %rC %rB # Remove Bike Corner
 ADDI $2 %rB
 STOR %rC %rB # Remove Bike Corner
 SUBI $1 %rB  # restore to middle of bike
+
+# Set rF to be yellowdied
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 ADDI $1  %r6
@@ -2186,15 +2699,29 @@ STOR %rC %rB
 SUBI $1 %rB
 
 ADD %rA  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $51 %rC
 STOR %rC %rB
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $50 %rC
 STOR %rC %rB
 ADDI $2  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $52 %rC
 STOR %rC %rB
-SUBI $1 %rB
+SUBI $1  %rB
+
+SUBI $41 %rA
+CMP  %r6 %rA
+JGE  %rF
+ADDI $41 %rA
 
 # End Down Movement
 LUI  .yellowEnd %rF
@@ -2215,6 +2742,11 @@ SUB  %rA %rB
 SUB  %rA %rB
 STOR %rC %rB # Remove Bike Corner
 ADD  %rA %rB # restore to middle of bike
+
+# Set rF to be yellowdied
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
 
 # Move bike to new location and update glyph at that new location
 SUBI $1  %r5
@@ -2244,16 +2776,29 @@ STOR %rC %rB
 SUB  %rA %rB
 
 SUBI $1  %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $38 %rC
 STOR %rC %rB
 SUB  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $35 %rC
 STOR %rC %rB
 ADD  %rA %rB
 ADD  %rA %rB
+LOAD %rE %rB # Check if this block is already taken and die if so
+CMPI $0  %rE
+JNE  %rF
 MOVI $41 %rC
 STOR %rC %rB
 SUB  %rA %rB
+
+CMP  %r5 %r0
+JLE  %rF
+
 
 # End Left Movement
 LUI  .yellowEnd %rF

@@ -539,15 +539,27 @@ SUBI $1 %rB
 MOVI $18 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $17 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $16 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $13 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $14 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
@@ -557,11 +569,22 @@ SUB %rA %rB
 MOVI $12 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $11 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $10 %rC 
 STOR %rC %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
+CMP %r2 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -605,23 +628,46 @@ ADDI $1 %rB
 MOVI $27 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $24 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $23 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $22 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $19 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $20 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $21 %rC 
 STOR %rC %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
+CMP %r3 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -653,23 +699,48 @@ ADDI $1 %rB
 MOVI $21 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $24 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $23 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $22 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $25 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $26 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $27 %rC 
 STOR %rC %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
+SUBI $41 %rA 
+CMP %r3 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -708,15 +779,27 @@ ADDI $1 %rB
 MOVI $10 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $11 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $12 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $15 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $14 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
@@ -726,11 +809,24 @@ ADD %rA %rB
 MOVI $16 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $17 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $18 %rC 
 STOR %rC %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
+SUBI $1 %rA 
+CMP %r3 %rA 
+JGE %rF 
+ADDI $1 %rA 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -755,15 +851,27 @@ SUBI $1 %rB
 MOVI $12 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $11 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $10 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $13 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $14 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
@@ -773,11 +881,22 @@ ADD %rA %rB
 MOVI $18 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $17 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $16 %rC 
 STOR %rC %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
+CMP %r2 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -821,23 +940,43 @@ SUBI $1 %rB
 MOVI $25 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $22 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $23 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $24 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $21 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $20 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $19 %rC 
 STOR %rC %rB 
+CMP %r3 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -869,23 +1008,45 @@ SUBI $1 %rB
 MOVI $19 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $22 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $23 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $24 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $27 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $26 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $25 %rC 
 STOR %rC %rB 
+SUBI $41 %rA 
+CMP %r3 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -919,6 +1080,9 @@ STOR %rC %rB
 ADDI $2 %rB 
 STOR %rC %rB 
 SUBI $1 %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
 SUBI $1 %r3 
 SUB %rA %rB 
 MOVI $26 %rC 
@@ -941,15 +1105,26 @@ MOVI $24 %rC
 STOR %rC %rB 
 SUBI $1 %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $20 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $19 %rC 
 STOR %rC %rB 
 ADDI $2 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $21 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+CMP %r3 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -964,6 +1139,9 @@ SUB %rA %rB
 SUB %rA %rB 
 STOR %rC %rB 
 ADD %rA %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
 ADDI $1 %r2 
 ADDI $1 %rB 
 MOVI $13 %rC 
@@ -988,16 +1166,29 @@ MOVI $17 %rC
 STOR %rC %rB 
 SUB %rA %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $15 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $12 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $18 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+SUBI $1 %rA 
+CMP %r2 %rA 
+JGE %rF 
+ADDI $1 %rA 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -1011,6 +1202,9 @@ STOR %rC %rB
 ADDI $2 %rB 
 STOR %rC %rB 
 SUBI $1 %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
 ADDI $1 %r3 
 ADD %rA %rB 
 MOVI $20 %rC 
@@ -1033,15 +1227,28 @@ MOVI $24 %rC
 STOR %rC %rB 
 SUBI $1 %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $26 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $25 %rC 
 STOR %rC %rB 
 ADDI $2 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $27 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+SUBI $41 %rA 
+CMP %r3 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -1056,6 +1263,9 @@ SUB %rA %rB
 SUB %rA %rB 
 STOR %rC %rB 
 ADD %rA %rB 
+LUI .blueDied %rF 
+MOVI .blueDied %rE 
+OR %rE %rF 
 SUBI $1 %r2 
 SUBI $1 %rB 
 MOVI $15 %rC 
@@ -1080,16 +1290,27 @@ MOVI $17 %rC
 STOR %rC %rB 
 SUB %rA %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $13 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $10 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $16 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+CMP %r2 %r0 
+JLE %rF 
 LUI .blueEnd %rF 
 MOVI .blueEnd %rE 
 OR %rE %rF 
@@ -1168,15 +1389,27 @@ ADDI $1 %rB
 MOVI $41 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $42 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $43 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $40 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $39 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
@@ -1186,11 +1419,24 @@ SUB %rA %rB
 MOVI $35 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $36 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $37 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+SUBI $1 %rA 
+CMP %r5 %rA 
+JGE %rF 
+ADDI $1 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1216,15 +1462,27 @@ SUBI $1 %rB
 MOVI $43 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $42 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $41 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $38 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $39 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
@@ -1234,11 +1492,22 @@ SUB %rA %rB
 MOVI $37 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $36 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $35 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+CMP %r5 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1286,23 +1555,46 @@ ADDI $1 %rB
 MOVI $52 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $49 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $48 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $47 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $44 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $45 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $46 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+CMP %r6 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1334,23 +1626,48 @@ ADDI $1 %rB
 MOVI $46 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $49 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $48 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $47 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $50 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $51 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $52 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+SUBI $41 %rA 
+CMP %r6 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1393,15 +1710,27 @@ ADDI $1 %rB
 MOVI $35 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $36 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $37 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $40 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $39 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
@@ -1411,11 +1740,24 @@ ADD %rA %rB
 MOVI $41 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $42 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $43 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+SUBI $1 %rA 
+CMP %r6 %rA 
+JGE %rF 
+ADDI $1 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1440,15 +1782,27 @@ SUBI $1 %rB
 MOVI $37 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $36 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $35 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $38 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $39 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
@@ -1458,11 +1812,22 @@ ADD %rA %rB
 MOVI $43 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $42 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $41 %rC 
 STOR %rC %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
+CMP %r5 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1510,23 +1875,43 @@ SUBI $1 %rB
 MOVI $50 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $47 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $48 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $49 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $46 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $45 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $44 %rC 
 STOR %rC %rB 
+CMP %r6 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1558,23 +1943,45 @@ SUBI $1 %rB
 MOVI $44 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $47 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $48 %rC 
 STOR %rC %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $49 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $52 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $51 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $50 %rC 
 STOR %rC %rB 
+SUBI $41 %rA 
+CMP %r6 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1608,6 +2015,9 @@ STOR %rC %rB
 ADDI $2 %rB 
 STOR %rC %rB 
 SUBI $1 %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
 SUBI $1 %r6 
 SUB %rA %rB 
 MOVI $51 %rC 
@@ -1630,15 +2040,26 @@ MOVI $49 %rC
 STOR %rC %rB 
 SUBI $1 %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $45 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $44 %rC 
 STOR %rC %rB 
 ADDI $2 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $46 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+CMP %r6 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1653,6 +2074,9 @@ SUB %rA %rB
 SUB %rA %rB 
 STOR %rC %rB 
 ADD %rA %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
 ADDI $1 %r5 
 ADDI $1 %rB 
 MOVI $38 %rC 
@@ -1677,16 +2101,29 @@ MOVI $42 %rC
 STOR %rC %rB 
 SUB %rA %rB 
 ADDI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $40 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $37 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $43 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+SUBI $1 %rA 
+CMP %r5 %rA 
+JGE %rF 
+ADDI $1 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1700,6 +2137,9 @@ STOR %rC %rB
 ADDI $2 %rB 
 STOR %rC %rB 
 SUBI $1 %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
 ADDI $1 %r6 
 ADD %rA %rB 
 MOVI $45 %rC 
@@ -1722,15 +2162,28 @@ MOVI $49 %rC
 STOR %rC %rB 
 SUBI $1 %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $51 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $50 %rC 
 STOR %rC %rB 
 ADDI $2 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $52 %rC 
 STOR %rC %rB 
 SUBI $1 %rB 
+SUBI $41 %rA 
+CMP %r6 %rA 
+JGE %rF 
+ADDI $41 %rA 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1745,6 +2198,9 @@ SUB %rA %rB
 SUB %rA %rB 
 STOR %rC %rB 
 ADD %rA %rB 
+LUI .yellowDied %rF 
+MOVI .yellowDied %rE 
+OR %rE %rF 
 SUBI $1 %r5 
 SUBI $1 %rB 
 MOVI $40 %rC 
@@ -1769,16 +2225,27 @@ MOVI $42 %rC
 STOR %rC %rB 
 SUB %rA %rB 
 SUBI $1 %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $38 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $35 %rC 
 STOR %rC %rB 
 ADD %rA %rB 
 ADD %rA %rB 
+LOAD %rE %rB 
+CMPI $0 %rE 
+JNE %rF 
 MOVI $41 %rC 
 STOR %rC %rB 
 SUB %rA %rB 
+CMP %r5 %r0 
+JLE %rF 
 LUI .yellowEnd %rF 
 MOVI .yellowEnd %rE 
 OR %rE %rF 
@@ -1787,9 +2254,44 @@ LUI .CounterLoopStart %rF
 MOVI .CounterLoopStart %rE 
 OR %rE %rF 
 JUC %rF 
+LUI $156 %rA 
+ORI $64 %rA 
+ADD %r2 %rA 
 MOVI $0 %rB 
+ORI $160 %rB 
+MUL %r3 %rB 
+ADD %rA %rB 
 MOVI $0 %rA 
 ORI $160 %rA 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $54 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $55 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $56 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+MOVI $59 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $58 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $57 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+MOVI $60 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $61 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $62 %rC 
+STOR %rC %rB 
+MOVI $0 %rB 
 MOV %rA %rB 
 MULI $5 %rB 
 ADDI $30 %rB 
@@ -2056,6 +2558,43 @@ LUI .End %rF
 MOVI .End %rE 
 OR %rE %rF 
 JUC %rF 
+LUI $156 %rA 
+ORI $64 %rA 
+ADD %r5 %rA 
+MOVI $0 %rB 
+ORI $160 %rB 
+MUL %r6 %rB 
+ADD %rA %rB 
+MOVI $0 %rA 
+ORI $160 %rA 
+SUB %rA %rB 
+SUBI $1 %rB 
+MOVI $54 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $55 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $56 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+MOVI $59 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $58 %rC 
+STOR %rC %rB 
+SUBI $1 %rB 
+MOVI $57 %rC 
+STOR %rC %rB 
+ADD %rA %rB 
+MOVI $60 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $61 %rC 
+STOR %rC %rB 
+ADDI $1 %rB 
+MOVI $62 %rC 
+STOR %rC %rB 
 MOVI $0 %rB 
 MOVI $0 %rA 
 ORI $160 %rA 

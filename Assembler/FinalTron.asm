@@ -2818,12 +2818,57 @@ JUC  %rF
 
 
 .blueDied
-# Display the message "Yellow Wins"
-MOVI $0 %rB
+# Find location for explosion glyph
+LUI $156  %rA
+ORI $64   %rA  # Load 40000 into rA to find in memory
+ADD %r2   %rA  # Shift rA to 40000 + xposition
+
+MOVI $0   %rB
+ORI  $160 %rB  # Load 160 into rB for memory loc
+MUL  %r3  %rB  # 160 * %r3 = y position in memory 
+
+ADD %rA   %rB  # rB holds blue pos in memory
 
 # Always have %rA hold the value of 160.
 MOVI $0   %rA
 ORI  $160 %rA
+
+
+# Place explosion in bike location.
+SUB  %rA %rB
+SUBI $1  %rB
+MOVI $54 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $55 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $56 %rC
+STOR %rC %rB
+
+ADD %rA  %rB
+MOVI $59 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $58 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $57 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $60 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $61 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $62 %rC
+STOR %rC %rB
+
+
+# Display the message "Yellow Wins"
+MOVI $0 %rB
 
 # Starting address is x = 30 and y = 5
 MOV  %rA %rB
@@ -3121,6 +3166,55 @@ JUC  %rF
 
 
 .yellowDied
+# Find location for explosion glyph
+LUI $156  %rA
+ORI $64   %rA  # Load 40000 into rA to find in memory
+ADD %r5   %rA  # Shift rA to 40000 + xposition
+
+MOVI $0   %rB
+ORI  $160 %rB  # Load 160 into rB for memory loc
+MUL  %r6  %rB  # 160 * %r6 = y position in memory 
+
+ADD %rA   %rB  # rB holds blue pos in memory
+
+# Always have %rA hold the value of 160.
+MOVI $0   %rA
+ORI  $160 %rA
+
+
+# Place explosion in bike location.
+SUB  %rA %rB
+SUBI $1  %rB
+MOVI $54 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $55 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $56 %rC
+STOR %rC %rB
+
+ADD %rA  %rB
+MOVI $59 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $58 %rC
+STOR %rC %rB
+SUBI $1  %rB
+MOVI $57 %rC
+STOR %rC %rB
+
+ADD  %rA %rB
+MOVI $60 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $61 %rC
+STOR %rC %rB
+ADDI $1  %rB
+MOVI $62 %rC
+STOR %rC %rB
+
+
 # Display the message "Blue Wins"
 MOVI $0 %rB
 

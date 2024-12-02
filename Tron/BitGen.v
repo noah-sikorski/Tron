@@ -1559,9 +1559,9 @@ always @(*) begin
 					
 					// White Portion
 					16'd5, 16'd6, 16'd9, 16'd10: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd255;
+						VGA_B <= 8'd255;
 					end
 					
 					// Remainder black

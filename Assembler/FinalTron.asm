@@ -2,7 +2,6 @@
 # Direction:    0=up 1=right 2=down 3=left
 # Blue Bike:    r1=direction r2=xPosition r3=yPosition
 # Yellow Bike:  r4=direction r5=xPosition r6=yPosition
-# Audio Codes: 001 Startup, 002 Start Screen Music, 003 Start Button, 004 Death Sound, 005 Win Music, 006-011 Sound Tracks, 017 Stop, 018 Random Soundtrack
 # IO Direction: 1=BlueUp  2=BlueRight  4=BlueDown  8=BlueLeft
 # IO Direction: 16=YellowUp 32=YellowRight 64=YellowDown 128=YellowLeft
 # IO Direction: 256=Start Game
@@ -24,14 +23,6 @@ BNE .memEraseLoop
 
 
 .StartScreen
-
-LUI $234 %rF # Load the value 60000 into rF for audio addressing
-ORI $96  %rF
-MOVI $1 %rE
-STOR %rE %rF # Start sound
-MOVI $2 %rE
-STOR %rE %rF # Start Music
-
 MOVI $0 %rB
 
 # Always have %rA hold the value of 160.
@@ -207,17 +198,6 @@ BNE .clearLoop
 
 
 .StartGame
-
-LUI $234 %rF # Load the value 60000 into rF for audio addressing
-ORI $96  %rF
-MOVI $17 %rE
-STOR %rE %rF # Stop
-MOVI $3 %rE
-STOR %rE %rF # Insert Coin
-MOVI $18 %rE
-STOR %rE %rF # Random SoundTrack
-
-
 # Blue Bike Start Registers
 MOVI $0   %r1   # Up Direction
 MOVI $55  %r2   # x = 55
@@ -2838,16 +2818,6 @@ JUC  %rF
 
 
 .blueDied
-
-LUI $234 %rF # Load the value 60000 into rF for audio addressing
-ORI $96  %rF
-MOVI $17 %rE
-STOR %rE %rF # Stop
-MOVI $4 %rE
-STOR %rE %rF # Death Sound
-MOVI $5 %rE
-STOR %rE %rF # Death Sound
-
 # Find location for explosion glyph
 LUI $156  %rA
 ORI $64   %rA  # Load 40000 into rA to find in memory
@@ -3196,16 +3166,6 @@ JUC  %rF
 
 
 .yellowDied
-
-LUI $234 %rF # Load the value 60000 into rF for audio addressing
-ORI $96  %rF
-MOVI $17 %rE
-STOR %rE %rF # Stop
-MOVI $4 %rE
-STOR %rE %rF # Death Sound
-MOVI $5 %rE
-STOR %rE %rF # Winning Sound
-
 # Find location for explosion glyph
 LUI $156  %rA
 ORI $64   %rA  # Load 40000 into rA to find in memory

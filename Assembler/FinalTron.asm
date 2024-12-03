@@ -601,6 +601,11 @@ JUC %rF
 JUC %rF
 
 .blueRotateUpToRight
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $1 %r1
 ADDI $2 %r2
 
@@ -620,7 +625,7 @@ MOVI $4  %rC
 ADDI $1  %rB
 STOR %rC %rB
 
-# TODO: Perform Collision Check (%rB is currently bottom middle of og)
+# TODO: Perform Collision Check (%rB is currently top middle of og)
 ADDI $1  %rB
 MOVI $16 %rC
 STOR %rC %rB
@@ -669,10 +674,6 @@ JNE  %rF
 MOVI $12 %rC
 STOR %rC %rB
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
 
 SUBI $1  %rA
 CMP  %r2 %rA
@@ -686,6 +687,11 @@ OR   %rE %rF
 JUC  %rF
 
 .blueRotateUpToLeft
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $3 %r1
 SUBI $2 %r2
 
@@ -755,10 +761,6 @@ MOVI $10 %rC
 STOR %rC %rB
 
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
 
 
 CMP  %r2 %r0
@@ -788,6 +790,11 @@ BEQ .blueRotateRightToLeft
 JUC %rF
 
 .blueRotateRightToUp
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $0 %r1
 SUBI $2 %r3
 
@@ -856,11 +863,6 @@ JNE  %rF
 MOVI $21 %rC
 STOR %rC %rB
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
-
 
 CMP  %r3 %r0
 JLE  %rF
@@ -876,6 +878,11 @@ JUC  %rF
 JUC %rF
 
 .blueRotateRightToDown
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $2 %r1
 ADDI $2 %r3
 
@@ -944,10 +951,6 @@ JNE  %rF
 MOVI $27 %rC
 STOR %rC %rB
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
 
 SUBI $41 %rA
 CMP  %r3 %rA
@@ -981,6 +984,11 @@ JUC %rF
 JUC %rF
 
 .blueRotateDownToRight
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $1 %r1
 ADDI $2 %r2
 
@@ -1049,10 +1057,6 @@ JNE  %rF
 MOVI $18 %rC
 STOR %rC %rB
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
 
 SUBI $1 %rA
 CMP  %r3 %rA
@@ -1065,6 +1069,11 @@ OR   %rE %rF
 JUC  %rF
 
 .blueRotateDownToLeft
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $3 %r1
 SUBI $2 %r2
 
@@ -1133,10 +1142,6 @@ JNE  %rF
 MOVI $16 %rC
 STOR %rC %rB
 
-# Check if after turning the bike went off screen.
-LUI  .blueDied %rF
-MOVI .blueDied %rE
-OR   %rE %rF
 
 CMP  %r2 %r0
 JLE  %rF
@@ -1165,6 +1170,11 @@ BEQ .blueRotateLeftToLeft
 JUC %rF
 
 .blueRotateLeftToUp
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $0 %r1
 SUBI $2 %r3
 
@@ -1247,6 +1257,11 @@ JUC  %rF
 JUC %rF
 
 .blueRotateLeftToDown
+# Check if after turning the bike went off screen.
+LUI  .blueDied %rF
+MOVI .blueDied %rE
+OR   %rE %rF
+
 MOVI $2 %r1
 ADDI $2 %r3
 
@@ -1732,6 +1747,11 @@ JUC %rF
 JUC %rF
 
 .yellowRotateUpToRight
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
 MOVI $1 %r4
 ADDI $2 %r5
 
@@ -1819,6 +1839,11 @@ JUC  %rF
 JUC %rF
 
 .yellowRotateUpToLeft
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
 MOVI $3 %r4
 SUBI $2 %r5
 
@@ -2012,6 +2037,12 @@ JUC  %rF
 JUC %rF
 
 .yellowRotateRightToDown
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+
 MOVI $2 %r4
 ADDI $2 %r6
 
@@ -2121,6 +2152,12 @@ JUC %rF
 JUC %rF
 
 .yellowRotateDownToRight
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+
 MOVI $1 %r4
 ADDI $2 %r5
 
@@ -2206,6 +2243,11 @@ OR   %rE %rF
 JUC  %rF
 
 .yellowRotateDownToLeft
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
 MOVI $3 %r4
 SUBI $2 %r5
 
@@ -2311,6 +2353,11 @@ BEQ .yellowRotateLeftToLeft
 JUC %rF
 
 .yellowRotateLeftToUp
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
 MOVI $0 %r4
 SUBI $2 %r6
 
@@ -2396,6 +2443,12 @@ JUC  %rF
 JUC %rF
 
 .yellowRotateLeftToDown
+# Check if after turning the bike went off screen.
+LUI  .yellowDied %rF
+MOVI .yellowDied %rE
+OR   %rE %rF
+
+
 MOVI $2 %r4
 ADDI $2 %r6
 

@@ -31,9 +31,6 @@ ORI $96  %rF
 LUI $64 %rE
 STOR %rE %rF # Stop
 
-MOVI $1 %rE
-STOR %rE %rF # Start sound
-
 MOVI $0 %rB
 
 # Always have %rA hold the value of 160.
@@ -183,10 +180,16 @@ ADD %rD %rB
 ADDI $7 %rB
 JAL %rE %rF
 
+LUI $234 %rF # Load the value 60000 into rF for audio addressing
+ORI $96  %rF
+
 .StartScreenLoop
 LUI $234 %r7
 ORI $96  %r7   # Store IO/Switch location in the address $60000
 LOAD %r8 %r7   # Load the switch value into r8
+
+MOVI $1 %rE
+STOR %rE %rF # Start sound
 
 LUI $1 %r9
 CMP %r9 %r8
@@ -2892,14 +2895,12 @@ JUC  %rF
 
 
 .blueDied
+
 LUI $234 %rF # Load the value 60000 into rF for audio addressing
 ORI $96  %rF
 
 LUI $64 %rE
 STOR %rE %rF # Stop
-
-MOVI $16 %rE # Sound Code 5
-STOR %rE %rF # Winning Sound
 
 # Find location for explosion glyph
 LUI $156  %rA
@@ -2964,6 +2965,11 @@ ADD %rC  %rB
 # Place 320 into rD for ease of movement.
 LUI $1  %rD
 ORI $64 %rD
+
+LUI $234 %rF # Load the value 60000 into rF for audio addressing
+ORI $96  %rF
+MOVI $16 %rE # Sound Code 5
+STOR %rE %rF # Winning Sound
 
 # %rF holds value of .drawYellowTwoByTwoSquare address
 LUI  .drawYellowTwoByTwoSquare %rF
@@ -3255,9 +3261,6 @@ ORI $96  %rF
 LUI $64 %rE
 STOR %rE %rF # Stop
 
-MOVI $16 %rE # Sound Code 5
-STOR %rE %rF # Winning Sound
-
 # Find location for explosion glyph
 LUI $156  %rA
 ORI $64   %rA  # Load 40000 into rA to find in memory
@@ -3325,6 +3328,11 @@ ADD %rC  %rB
 # Place 320 into rD for ease of movement.
 LUI $1  %rD
 ORI $64 %rD
+
+LUI $234 %rF # Load the value 60000 into rF for audio addressing
+ORI $96  %rF
+MOVI $16 %rE # Sound Code 5
+STOR %rE %rF # Winning Sound
 
 # %rF holds value of .drawBlueTwoByTwoSquare address
 LUI  .drawBlueTwoByTwoSquare %rF

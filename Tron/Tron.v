@@ -10,7 +10,7 @@ module Tron (
 	
 	input [9:0] switches,
 	
-	output reg[15:0] audioOutput,
+	output wire[15:0] audioOutput,
 	
 	output reg VGA_HS,
 	output reg VGA_VS,

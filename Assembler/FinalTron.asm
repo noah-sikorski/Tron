@@ -2890,12 +2890,11 @@ JUC  %rF
 
 
 .blueDied
-
 LUI $234 %rF # Load the value 60000 into rF for audio addressing
 ORI $96  %rF
 LUI $64 %rE
 STOR %rE %rF # Stop
-MOVI $8 %rE Sound Code 4
+MOVI $8 %rE  # Sound Code 4
 STOR %rE %rF # Death Sound
 MOVI $16 %rE # Sound Code 5
 STOR %rE %rF # Winning Sound
@@ -3248,12 +3247,11 @@ JUC  %rF
 
 
 .yellowDied
-
 LUI $234 %rF # Load the value 60000 into rF for audio addressing
 ORI $96  %rF
-MOVI $17 %rE
+LUI $64  %rE
 STOR %rE %rF # Stop
-MOVI $8 %rE Sound Code 4
+MOVI $8  %rE # Sound Code 4
 STOR %rE %rF # Death Sound
 MOVI $16 %rE # Sound Code 5
 STOR %rE %rF # Winning Sound

@@ -1547,9 +1547,9 @@ always @(*) begin
 					
 					// White 
 					default: begin
-						VGA_R <= 8'd0;
-						VGA_G <= 8'd0;
-						VGA_B <= 8'd0;
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd255;
+						VGA_B <= 8'd255;
 					end
 				endcase
 			end
@@ -1638,11 +1638,18 @@ always @(*) begin
 						VGA_B <= 8'd189;
 					end
 					
-					// Remainder White
-					default: begin
+					//White POrtion
+					16'd3: begin
 						VGA_R <= 8'd255;
 						VGA_G <= 8'd255;
 						VGA_B <= 8'd255;
+					end
+					
+					// Remainder Black
+					default: begin
+						VGA_R <= 8'd0;
+						VGA_G <= 8'd0;
+						VGA_B <= 8'd0;
 					end
 				endcase
 			end

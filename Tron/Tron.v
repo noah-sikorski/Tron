@@ -10,6 +10,8 @@ module Tron (
 	
 	input [9:0] switches,
 	
+	output reg[15:0] audioOutput,
+	
 	output reg VGA_HS,
 	output reg VGA_VS,
 	output reg VGA_CLK,
@@ -164,7 +166,8 @@ exmem exmem(
 .we2(we2),
 .clk(~clk),
 .dataOut1(decoderInput),
-.dataOut2(dataOut2)
+.dataOut2(dataOut2),
+.audioOutput(audioOutput)
 );
 
 // Control the order of counts for VGA.

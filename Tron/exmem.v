@@ -10,7 +10,7 @@ module exmem #(parameter DATA_WIDTH=16, parameter ADDR_WIDTH=16) (
 
     input we1, we2, clk,
 
-    output reg [9:0] LED,
+    output reg [15:0] audioOutput,
     output wire [(DATA_WIDTH-1):0] dataOut1,
     output reg [(DATA_WIDTH-1):0] dataOut2
 );
@@ -52,7 +52,7 @@ end
 
 always @(posedge clk) begin
 	if (IO & we1)
-		LED <= dataIn1[9:0];
+		audioOutput <= dataIn1;
 end
 
 assign dataOut1 = IO ? {6'b0, switches} : tempDataOut1;

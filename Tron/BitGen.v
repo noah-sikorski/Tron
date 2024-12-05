@@ -1444,6 +1444,11 @@ always @(*) begin
 						VGA_G <= 8'd249;
 						VGA_B <= 8'd189;
 					end
+					16'd15: begin
+						VGA_R <= 8'd255;
+						VGA_G <= 8'd255;
+						VGA_B <= 8'd255;
+					end
 					
 					// Remainder black
 					default: begin

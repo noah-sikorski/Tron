@@ -1,5 +1,7 @@
 /*
 Decode the instruction op code from the instruction and input it into the controller and datapath.
+
+By: Tron-Tastic Engineers
 */
 module InstructionDecoder (
 	input [15:0] instruction,

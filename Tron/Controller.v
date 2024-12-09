@@ -2,6 +2,8 @@
 This is a finite state machine. Go through each of the 
 phases of fetch, decode, and execute in order as needed.
 This outputs each of the control bits that the CPU needs.
+
+By: Tron-Tastic Engineers
 */
 module Controller #(parameter WIDTH=16, REGBITS=4) (
    input clk,
@@ -63,16 +65,17 @@ localparam JAL		= 8'b01001000;
 localparam BCOND 	= 8'b11000000;
 localparam JCOND 	= 8'b01001100;
 
-// State registers for holding current and next states
+// State registers for holding current and next states.
 reg [7:0] currentstate = FETCH;
 reg [7:0] nextstate = FETCH;
 
-// Synchronous state transition on clock edge or reset
+// Synchronous state transition on clock edge or reset.
 always @(posedge clk) begin
+	// Start in FETCH state if reset occurs.
 	if (~reset) 
-		currentstate <= FETCH;  // Start in FETCH state after reset
+		currentstate <= FETCH;  
 	else 
-		currentstate <= nextstate;  // Transition to the next state
+		currentstate <= nextstate;
 end
 
 // Next state logic (determines what the next state will be)
@@ -107,6 +110,7 @@ always @(*) begin
 			endcase
 		end
 		
+		// Second phase for these instructions.
 		LUI:  nextstate <= LUIS;
 		JAL:  nextstate <= JCOND;
 		

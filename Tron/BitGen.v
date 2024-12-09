@@ -1,17 +1,21 @@
 /*
+This is the code to output the correct colors to the VGA when needed.
+The glyph number is retrieved using memAddress and the exact pixel
+is drawn according to pixelPosition.
 
+By: Tron-Tastic Engineers
 */
 module BitGen (
-input bright,
-input [15:0] hCount,
-input [15:0] vCount,
+	input bright,
+	input [15:0] hCount,
+	input [15:0] vCount,
 
-output [15:0] memAddress,	// To exmem addr2
-input [15:0] memData,      // dataOut 2
+	output [15:0] memAddress,	// To exmem addr2
+	input [15:0] memData,      // dataOut 2
 
-output reg[7:0] VGA_R,
-output reg[7:0] VGA_G,
-output reg[7:0] VGA_B
+	output reg[7:0] VGA_R,
+	output reg[7:0] VGA_G,
+	output reg[7:0] VGA_B
 );
 
 wire [15:0] pixelPosition;
@@ -1477,7 +1481,7 @@ always @(*) begin
 					end
 					
 					// Light Yellow Portion
-					16'd8, 16'd11, 16'd13, 16'd14: begin
+					16'd8, 16'd11: begin
 						VGA_R <= 8'd255;
 						VGA_G <= 8'd249;
 						VGA_B <= 8'd189;
@@ -1677,7 +1681,7 @@ always @(*) begin
 					end
 					
 					// Orange Portion
-					16'd4, 16'd5, 16'd9, 16'd10, 16'd1: begin
+					16'd4, 16'd5, 16'd9, 16'd10: begin
 						VGA_R <= 8'd255;
 						VGA_G <= 8'd126;
 						VGA_B <= 8'd0;

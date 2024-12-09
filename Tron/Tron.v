@@ -3,6 +3,8 @@ This is the top level entety to combine all elements.
 The elements combined are the Controller, Datapath, and
 exmem. It allows the use of swicthes and IO to show the
 video game Tron.
+
+By: Tron-Tastic Engineers
 */
 module Tron (
 	input clk,
@@ -111,6 +113,7 @@ Controller Controller (
 	.fetchPhase(fetchPhase),
 	.LUIOp(LUIOp)
 );
+
 // Create final outputs according to control signals.
 Datapath Datapath(
 	.memData(memData),
@@ -124,7 +127,6 @@ Datapath Datapath(
 	.LUIOp(LUIOp),
 	.immMUX(immMux),
 	.regWrite(regWrite),
-	.memWrite(memWrite),
 	.reset(reset),
 	.flagOp(flagOp),
 	.pcAdd(pcAdd),

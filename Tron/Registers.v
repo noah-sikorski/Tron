@@ -2,13 +2,17 @@
 This module controls the registers for RAM.
 It uses the register addresses to retrieve values from RAM to be placed into registers.
 Place write data into the second register in RAM.
+
+By: Tron-Tastic Engineers
 */
 module Registers #(parameter WIDTH=16, REGBITS=4) (
-input clk, 
-input regwrite, 
-input [REGBITS-1:0] ra1, ra2,
-input [WIDTH-1:0] wd,
-output reg [WIDTH-1:0] rd1, rd2);
+	input clk, 
+	input regwrite, 
+	input [REGBITS-1:0] ra1, ra2,
+	input [WIDTH-1:0] wd,
+
+	output reg [WIDTH-1:0] rd1, rd2
+);
 
 reg [WIDTH-1:0] RAM [(1<<REGBITS)-1:0];
 

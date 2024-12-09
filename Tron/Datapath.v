@@ -1,5 +1,9 @@
 /*
 Combine all elements together to have all modules linked together.
+Uses the control bits from the Controller to output the desired 
+program counter and calculation output.
+
+By: Tron-Tastic Engineers
 */
 module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 (
@@ -11,11 +15,11 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 	input [3:0] ALUOp,
 	input [1:0] shiftOp,
 	input [2:0] busOp,
+	input [3:0] flagOp,
+	
 	input immMUX,
 	input regWrite,
-	input memWrite,
 	input reset,
-	input [3:0] flagOp,
 	input pcAdd,
 	input pcJump,
 	input pcBranch,
@@ -32,28 +36,34 @@ module Datapath #(parameter WIDTH = 16, REGBITS = 4)
 wire [15:0] regB;
 wire [15:0] IMMMuxRes; 
 wire [15:0] ALUresult;
-wire [4:0] flagreg;
+wire [4:0]  flagreg;
 wire [15:0] shifterOutput;
 wire [15:0] extendedImmediate;
 
-// Setup with always statement with instruction as input.
-SignExtend extend(.immediate(immediate), .instructionOp(instructionOp), .extendedImmediate(extendedImmediate));
+// Extend the immediate.
+SignExtend SignExtender(.immediate(immediate), .instructionOp(instructionOp), .extendedImmediate(extendedImmediate));
 
-ProgramCounter pc(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(extendedImmediate),
+// Use the program counter to go retrieve next instruction.
+ProgramCounter ProgramCounter(.reset(reset), .flagOp(flagOp), .flagRegister(flagreg), .immediate(extendedImmediate),
 						.pcAdd(pcAdd), .pcJump(pcJump), .pcBranch(pcBranch), .addressOut(addressOut),
 						.rTarget(regA), .clk(clk));
 
-Registers regFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
+// Use registers to compute values desired.
+Registers RegisterFile(.clk(clk), .regwrite(regWrite), .ra1(regAddA), .ra2(regAddB),
 						.wd(busOutput), .rd1(regA), .rd2(regB));
 
-Multiplexer IMMmux(.d0(regA), .d1(extendedImmediate), .s(immMUX), .LUIOp(LUIOp), .y(IMMMuxRes));  
+// Decide which value to use between two values.
+Multiplexer Multiplexer(.d0(regA), .d1(extendedImmediate), .s(immMUX), .LUIOp(LUIOp), .y(IMMMuxRes));  
 
-ALU ALu(.clk(clk), .reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), .flagWrite(flagWrite), .result(ALUresult), 
-		  .flagreg(flagreg));
+// Compute arithmetic if the value is needed.
+ALU ArithmeticLogicUnit(.clk(clk), .instructionOp(instructionOp), .reg1(regB), .reg2(IMMMuxRes), .inst(ALUOp), 
+		  .flagWrite(flagWrite), .result(ALUresult), .flagreg(flagreg));
 
-Shifter shift(.data_in(regB), .shamt(IMMMuxRes), .shift_op(shiftOp), .data_out(shifterOutput));
+// Shift the value according to a shamt.
+Shifter Shifter(.data_in(regB), .shamt(IMMMuxRes), .shift_op(shiftOp), .data_out(shifterOutput));
 
-Bus bus(.immediate(IMMMuxRes), .memout(memData), .ALUout(ALUresult), .shiftout(shifterOutput),
+// Decide which value to be sent to write.
+Bus Bus(.immediate(IMMMuxRes), .memout(memData), .ALUout(ALUresult), .shiftout(shifterOutput),
 						.pcout(addressOut + 16'b1), .selector(busOp), .dataOut(busOutput), .regBout(regB));
 
 endmodule

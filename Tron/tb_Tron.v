@@ -4,6 +4,8 @@ Call the entire top level and verify each element is working as wanted.
 This current version of the testbench does not work with the top level as
 the top level uses memory to retrieve instrucitons and this version directly
 places instructions into the top level.
+
+By: Tron-Tastic Engineers
 */
 module tb_Tron();
 

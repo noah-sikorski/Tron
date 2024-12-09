@@ -1,5 +1,7 @@
 /*
 Take many inputs from all modules and decide which one will be outputed.
+
+By: Tron-Tastic Engineers
 */
 module Bus (
 	input  [15:0] ALUout,    // Input from ALU result

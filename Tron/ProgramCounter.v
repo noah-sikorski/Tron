@@ -1,6 +1,9 @@
 /*
 This is the file that manages the control of the
 program counter by incrementing it as needed and moving around.
+The program counter is sent into exmem to retrieve instrcutions.
+
+By: Tron-Tastic Engineers
 */
 module ProgramCounter #(parameter WIDTH = 16) (
 	 input reset,
@@ -40,6 +43,7 @@ localparam UC = 4'b1110;
 localparam JAL = 4'b1111;
 
 always @(posedge clk) begin
+	// Reset the program counter if the reset button is pressed.
 	if (!reset) begin
 		pcAddress <= 16'b0;
 	// The case of just simply going to the next instruction.

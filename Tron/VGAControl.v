@@ -1,5 +1,9 @@
 /*
+Run through the correct regions according to the VGA protocol.
+Have the bright on in the desired regions to allow drawing with
+VGA at the correct times.
 
+By: Tron-Tastic Engineers
 */
 module VGAControl (
 input reset,
